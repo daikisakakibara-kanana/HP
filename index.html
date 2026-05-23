@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="(合)ケイズは小田原市鬼柳を拠点に、給排水衛生設備工事を行う地域密着の設備工事会社です。住宅・店舗・施設の水まわり設備、配管、改修、衛生設備工事に対応します。">
+  <title>(合)ケイズ | 小田原市の給排水衛生設備工事</title>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Yu Gothic", "Meiryo", sans-serif;
+      background:
+        radial-gradient(circle at 20% 10%, rgba(34, 211, 238, 0.18), transparent 30%),
+        radial-gradient(circle at 80% 0%, rgba(59, 130, 246, 0.14), transparent 32%),
+        linear-gradient(180deg, #f8fbff 0%, #eef7fb 46%, #f8fbff 100%);
+      color: #082f49;
+    }
+
+    h1,
+    h2,
+    h3,
+    p {
+      line-break: strict;
+      word-break: keep-all;
+      overflow-wrap: anywhere;
+    }
+
+    .phrase {
+      display: inline-block;
+    }
+
+    .grid-blueprint {
+      background-image:
+        linear-gradient(rgba(14, 165, 233, 0.12) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(14, 165, 233, 0.12) 1px, transparent 1px);
+      background-size: 28px 28px;
+    }
+
+    .pipe-line {
+      position: absolute;
+      border-color: rgba(34, 211, 238, 0.35);
+      pointer-events: none;
+    }
+
+    .water-glow {
+      box-shadow: 0 24px 90px rgba(14, 165, 233, 0.24);
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity 720ms ease, transform 720ms ease;
+    }
+
+    .reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .modal-open {
+      overflow: hidden;
+    }
+  </style>
+</head>
+<body class="antialiased">
+  <header class="fixed inset-x-0 top-0 z-50 border-b border-sky-900/10 bg-white/85 backdrop-blur-xl">
+    <div class="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 lg:px-8">
+      <a href="#top" class="flex items-center gap-3" aria-label="(合)ケイズ トップへ">
+        <span class="relative grid h-11 w-11 place-items-center rounded-2xl bg-sky-950 text-lg font-black text-cyan-200">
+          K
+          <span class="absolute -right-1 -top-1 h-3 w-3 rounded-full bg-cyan-400"></span>
+        </span>
+        <span>
+          <span class="block text-lg font-black tracking-[0.16em]">(合)ケイズ</span>
+          <span class="block text-[11px] font-bold uppercase tracking-[0.28em] text-sky-600">Water & Sanitary Works</span>
+        </span>
+      </a>
+
+      <nav class="hidden items-center gap-7 text-sm font-bold text-sky-900 lg:flex" aria-label="メインナビゲーション">
+        <a class="transition hover:text-cyan-600" href="#strength">選ばれる理由</a>
+        <a class="transition hover:text-cyan-600" href="#service">事業内容</a>
+        <a class="transition hover:text-cyan-600" href="#company">会社概要</a>
+        <a class="transition hover:text-cyan-600" href="#contact">お問い合わせ</a>
+      </nav>
+
+      <div class="flex items-center gap-3">
+        <a href="tel:0465381552" class="hidden rounded-full bg-sky-950 px-5 py-3 text-sm font-black text-white transition hover:bg-cyan-600 md:inline-flex">
+          0465-38-1552
+        </a>
+        <button id="menuButton" class="grid h-11 w-11 place-items-center rounded-full border border-sky-900/15 bg-white lg:hidden" type="button" aria-label="メニューを開く" aria-expanded="false">
+          <span class="relative h-4 w-5">
+            <span class="absolute left-0 top-0 h-0.5 w-5 bg-sky-950 transition"></span>
+            <span class="absolute left-0 top-2 h-0.5 w-5 bg-sky-950 transition"></span>
+            <span class="absolute bottom-0 left-0 h-0.5 w-5 bg-sky-950 transition"></span>
+          </span>
+        </button>
+      </div>
+    </div>
+
+    <div id="mobileMenu" class="hidden border-t border-sky-900/10 bg-white px-5 py-5 lg:hidden">
+      <nav class="mx-auto grid max-w-7xl gap-3 text-sm font-bold text-sky-900" aria-label="モバイルナビゲーション">
+        <a class="rounded-2xl bg-sky-50 px-4 py-3" href="#strength">選ばれる理由</a>
+        <a class="rounded-2xl bg-sky-50 px-4 py-3" href="#service">事業内容</a>
+        <a class="rounded-2xl bg-sky-50 px-4 py-3" href="#company">会社概要</a>
+        <a class="rounded-2xl bg-sky-50 px-4 py-3" href="#contact">お問い合わせ</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top" class="overflow-hidden pt-20">
+    <section class="relative min-h-screen grid-blueprint">
+      <div class="pipe-line left-[8%] top-36 hidden h-44 w-44 rounded-br-[4rem] border-b-[18px] border-r-[18px] lg:block"></div>
+      <div class="pipe-line right-[5%] top-28 hidden h-56 w-56 rounded-bl-[5rem] border-b-[18px] border-l-[18px] lg:block"></div>
+      <div class="pipe-line bottom-20 left-[22%] hidden h-28 w-80 rounded-full border-[16px] lg:block"></div>
+
+      <div class="relative mx-auto grid max-w-7xl gap-12 px-5 py-16 lg:grid-cols-[1.05fr_0.95fr] lg:px-8 lg:py-24">
+        <div class="flex min-h-[650px] flex-col justify-center">
+          <div class="reveal mb-8 inline-flex w-fit items-center gap-3 rounded-full border border-cyan-200 bg-white/80 px-4 py-2 shadow-sm">
+            <span class="h-2.5 w-2.5 rounded-full bg-cyan-400"></span>
+            <span class="text-xs font-black uppercase tracking-[0.28em] text-sky-700">Odawara Water Infrastructure</span>
+          </div>
+          <h1 class="reveal max-w-4xl text-[clamp(2.25rem,6.3vw,5.9rem)] font-black leading-[1.03] tracking-tight text-sky-950">
+            <span class="phrase">水まわりを止めない。</span><br class="hidden sm:block">
+            <span class="phrase">現場を止めない。</span>
+          </h1>
+          <p class="reveal mt-8 max-w-2xl text-lg leading-9 text-sky-900/75">
+            <span class="phrase">(合)ケイズは小田原市鬼柳を拠点に、</span>
+            <span class="phrase">住宅・店舗・施設の給排水衛生設備工事を支えます。</span>
+            <span class="phrase">見えない配管まで丁寧に整え、</span>
+            <span class="phrase">次工程が進みやすい設備施工を大切にしています。</span>
+          </p>
+          <div class="reveal mt-10 flex flex-col gap-4 sm:flex-row">
+            <a href="#contact" class="inline-flex items-center justify-center rounded-full bg-cyan-500 px-8 py-4 text-sm font-black tracking-[0.18em] text-sky-950 shadow-lg shadow-cyan-500/25 transition hover:bg-cyan-300">
+              工事について相談する
+            </a>
+            <a href="tel:0465381552" class="inline-flex items-center justify-center rounded-full border border-sky-300 bg-white/80 px-8 py-4 text-sm font-black tracking-[0.12em] text-sky-950 transition hover:border-cyan-500 hover:text-cyan-700">
+              電話 0465-38-1552
+            </a>
+          </div>
+        </div>
+
+        <div class="reveal flex items-center justify-center lg:justify-end">
+          <div class="water-glow relative w-full max-w-lg rounded-[2.5rem] bg-sky-950 p-5 text-white">
+            <div class="absolute -left-5 top-16 h-20 w-20 rounded-full border-[14px] border-cyan-300"></div>
+            <div class="absolute -bottom-6 right-10 h-28 w-28 rounded-full border-[18px] border-sky-300/50"></div>
+            <div class="relative overflow-hidden rounded-[2rem] border border-cyan-300/20 bg-sky-900 p-7">
+              <div class="mb-8 flex items-center justify-between">
+                <p class="text-xs font-black uppercase tracking-[0.3em] text-cyan-200">Facility Status</p>
+                <p class="rounded-full bg-cyan-400 px-3 py-1 text-xs font-black text-sky-950">READY</p>
+              </div>
+              <div class="grid gap-4">
+                <div class="rounded-3xl border border-white/10 bg-white/5 p-5">
+                  <div class="flex items-center justify-between">
+                    <span class="text-sm font-bold text-sky-200">給水ライン</span>
+                    <span class="text-sm font-black text-cyan-200">安定施工</span>
+                  </div>
+                  <div class="mt-4 h-2 overflow-hidden rounded-full bg-sky-800">
+                    <div class="h-full w-[92%] rounded-full bg-cyan-300"></div>
+                  </div>
+                </div>
+                <div class="rounded-3xl border border-white/10 bg-white/5 p-5">
+                  <div class="flex items-center justify-between">
+                    <span class="text-sm font-bold text-sky-200">排水・衛生設備</span>
+                    <span class="text-sm font-black text-cyan-200">納まり確認</span>
+                  </div>
+                  <div class="mt-4 h-2 overflow-hidden rounded-full bg-sky-800">
+                    <div class="h-full w-[86%] rounded-full bg-blue-300"></div>
+                  </div>
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                  <div class="rounded-3xl bg-cyan-300 p-5 text-sky-950">
+                    <p class="text-3xl font-black">01</p>
+                    <p class="mt-2 text-sm font-bold">調査と確認</p>
+                  </div>
+                  <div class="rounded-3xl bg-white p-5 text-sky-950">
+                    <p class="text-3xl font-black">02</p>
+                    <p class="mt-2 text-sm font-bold">配管と器具取付</p>
+                  </div>
+                  <div class="rounded-3xl bg-white p-5 text-sky-950">
+                    <p class="text-3xl font-black">03</p>
+                    <p class="mt-2 text-sm font-bold">漏水・通水確認</p>
+                  </div>
+                  <div class="rounded-3xl bg-cyan-300 p-5 text-sky-950">
+                    <p class="text-3xl font-black">04</p>
+                    <p class="mt-2 text-sm font-bold">引き渡し</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="strength" class="bg-white py-20 lg:py-28">
+      <div class="mx-auto max-w-7xl px-5 lg:px-8">
+        <div class="reveal mx-auto max-w-3xl text-center">
+          <p class="text-sm font-black uppercase tracking-[0.28em] text-cyan-600">Why Choose Us</p>
+          <h2 class="mt-4 text-[clamp(2rem,5vw,3.5rem)] font-black leading-tight text-sky-950">
+            <span class="phrase">水まわり設備に必要なのは、</span>
+            <span class="phrase">見えない部分への誠実さ。</span>
+          </h2>
+          <p class="mt-6 leading-8 text-sky-900/70">
+            給排水衛生設備は、建物が使われる限り働き続けるインフラです。
+            ケイズは工務店・管理会社・店舗オーナーの皆さまが安心して任せられるよう、確認、段取り、施工後の状態まで丁寧に向き合います。
+          </p>
+        </div>
+
+        <div class="mt-14 grid gap-5 lg:grid-cols-3">
+          <article class="reveal rounded-[2rem] border border-sky-100 bg-sky-50 p-8">
+            <div class="mb-7 grid h-14 w-14 place-items-center rounded-2xl bg-sky-950 text-xl font-black text-cyan-200">1</div>
+            <h3 class="text-2xl font-black text-sky-950">現場条件を読む確認力</h3>
+            <p class="mt-4 leading-8 text-sky-900/70">
+              既存配管、勾配、器具位置、点検口、他業種との取り合いを事前に確認。施工後に困らない納まりを考えます。
+            </p>
+          </article>
+          <article class="reveal rounded-[2rem] border border-cyan-100 bg-cyan-50 p-8">
+            <div class="mb-7 grid h-14 w-14 place-items-center rounded-2xl bg-cyan-400 text-xl font-black text-sky-950">2</div>
+            <h3 class="text-2xl font-black text-sky-950">工程を止めない段取り</h3>
+            <p class="mt-4 leading-8 text-sky-900/70">
+              給排水設備は内装・電気・躯体工事との連携が重要です。必要なタイミングで必要な施工ができるよう、現場の流れを意識します。
+            </p>
+          </article>
+          <article class="reveal rounded-[2rem] border border-blue-100 bg-blue-50 p-8">
+            <div class="mb-7 grid h-14 w-14 place-items-center rounded-2xl bg-blue-500 text-xl font-black text-white">3</div>
+            <h3 class="text-2xl font-black text-sky-950">地域密着の対応力</h3>
+            <p class="mt-4 leading-8 text-sky-900/70">
+              小田原市鬼柳を拠点に、神奈川県西部の現場へ機動的に対応。近くで相談しやすい設備工事会社を目指します。
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="service" class="relative bg-sky-950 py-20 text-white lg:py-28">
+      <div class="absolute inset-0 grid-blueprint opacity-30"></div>
+      <div class="relative mx-auto max-w-7xl px-5 lg:px-8">
+        <div class="grid gap-12 lg:grid-cols-[0.82fr_1.18fr] lg:items-start">
+          <div class="reveal lg:sticky lg:top-28">
+            <p class="text-sm font-black uppercase tracking-[0.28em] text-cyan-300">Service & Works</p>
+            <h2 class="mt-4 text-[clamp(2.2rem,5vw,3.8rem)] font-black leading-tight">
+              <span class="phrase">給排水・衛生設備を、</span>
+              <span class="phrase">建物に合わせて整える。</span>
+            </h2>
+            <p class="mt-7 leading-8 text-sky-100/75">
+              新築、改修、店舗、施設、住宅まで、現場ごとに求められる水まわりの条件は異なります。
+              ケイズは設備の使われ方とメンテナンス性を見据え、確かな施工につなげます。
+            </p>
+          </div>
+
+          <div class="grid gap-4 md:grid-cols-2">
+            <article class="reveal rounded-[2rem] border border-white/10 bg-white/8 p-7 backdrop-blur">
+              <p class="text-sm font-black uppercase tracking-[0.24em] text-cyan-300">Work 01</p>
+              <h3 class="mt-5 text-2xl font-black">給水・給湯配管工事</h3>
+              <p class="mt-4 leading-8 text-sky-100/75">
+                住宅や店舗の給水・給湯配管を、器具位置や使用条件に合わせて施工。水圧、保温、点検性にも配慮します。
+              </p>
+            </article>
+            <article class="reveal rounded-[2rem] border border-white/10 bg-white/8 p-7 backdrop-blur">
+              <p class="text-sm font-black uppercase tracking-[0.24em] text-cyan-300">Work 02</p>
+              <h3 class="mt-5 text-2xl font-black">排水・通気設備工事</h3>
+              <p class="mt-4 leading-8 text-sky-100/75">
+                排水勾配、臭気対策、通気経路を確認し、日常利用で不具合が起きにくい排水設備を整えます。
+              </p>
+            </article>
+            <article class="reveal rounded-[2rem] border border-white/10 bg-white/8 p-7 backdrop-blur">
+              <p class="text-sm font-black uppercase tracking-[0.24em] text-cyan-300">Work 03</p>
+              <h3 class="mt-5 text-2xl font-black">衛生器具の取付・交換</h3>
+              <p class="mt-4 leading-8 text-sky-100/75">
+                トイレ、洗面、手洗い、シンクなどの衛生器具を設置。仕上げや内装との取り合いを確認しながら進めます。
+              </p>
+            </article>
+            <article class="reveal rounded-[2rem] border border-white/10 bg-white/8 p-7 backdrop-blur">
+              <p class="text-sm font-black uppercase tracking-[0.24em] text-cyan-300">Work 04</p>
+              <h3 class="mt-5 text-2xl font-black">改修・メンテナンス対応</h3>
+              <p class="mt-4 leading-8 text-sky-100/75">
+                老朽化した配管や設備の更新、店舗改装に伴う水まわり変更など、既存建物の条件に合わせて対応します。
+              </p>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="bg-white py-20 lg:py-28">
+      <div class="mx-auto max-w-7xl px-5 lg:px-8">
+        <div class="reveal mb-12 flex flex-col justify-between gap-6 lg:flex-row lg:items-end">
+          <div>
+            <p class="text-sm font-black uppercase tracking-[0.28em] text-cyan-600">Construction Cases</p>
+            <h2 class="mt-4 text-[clamp(2rem,5vw,3.4rem)] font-black leading-tight text-sky-950">
+              <span class="phrase">こんな現場で、</span>
+              <span class="phrase">設備工事を支えます。</span>
+            </h2>
+          </div>
+          <p class="max-w-xl leading-8 text-sky-900/70">
+            具体的な施工実績の掲載がない段階でも、依頼側が相談しやすいよう、対応しやすい現場例を明確に見せます。
+          </p>
+        </div>
+
+        <div class="grid gap-5 md:grid-cols-3">
+          <div class="reveal rounded-[2rem] bg-sky-50 p-7">
+            <span class="text-sm font-black text-cyan-600">CASE 01</span>
+            <h3 class="mt-4 text-xl font-black">工務店の新築住宅</h3>
+            <p class="mt-3 leading-7 text-sky-900/70">基礎・内装・器具付けの流れを踏まえ、給排水設備を工程に合わせて施工します。</p>
+          </div>
+          <div class="reveal rounded-[2rem] bg-cyan-50 p-7">
+            <span class="text-sm font-black text-cyan-700">CASE 02</span>
+            <h3 class="mt-4 text-xl font-black">店舗改装の水まわり</h3>
+            <p class="mt-3 leading-7 text-sky-900/70">厨房、手洗い、トイレなど、営業導線と衛生面を考慮した設備改修に対応します。</p>
+          </div>
+          <div class="reveal rounded-[2rem] bg-blue-50 p-7">
+            <span class="text-sm font-black text-blue-600">CASE 03</span>
+            <h3 class="mt-4 text-xl font-black">施設・事務所の設備更新</h3>
+            <p class="mt-3 leading-7 text-sky-900/70">既存配管や利用状況を確認し、使いながらの改修にも配慮して計画します。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="company" class="bg-sky-50 py-20 lg:py-28">
+      <div class="mx-auto max-w-7xl px-5 lg:px-8">
+        <div class="grid gap-8 lg:grid-cols-[0.92fr_1.08fr] lg:items-stretch">
+          <div class="reveal rounded-[2.5rem] bg-white p-8 shadow-xl sm:p-10">
+            <p class="text-sm font-black uppercase tracking-[0.28em] text-cyan-600">Company</p>
+            <h2 class="mt-4 text-[clamp(2rem,5vw,3.4rem)] font-black leading-tight text-sky-950">会社概要</h2>
+            <dl class="mt-8 grid gap-5">
+              <div class="rounded-2xl border border-sky-100 p-5">
+                <dt class="text-xs font-black uppercase tracking-[0.22em] text-sky-500">Company Name</dt>
+                <dd class="mt-2 text-xl font-black">(合)ケイズ</dd>
+              </div>
+              <div class="rounded-2xl border border-sky-100 p-5">
+                <dt class="text-xs font-black uppercase tracking-[0.22em] text-sky-500">Address</dt>
+                <dd class="mt-2 font-bold">小田原市鬼柳89-5</dd>
+              </div>
+              <div class="rounded-2xl border border-sky-100 p-5">
+                <dt class="text-xs font-black uppercase tracking-[0.22em] text-sky-500">Tel</dt>
+                <dd class="mt-2 text-xl font-black"><a class="transition hover:text-cyan-600" href="tel:0465381552">0465-38-1552</a></dd>
+              </div>
+              <div class="rounded-2xl border border-sky-100 p-5">
+                <dt class="text-xs font-black uppercase tracking-[0.22em] text-sky-500">Business</dt>
+                <dd class="mt-2 font-bold">給排水衛生設備工事</dd>
+              </div>
+            </dl>
+          </div>
+
+          <div class="reveal overflow-hidden rounded-[2.5rem] bg-sky-950 p-4 shadow-xl">
+            <div class="mb-4 flex items-center justify-between px-3 pt-2 text-white">
+              <p class="text-sm font-black uppercase tracking-[0.24em] text-cyan-200">Access Map</p>
+              <a class="text-sm font-bold text-cyan-200 underline underline-offset-4" href="https://www.google.com/maps/search/?api=1&query=%E5%B0%8F%E7%94%B0%E5%8E%9F%E5%B8%82%E9%AC%BC%E6%9F%B389-5" target="_blank" rel="noopener">Googleマップで開く</a>
+            </div>
+            <iframe
+              title="(合)ケイズ 所在地 Googleマップ"
+              class="h-[420px] w-full rounded-[2rem] border-0 bg-white"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              src="https://www.google.com/maps?q=%E5%B0%8F%E7%94%B0%E5%8E%9F%E5%B8%82%E9%AC%BC%E6%9F%B389-5&output=embed">
+            </iframe>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="bg-white py-20 lg:py-28">
+      <div class="mx-auto max-w-7xl px-5 lg:px-8">
+        <div class="grid gap-8 lg:grid-cols-[0.78fr_1.22fr] lg:items-start">
+          <div class="reveal rounded-[2.5rem] bg-sky-950 p-8 text-white sm:p-10 lg:sticky lg:top-28">
+            <p class="text-sm font-black uppercase tracking-[0.28em] text-cyan-300">Contact</p>
+            <h2 class="mt-4 text-[clamp(2rem,5vw,3.4rem)] font-black leading-tight">
+              <span class="phrase">水まわり設備の相談は、</span>
+              <span class="phrase">ケイズへ。</span>
+            </h2>
+            <p class="mt-6 leading-8 text-sky-100/75">
+              給排水設備の新設、改修、器具交換、店舗や施設の水まわり変更など、まずは内容をお聞かせください。
+            </p>
+            <a href="tel:0465381552" class="mt-8 inline-flex rounded-full bg-cyan-400 px-7 py-4 text-sm font-black tracking-[0.16em] text-sky-950 transition hover:bg-cyan-200">
+              電話で相談する
+            </a>
+          </div>
+
+          <form id="contactForm" class="reveal rounded-[2.5rem] border border-sky-100 bg-sky-50 p-6 shadow-xl sm:p-8 lg:p-10">
+            <div class="mb-8 rounded-[2rem] bg-white p-6">
+              <p class="text-sm font-black uppercase tracking-[0.28em] text-cyan-600">Inquiry Form</p>
+              <h3 class="mt-3 text-3xl font-black text-sky-950">お問い合わせフォーム</h3>
+              <p class="mt-4 leading-7 text-sky-900/70">
+                送信ボタンを押すと入力内容の確認メッセージが表示されます。実運用時はメール送信先に合わせて接続できます。
+              </p>
+            </div>
+
+            <div class="grid gap-5 sm:grid-cols-2">
+              <label class="block">
+                <span class="mb-2 block text-sm font-bold text-sky-950">お名前 <span class="text-rose-600">必須</span></span>
+                <input class="w-full rounded-2xl border border-sky-200 bg-white px-4 py-3 outline-none transition focus:border-cyan-500 focus:ring-4 focus:ring-cyan-100" type="text" name="name" autocomplete="name" required placeholder="例：山田 太郎">
+              </label>
+              <label class="block">
+                <span class="mb-2 block text-sm font-bold text-sky-950">会社名</span>
+                <input class="w-full rounded-2xl border border-sky-200 bg-white px-4 py-3 outline-none transition focus:border-cyan-500 focus:ring-4 focus:ring-cyan-100" type="text" name="company" autocomplete="organization" placeholder="例：株式会社〇〇工務店">
+              </label>
+              <label class="block">
+                <span class="mb-2 block text-sm font-bold text-sky-950">メールアドレス <span class="text-rose-600">必須</span></span>
+                <input class="w-full rounded-2xl border border-sky-200 bg-white px-4 py-3 outline-none transition focus:border-cyan-500 focus:ring-4 focus:ring-cyan-100" type="email" name="email" autocomplete="email" required placeholder="例：info@example.jp">
+              </label>
+              <label class="block">
+                <span class="mb-2 block text-sm font-bold text-sky-950">電話番号</span>
+                <input class="w-full rounded-2xl border border-sky-200 bg-white px-4 py-3 outline-none transition focus:border-cyan-500 focus:ring-4 focus:ring-cyan-100" type="tel" name="phone" autocomplete="tel" placeholder="例：0465-00-0000">
+              </label>
+              <label class="block sm:col-span-2">
+                <span class="mb-2 block text-sm font-bold text-sky-950">お問い合わせ内容 <span class="text-rose-600">必須</span></span>
+                <textarea class="min-h-40 w-full rounded-2xl border border-sky-200 bg-white px-4 py-3 outline-none transition focus:border-cyan-500 focus:ring-4 focus:ring-cyan-100" name="message" required placeholder="工事場所、建物用途、給排水・衛生設備に関するご相談内容をご記入ください。"></textarea>
+              </label>
+            </div>
+
+            <label class="mt-6 flex items-start gap-3 text-sm leading-7 text-sky-900/70">
+              <input class="mt-1 h-4 w-4 shrink-0 accent-cyan-500" type="checkbox" name="privacy" required>
+              <span>
+                <button id="privacyOpenInline" class="font-bold text-sky-950 underline decoration-cyan-400 decoration-2 underline-offset-4" type="button">プライバシーポリシー</button>
+                に同意のうえ送信します。
+              </span>
+            </label>
+
+            <button class="mt-8 w-full rounded-full bg-sky-950 px-8 py-4 text-sm font-black tracking-[0.18em] text-white transition hover:bg-cyan-600" type="submit">
+              入力内容を確認する
+            </button>
+            <p id="formMessage" class="mt-4 hidden rounded-2xl bg-cyan-100 p-4 text-sm font-bold text-sky-950" role="status"></p>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <section id="privacy" class="bg-sky-50 py-16">
+      <div class="mx-auto max-w-5xl px-5 lg:px-8">
+        <div class="reveal rounded-[2.5rem] bg-white p-8 shadow-lg sm:p-10">
+          <div class="flex flex-col justify-between gap-5 sm:flex-row sm:items-center">
+            <div>
+              <p class="text-sm font-black uppercase tracking-[0.28em] text-cyan-600">Privacy Policy</p>
+              <h2 class="mt-3 text-3xl font-black text-sky-950">プライバシーポリシー</h2>
+            </div>
+            <button id="privacyOpen" class="w-fit rounded-full border border-sky-200 px-5 py-3 text-sm font-black text-sky-950 transition hover:border-cyan-500 hover:text-cyan-600" type="button">
+              詳細を確認
+            </button>
+          </div>
+          <p class="mt-6 leading-8 text-sky-900/70">
+            (合)ケイズは、お問い合わせで取得した個人情報を、工事相談への回答、現地確認、見積、連絡の目的に限り利用します。
+            法令に基づく場合を除き、ご本人の同意なく第三者へ提供しません。
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="bg-sky-950 px-5 py-8 text-white lg:px-8">
+    <div class="mx-auto flex max-w-7xl flex-col justify-between gap-4 border-t border-white/10 pt-8 text-sm text-sky-200/75 sm:flex-row">
+      <p>(合)ケイズ | 小田原市鬼柳89-5 | 0465-38-1552</p>
+      <p>&copy; <span id="year"></span> Keiz. All Rights Reserved.</p>
+    </div>
+  </footer>
+
+  <div id="privacyModal" class="fixed inset-0 z-[80] hidden items-center justify-center bg-sky-950/70 px-5 py-8 backdrop-blur-sm" role="dialog" aria-modal="true" aria-labelledby="privacyTitle">
+    <div class="max-h-[88vh] w-full max-w-3xl overflow-y-auto rounded-[2rem] bg-white p-7 shadow-2xl sm:p-10">
+      <div class="flex items-start justify-between gap-5">
+        <div>
+          <p class="text-sm font-black uppercase tracking-[0.28em] text-cyan-600">Privacy Policy</p>
+          <h2 id="privacyTitle" class="mt-3 text-3xl font-black text-sky-950">個人情報の取り扱いについて</h2>
+        </div>
+        <button id="privacyClose" class="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-sky-50 text-2xl font-black text-sky-950 transition hover:bg-cyan-100" type="button" aria-label="閉じる">×</button>
+      </div>
+      <div class="mt-8 space-y-6 leading-8 text-sky-900/75">
+        <section>
+          <h3 class="text-lg font-black text-sky-950">1. 取得する情報</h3>
+          <p class="mt-2">お問い合わせフォーム送信時に、お名前、会社名、メールアドレス、電話番号、お問い合わせ内容を取得します。</p>
+        </section>
+        <section>
+          <h3 class="text-lg font-black text-sky-950">2. 利用目的</h3>
+          <p class="mt-2">取得した情報は、給排水衛生設備工事に関するご相談への回答、現地確認、見積、連絡、業務上必要な記録のために利用します。</p>
+        </section>
+        <section>
+          <h3 class="text-lg font-black text-sky-950">3. 第三者提供</h3>
+          <p class="mt-2">法令に基づく場合を除き、ご本人の同意なく個人情報を第三者へ提供しません。工事対応に必要な範囲で協力会社等と共有する場合があります。</p>
+        </section>
+        <section>
+          <h3 class="text-lg font-black text-sky-950">4. 安全管理</h3>
+          <p class="mt-2">個人情報の漏えい、滅失、毀損、不正アクセスを防ぐため、適切な管理に努めます。</p>
+        </section>
+        <section>
+          <h3 class="text-lg font-black text-sky-950">5. お問い合わせ窓口</h3>
+          <p class="mt-2">(合)ケイズ / 小田原市鬼柳89-5 / 0465-38-1552</p>
+        </section>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const year = document.getElementById("year");
+    year.textContent = new Date().getFullYear();
+
+    const menuButton = document.getElementById("menuButton");
+    const mobileMenu = document.getElementById("mobileMenu");
+    menuButton.addEventListener("click", () => {
+      const isOpen = !mobileMenu.classList.contains("hidden");
+      mobileMenu.classList.toggle("hidden", isOpen);
+      menuButton.setAttribute("aria-expanded", String(!isOpen));
+    });
+
+    mobileMenu.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", () => {
+        mobileMenu.classList.add("hidden");
+        menuButton.setAttribute("aria-expanded", "false");
+      });
+    });
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+
+    document.querySelectorAll(".reveal").forEach((element) => observer.observe(element));
+
+    const privacyModal = document.getElementById("privacyModal");
+    const privacyOpen = document.getElementById("privacyOpen");
+    const privacyOpenInline = document.getElementById("privacyOpenInline");
+    const privacyClose = document.getElementById("privacyClose");
+
+    function openPrivacy() {
+      privacyModal.classList.remove("hidden");
+      privacyModal.classList.add("flex");
+      document.body.classList.add("modal-open");
+      privacyClose.focus();
+    }
+
+    function closePrivacy() {
+      privacyModal.classList.add("hidden");
+      privacyModal.classList.remove("flex");
+      document.body.classList.remove("modal-open");
+    }
+
+    privacyOpen.addEventListener("click", openPrivacy);
+    privacyOpenInline.addEventListener("click", openPrivacy);
+    privacyClose.addEventListener("click", closePrivacy);
+    privacyModal.addEventListener("click", (event) => {
+      if (event.target === privacyModal) {
+        closePrivacy();
+      }
+    });
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && !privacyModal.classList.contains("hidden")) {
+        closePrivacy();
+      }
+    });
+
+    const contactForm = document.getElementById("contactForm");
+    const formMessage = document.getElementById("formMessage");
+    contactForm.addEventListener("submit", (event) => {
+      event.preventDefault();
+      if (!contactForm.reportValidity()) {
+        return;
+      }
+      formMessage.textContent = "入力内容を確認しました。実運用時はこのフォームからメール送信できるよう接続します。お急ぎの場合は 0465-38-1552 へお電話ください。";
+      formMessage.classList.remove("hidden");
+      formMessage.scrollIntoView({ behavior: "smooth", block: "center" });
+    });
+  </script>
+</body>
+</html>

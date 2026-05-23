@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="GROWは小田原市府川を拠点とする建築大工の会社です。住宅・店舗の木工事、造作、改修、住まいの相談に地域密着で対応します。">
+  <title>GROW | 小田原市府川の建築大工</title>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Yu Gothic", "Meiryo", sans-serif;
+      background:
+        radial-gradient(circle at 16px 16px, rgba(120, 53, 15, 0.08) 2px, transparent 2px),
+        linear-gradient(90deg, rgba(120, 53, 15, 0.05) 1px, transparent 1px),
+        #fbf7ef;
+      background-size: 32px 32px, 64px 64px;
+    }
+
+    .wood-grain {
+      background:
+        radial-gradient(ellipse at 20% 30%, rgba(146, 64, 14, 0.24), transparent 38%),
+        radial-gradient(ellipse at 70% 60%, rgba(217, 119, 6, 0.18), transparent 42%),
+        repeating-linear-gradient(92deg, rgba(120, 53, 15, 0.20) 0 1px, transparent 1px 18px),
+        linear-gradient(135deg, #92400e, #451a03);
+    }
+
+    .paper {
+      background-image:
+        linear-gradient(rgba(120, 53, 15, 0.08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(120, 53, 15, 0.08) 1px, transparent 1px);
+      background-size: 22px 22px;
+    }
+
+    .vertical-label {
+      writing-mode: vertical-rl;
+      letter-spacing: 0.18em;
+    }
+
+    .cut-corner {
+      clip-path: polygon(0 0, calc(100% - 36px) 0, 100% 36px, 100% 100%, 36px 100%, 0 calc(100% - 36px));
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 700ms ease, transform 700ms ease;
+    }
+
+    .reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body class="text-stone-950 antialiased">
+  <header class="fixed left-0 right-0 top-0 z-50 border-b border-stone-900/10 bg-[#fbf7ef]/90 backdrop-blur">
+    <div class="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 lg:px-8">
+      <a href="#top" class="flex items-center gap-3" aria-label="GROW トップへ">
+        <span class="grid h-11 w-11 place-items-center rounded-full bg-stone-950 text-sm font-black tracking-[0.18em] text-amber-200">G</span>
+        <span>
+          <span class="block text-xl font-black tracking-[0.18em]">GROW</span>
+          <span class="block text-[11px] font-bold uppercase tracking-[0.28em] text-amber-800">Carpentry Works</span>
+        </span>
+      </a>
+      <nav class="hidden items-center gap-7 text-sm font-bold text-stone-700 md:flex" aria-label="メインナビゲーション">
+        <a class="transition hover:text-amber-700" href="#craft">できること</a>
+        <a class="transition hover:text-amber-700" href="#reason">選ばれる理由</a>
+        <a class="transition hover:text-amber-700" href="#flow">進め方</a>
+        <a class="transition hover:text-amber-700" href="#contact">相談する</a>
+      </nav>
+      <a href="tel:0465436900" class="hidden rounded-full bg-amber-700 px-5 py-3 text-sm font-black text-white transition hover:bg-stone-950 sm:inline-flex">
+        0465-43-6900
+      </a>
+    </div>
+  </header>
+
+  <main id="top" class="overflow-hidden">
+    <section class="relative min-h-screen pt-24">
+      <div class="absolute inset-x-0 top-0 h-[78%] bg-[#efe3cf]"></div>
+      <div class="absolute right-0 top-24 hidden h-[560px] w-[38vw] wood-grain lg:block"></div>
+      <div class="absolute left-8 top-36 hidden h-80 w-8 rounded-full bg-amber-700/20 lg:block"></div>
+
+      <div class="relative mx-auto grid max-w-7xl gap-10 px-5 py-16 lg:grid-cols-[0.72fr_1.28fr] lg:px-8 lg:py-24">
+        <aside class="order-2 flex items-end lg:order-1">
+          <div class="reveal w-full rounded-[2rem] border border-amber-900/20 bg-white/80 p-6 shadow-xl backdrop-blur">
+            <p class="text-xs font-black uppercase tracking-[0.3em] text-amber-800">Odawara Fukawa</p>
+            <div class="mt-6 grid grid-cols-2 gap-3">
+              <div class="rounded-2xl bg-[#fbf7ef] p-5">
+                <p class="text-3xl font-black text-amber-800">木</p>
+                <p class="mt-2 text-sm font-bold">木の癖を見て納める</p>
+              </div>
+              <div class="rounded-2xl bg-[#fbf7ef] p-5">
+                <p class="text-3xl font-black text-amber-800">現</p>
+                <p class="mt-2 text-sm font-bold">現場に合わせて動く</p>
+              </div>
+              <div class="rounded-2xl bg-[#fbf7ef] p-5">
+                <p class="text-3xl font-black text-amber-800">住</p>
+                <p class="mt-2 text-sm font-bold">暮らし目線で考える</p>
+              </div>
+              <div class="rounded-2xl bg-[#fbf7ef] p-5">
+                <p class="text-3xl font-black text-amber-800">匠</p>
+                <p class="mt-2 text-sm font-bold">細部まで丁寧に</p>
+              </div>
+            </div>
+          </div>
+        </aside>
+
+        <div class="order-1 lg:order-2">
+          <div class="reveal relative rounded-[3rem] bg-white p-8 shadow-2xl sm:p-12 lg:p-16">
+            <div class="absolute -left-4 top-12 hidden h-40 w-8 rounded-full bg-amber-700 lg:block"></div>
+            <p class="mb-8 inline-flex rounded-full bg-amber-100 px-5 py-2 text-xs font-black uppercase tracking-[0.28em] text-amber-900">
+              建築業・建築大工
+            </p>
+            <h1 class="max-w-4xl text-5xl font-black leading-[1.12] tracking-tight sm:text-6xl lg:text-7xl">
+              暮らしに合う木工事を、<br>
+              小田原の現場から。
+            </h1>
+            <p class="mt-8 max-w-2xl text-lg leading-9 text-stone-700">
+              GROWは小田原市府川を拠点に、住宅・店舗の木工事や造作、改修に向き合う建築大工です。
+              住まい手の想い、元請会社の段取り、現場の条件を一つずつ確認し、長く気持ちよく使える納まりをつくります。
+            </p>
+            <div class="mt-10 flex flex-col gap-4 sm:flex-row">
+              <a href="#contact" class="inline-flex items-center justify-center rounded-full bg-stone-950 px-8 py-4 text-sm font-black tracking-[0.18em] text-white transition hover:bg-amber-700">
+                住まい・木工事を相談
+              </a>
+              <a href="tel:0465436900" class="inline-flex items-center justify-center rounded-full border border-stone-300 bg-white px-8 py-4 text-sm font-black tracking-[0.12em] text-stone-900 transition hover:border-amber-700 hover:text-amber-800">
+                電話 0465-43-6900
+              </a>
+            </div>
+          </div>
+
+          <div class="reveal mt-6 grid gap-4 sm:grid-cols-3">
+            <div class="rounded-3xl bg-stone-950 p-6 text-white">
+              <p class="text-xs font-black uppercase tracking-[0.24em] text-amber-200">Area</p>
+              <p class="mt-3 font-bold">小田原市府川2-14</p>
+            </div>
+            <div class="rounded-3xl bg-amber-700 p-6 text-white">
+              <p class="text-xs font-black uppercase tracking-[0.24em] text-amber-100">Tel</p>
+              <p class="mt-3 font-bold">0465-43-6900</p>
+            </div>
+            <div class="rounded-3xl bg-white p-6 shadow-lg">
+              <p class="text-xs font-black uppercase tracking-[0.24em] text-amber-800">Work</p>
+              <p class="mt-3 font-bold">建築大工・木工事</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="bg-white py-20 lg:py-28">
+      <div class="mx-auto max-w-7xl px-5 lg:px-8">
+        <div class="grid gap-10 lg:grid-cols-[180px_1fr]">
+          <div class="reveal">
+            <p class="vertical-label text-xs font-black uppercase tracking-[0.28em] text-amber-800">Message</p>
+          </div>
+          <div class="reveal grid gap-8 lg:grid-cols-[1fr_0.82fr] lg:items-end">
+            <div>
+              <p class="text-sm font-black uppercase tracking-[0.28em] text-stone-500">For Home & Builders</p>
+              <h2 class="mt-4 text-3xl font-black leading-tight sm:text-5xl">
+                ただ作るのではなく、<br>
+                使う人の毎日に馴染むように。
+              </h2>
+            </div>
+            <p class="text-base leading-8 text-stone-600">
+              建築大工の仕事は、図面通りに組むだけでは終わりません。
+              湿気、日当たり、家族の動線、既存建物のクセまで見ながら、現場で最適な納まりを考えること。
+              GROWは地域の頼れる職人として、小さな相談から丁寧に対応します。
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="craft" class="paper py-20 lg:py-28">
+      <div class="mx-auto max-w-7xl px-5 lg:px-8">
+        <div class="reveal mb-12 max-w-3xl">
+          <p class="text-sm font-black uppercase tracking-[0.28em] text-amber-800">Craft Menu</p>
+          <h2 class="mt-4 text-4xl font-black">GROWができること</h2>
+          <p class="mt-5 leading-8 text-stone-600">
+            住宅の新築・改修、店舗内装、造作家具、建具まわりなど、木を扱う工事を幅広くご相談いただけます。
+          </p>
+        </div>
+
+        <div class="grid gap-5 md:grid-cols-2 lg:grid-cols-4">
+          <article class="reveal cut-corner bg-white p-7 shadow-lg">
+            <span class="mb-8 block h-14 w-14 rounded-full bg-amber-100 text-center text-3xl font-black leading-[3.5rem] text-amber-800">1</span>
+            <h3 class="text-xl font-black">住宅の木工事</h3>
+            <p class="mt-4 leading-7 text-stone-600">
+              柱・梁・床・壁下地など、住まいの基礎となる木工事に対応。見えなくなる部分ほど丁寧に施工します。
+            </p>
+          </article>
+          <article class="reveal cut-corner bg-white p-7 shadow-lg">
+            <span class="mb-8 block h-14 w-14 rounded-full bg-amber-100 text-center text-3xl font-black leading-[3.5rem] text-amber-800">2</span>
+            <h3 class="text-xl font-black">リフォーム・改修</h3>
+            <p class="mt-4 leading-7 text-stone-600">
+              間取り変更、床の張り替え、壁まわりの補修など、暮らし方の変化に合わせた改修を行います。
+            </p>
+          </article>
+          <article class="reveal cut-corner bg-white p-7 shadow-lg">
+            <span class="mb-8 block h-14 w-14 rounded-full bg-amber-100 text-center text-3xl font-black leading-[3.5rem] text-amber-800">3</span>
+            <h3 class="text-xl font-black">造作・収納</h3>
+            <p class="mt-4 leading-7 text-stone-600">
+              棚、カウンター、収納、建具まわりなど、空間にぴったり合う造作で使いやすさを高めます。
+            </p>
+          </article>
+          <article class="reveal cut-corner bg-white p-7 shadow-lg">
+            <span class="mb-8 block h-14 w-14 rounded-full bg-amber-100 text-center text-3xl font-black leading-[3.5rem] text-amber-800">4</span>
+            <h3 class="text-xl font-black">店舗・施設内装</h3>
+            <p class="mt-4 leading-7 text-stone-600">
+              店舗や事務所の内装木工事にも対応。動線、耐久性、見た目の印象を踏まえて施工します。
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="reason" class="bg-stone-950 py-20 text-white lg:py-28">
+      <div class="mx-auto max-w-7xl px-5 lg:px-8">
+        <div class="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
+          <div class="reveal sticky top-28">
+            <p class="text-sm font-black uppercase tracking-[0.28em] text-amber-300">Why GROW</p>
+            <h2 class="mt-4 text-4xl font-black leading-tight sm:text-5xl">
+              小さな違和感を、<br>
+              現場で見逃さない。
+            </h2>
+            <p class="mt-7 leading-8 text-stone-300">
+              木工事の良し悪しは、住み始めてから実感されます。
+              だからこそGROWは、現場の確認、材料の扱い、使う人への配慮を大切にしています。
+            </p>
+          </div>
+
+          <div class="space-y-5">
+            <article class="reveal grid gap-5 rounded-[2rem] border border-white/10 bg-white/5 p-7 sm:grid-cols-[96px_1fr]">
+              <div class="grid h-20 w-20 place-items-center rounded-full bg-amber-300 text-3xl font-black text-stone-950">01</div>
+              <div>
+                <h3 class="text-2xl font-black">現場に合わせる柔軟さ</h3>
+                <p class="mt-3 leading-8 text-stone-300">
+                  既存住宅や改修現場では、図面だけでは分からない条件が出てきます。寸法、傾き、納まりを確認しながら、無理のない施工方法を考えます。
+                </p>
+              </div>
+            </article>
+            <article class="reveal grid gap-5 rounded-[2rem] border border-white/10 bg-white/5 p-7 sm:grid-cols-[96px_1fr]">
+              <div class="grid h-20 w-20 place-items-center rounded-full bg-amber-300 text-3xl font-black text-stone-950">02</div>
+              <div>
+                <h3 class="text-2xl font-black">住まい手に伝わる丁寧さ</h3>
+                <p class="mt-3 leading-8 text-stone-300">
+                  毎日触れる床、棚、建具、カウンター。見た目だけでなく、手触りや使い勝手まで意識して、長く愛着を持てる空間を目指します。
+                </p>
+              </div>
+            </article>
+            <article class="reveal grid gap-5 rounded-[2rem] border border-white/10 bg-white/5 p-7 sm:grid-cols-[96px_1fr]">
+              <div class="grid h-20 w-20 place-items-center rounded-full bg-amber-300 text-3xl font-black text-stone-950">03</div>
+              <div>
+                <h3 class="text-2xl font-black">小田原エリアの距離感</h3>
+                <p class="mt-3 leading-8 text-stone-300">
+                  小田原市府川を拠点に、地域の住まい・現場へ機動的に対応。相談しやすい近さを活かし、顔の見える関係を大切にします。
+                </p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="flow" class="bg-white py-20 lg:py-28">
+      <div class="mx-auto max-w-7xl px-5 lg:px-8">
+        <div class="reveal mx-auto max-w-3xl text-center">
+          <p class="text-sm font-black uppercase tracking-[0.28em] text-amber-800">Work Flow</p>
+          <h2 class="mt-4 text-4xl font-black">ご相談から施工まで</h2>
+          <p class="mt-5 leading-8 text-stone-600">
+            はじめてのご相談でも安心できるよう、内容を整理しながら段階的に進めます。
+          </p>
+        </div>
+
+        <div class="mt-14 grid gap-5 md:grid-cols-5">
+          <div class="reveal rounded-[2rem] bg-[#fbf7ef] p-6">
+            <p class="text-4xl font-black text-amber-800">01</p>
+            <h3 class="mt-6 font-black">ご相談</h3>
+            <p class="mt-3 text-sm leading-7 text-stone-600">お困りごと、工事希望、現場の状況をお聞きします。</p>
+          </div>
+          <div class="reveal rounded-[2rem] bg-[#fbf7ef] p-6">
+            <p class="text-4xl font-black text-amber-800">02</p>
+            <h3 class="mt-6 font-black">現地確認</h3>
+            <p class="mt-3 text-sm leading-7 text-stone-600">寸法、状態、周辺環境を確認し、必要な作業を整理します。</p>
+          </div>
+          <div class="reveal rounded-[2rem] bg-[#fbf7ef] p-6">
+            <p class="text-4xl font-black text-amber-800">03</p>
+            <h3 class="mt-6 font-black">ご提案</h3>
+            <p class="mt-3 text-sm leading-7 text-stone-600">施工方法、材料、工程を分かりやすくご説明します。</p>
+          </div>
+          <div class="reveal rounded-[2rem] bg-[#fbf7ef] p-6">
+            <p class="text-4xl font-black text-amber-800">04</p>
+            <h3 class="mt-6 font-black">施工</h3>
+            <p class="mt-3 text-sm leading-7 text-stone-600">安全と近隣配慮を大切にしながら、丁寧に進めます。</p>
+          </div>
+          <div class="reveal rounded-[2rem] bg-amber-700 p-6 text-white">
+            <p class="text-4xl font-black text-amber-100">05</p>
+            <h3 class="mt-6 font-black">確認</h3>
+            <p class="mt-3 text-sm leading-7 text-amber-50">仕上がりと使い勝手を確認し、必要に応じて調整します。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="wood-grain py-20 text-white lg:py-28">
+      <div class="mx-auto max-w-7xl px-5 lg:px-8">
+        <div class="grid gap-8 lg:grid-cols-[1fr_1.05fr] lg:items-center">
+          <div class="reveal">
+            <p class="text-sm font-black uppercase tracking-[0.28em] text-amber-200">Scene</p>
+            <h2 class="mt-4 text-4xl font-black leading-tight">こんな時はGROWへ。</h2>
+            <p class="mt-6 leading-8 text-amber-50">
+              大きな工事だけでなく、住まいの小さな違和感や木まわりの相談も、早めに確認することで暮らしやすさにつながります。
+            </p>
+          </div>
+          <div class="grid gap-4 sm:grid-cols-2">
+            <div class="reveal rounded-3xl bg-white/12 p-6 backdrop-blur">
+              <h3 class="text-xl font-black">床や壁を直したい</h3>
+              <p class="mt-3 leading-7 text-amber-50">傷み、きしみ、汚れ、使いにくさを見直し、暮らしに合う状態へ整えます。</p>
+            </div>
+            <div class="reveal rounded-3xl bg-white/12 p-6 backdrop-blur">
+              <h3 class="text-xl font-black">収納を増やしたい</h3>
+              <p class="mt-3 leading-7 text-amber-50">既製品では合わない場所にも、空間に合わせた造作収納を検討できます。</p>
+            </div>
+            <div class="reveal rounded-3xl bg-white/12 p-6 backdrop-blur">
+              <h3 class="text-xl font-black">店舗の内装を整えたい</h3>
+              <p class="mt-3 leading-7 text-amber-50">お客様の目に触れるカウンターや壁面など、印象に関わる木工事に対応します。</p>
+            </div>
+            <div class="reveal rounded-3xl bg-white/12 p-6 backdrop-blur">
+              <h3 class="text-xl font-black">工務店の協力先を探している</h3>
+              <p class="mt-3 leading-7 text-amber-50">建築現場の木工事パートナーとして、段取りと現場連携を大切に動きます。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="bg-[#fbf7ef] py-20 lg:py-28">
+      <div class="mx-auto max-w-7xl px-5 lg:px-8">
+        <div class="reveal overflow-hidden rounded-[3rem] bg-white shadow-2xl lg:grid lg:grid-cols-[1fr_0.85fr]">
+          <div class="p-8 sm:p-12 lg:p-16">
+            <p class="text-sm font-black uppercase tracking-[0.28em] text-amber-800">Contact</p>
+            <h2 class="mt-4 text-4xl font-black leading-tight sm:text-5xl">
+              木工事・住まいのこと、<br>
+              まずはお電話ください。
+            </h2>
+            <p class="mt-6 max-w-2xl leading-8 text-stone-600">
+              工事の規模が決まっていなくても構いません。現場住所、困っている内容、希望時期をお聞かせいただければ、確認すべきポイントを整理します。
+            </p>
+            <div class="mt-10 flex flex-col gap-4 sm:flex-row">
+              <a href="tel:0465436900" class="inline-flex items-center justify-center rounded-full bg-amber-700 px-8 py-4 text-sm font-black tracking-[0.18em] text-white transition hover:bg-stone-950">
+                0465-43-6900 に電話
+              </a>
+              <a href="https://www.google.com/maps/search/?api=1&query=%E5%B0%8F%E7%94%B0%E5%8E%9F%E5%B8%82%E5%BA%9C%E5%B7%9D%EF%BC%92%EF%BC%8D%EF%BC%91%EF%BC%94" target="_blank" rel="noopener" class="inline-flex items-center justify-center rounded-full border border-stone-300 px-8 py-4 text-sm font-black tracking-[0.12em] text-stone-900 transition hover:border-amber-700 hover:text-amber-800">
+                地図で所在地を見る
+              </a>
+            </div>
+          </div>
+          <div class="bg-stone-950 p-8 text-white sm:p-12 lg:p-16">
+            <p class="text-xs font-black uppercase tracking-[0.28em] text-amber-300">Company Profile</p>
+            <dl class="mt-8 space-y-6">
+              <div>
+                <dt class="text-xs font-black uppercase tracking-[0.22em] text-stone-500">Name</dt>
+                <dd class="mt-2 text-2xl font-black">GROW</dd>
+              </div>
+              <div>
+                <dt class="text-xs font-black uppercase tracking-[0.22em] text-stone-500">Address</dt>
+                <dd class="mt-2 font-bold leading-8">小田原市府川2-14</dd>
+              </div>
+              <div>
+                <dt class="text-xs font-black uppercase tracking-[0.22em] text-stone-500">Tel</dt>
+                <dd class="mt-2 text-2xl font-black"><a class="transition hover:text-amber-300" href="tel:0465436900">0465-43-6900</a></dd>
+              </div>
+              <div>
+                <dt class="text-xs font-black uppercase tracking-[0.22em] text-stone-500">Business</dt>
+                <dd class="mt-2 font-bold leading-8">建築業（建築大工）</dd>
+              </div>
+            </dl>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="bg-stone-950 px-5 py-8 text-white lg:px-8">
+    <div class="mx-auto flex max-w-7xl flex-col justify-between gap-4 border-t border-white/10 pt-8 text-sm text-stone-400 sm:flex-row">
+      <p>GROW | 小田原市府川2-14 | 0465-43-6900</p>
+      <p>&copy; <span id="year"></span> GROW. All Rights Reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+
+    document.querySelectorAll(".reveal").forEach((element) => {
+      observer.observe(element);
+    });
+  </script>
+</body>
+</html>

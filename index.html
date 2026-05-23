@@ -355,54 +355,126 @@
     <section id="contact" class="relative bg-slate-950 py-20 text-white lg:py-28">
       <div class="absolute inset-0 steel-panel opacity-60"></div>
       <div class="relative mx-auto max-w-7xl px-5 lg:px-8">
-        <div class="grid gap-10 lg:grid-cols-[1fr_0.86fr] lg:items-stretch">
-          <div class="reveal bg-white p-8 text-slate-950 sm:p-10 lg:p-12">
-            <p class="text-sm font-black uppercase tracking-[0.28em] text-slate-500">Contact</p>
-            <h2 class="mt-4 text-4xl font-black leading-tight">鋼構造物工事のご相談は、金司へ。</h2>
-            <p class="mt-6 leading-8 text-slate-600">
-              図面段階での施工可否、現地調査、見積、協力会社としての参加など、まずは工事概要をお聞かせください。
-              元請会社様・建設会社様の工程と品質を支える立場で、誠実に対応いたします。
-            </p>
-            <div class="mt-8 grid gap-4 sm:grid-cols-2">
-              <div class="border border-slate-200 p-5">
-                <p class="text-xs font-black uppercase tracking-[0.2em] text-slate-400">Company</p>
-                <p class="mt-2 text-lg font-black">株式会社金司</p>
-              </div>
-              <div class="border border-slate-200 p-5">
-                <p class="text-xs font-black uppercase tracking-[0.2em] text-slate-400">Business</p>
-                <p class="mt-2 text-lg font-black">鋼構造物工事業</p>
-              </div>
-              <div class="border border-slate-200 p-5 sm:col-span-2">
-                <p class="text-xs font-black uppercase tracking-[0.2em] text-slate-400">Address</p>
-                <p class="mt-2 text-lg font-black">〒250-0216 神奈川県小田原市高田568-4</p>
+        <div class="grid gap-10 lg:grid-cols-[0.82fr_1.18fr] lg:items-start">
+          <div class="reveal">
+            <div class="bg-white p-8 text-slate-950 sm:p-10 lg:p-12">
+              <p class="text-sm font-black uppercase tracking-[0.28em] text-slate-500">Contact</p>
+              <h2 class="mt-4 text-4xl font-black leading-tight">鋼構造物工事のご相談は、金司へ。</h2>
+              <p class="mt-6 leading-8 text-slate-600">
+                図面段階での施工可否、現地調査、見積、協力会社としての参加など、まずは工事概要をお聞かせください。
+                元請会社様・建設会社様の工程と品質を支える立場で、誠実に対応いたします。
+              </p>
+              <div class="mt-8 grid gap-4">
+                <div class="border border-slate-200 p-5">
+                  <p class="text-xs font-black uppercase tracking-[0.2em] text-slate-400">Company</p>
+                  <p class="mt-2 text-lg font-black">株式会社金司</p>
+                </div>
+                <div class="border border-slate-200 p-5">
+                  <p class="text-xs font-black uppercase tracking-[0.2em] text-slate-400">Business</p>
+                  <p class="mt-2 text-lg font-black">鋼構造物工事業</p>
+                </div>
+                <div class="border border-slate-200 p-5">
+                  <p class="text-xs font-black uppercase tracking-[0.2em] text-slate-400">Address</p>
+                  <p class="mt-2 text-lg font-black">〒250-0216 神奈川県小田原市高田568-4</p>
+                </div>
               </div>
             </div>
-          </div>
 
-          <aside class="reveal flex flex-col justify-between border border-slate-700 bg-slate-900 p-8 sm:p-10">
-            <div>
+            <aside class="mt-6 border border-slate-700 bg-slate-900 p-8 sm:p-10">
               <p class="text-sm font-black uppercase tracking-[0.28em] text-amber-300">Request Memo</p>
-              <h3 class="mt-4 text-3xl font-black">お問い合わせ時にお伝えいただきたい内容</h3>
+              <h3 class="mt-4 text-2xl font-black">お問い合わせ時にお伝えいただきたい内容</h3>
               <ul class="mt-8 space-y-4 text-slate-300">
                 <li class="flex gap-3"><span class="mt-2 h-2 w-2 shrink-0 bg-amber-300"></span><span>工事場所・建物用途・施工希望時期</span></li>
                 <li class="flex gap-3"><span class="mt-2 h-2 w-2 shrink-0 bg-amber-300"></span><span>鉄骨建方、補強、金物取付などの施工範囲</span></li>
                 <li class="flex gap-3"><span class="mt-2 h-2 w-2 shrink-0 bg-amber-300"></span><span>図面・現場写真・搬入条件など確認できる資料</span></li>
                 <li class="flex gap-3"><span class="mt-2 h-2 w-2 shrink-0 bg-amber-300"></span><span>元請会社様・協力会社様としてのご相談内容</span></li>
               </ul>
+              <a href="https://www.google.com/maps/search/?api=1&query=%E5%B0%8F%E7%94%B0%E5%8E%9F%E5%B8%82%E9%AB%98%E7%94%B0568-4" target="_blank" rel="noopener" class="mt-10 inline-flex items-center justify-center bg-amber-400 px-6 py-4 text-sm font-black tracking-[0.18em] text-slate-950 transition hover:bg-amber-300">
+                所在地を地図で確認
+              </a>
+            </aside>
+          </div>
+
+          <form class="reveal bg-white p-6 text-slate-950 shadow-2xl sm:p-8 lg:p-10" action="contact.php" method="post">
+            <input type="text" name="website" class="hidden" tabindex="-1" autocomplete="off" aria-hidden="true">
+            <div class="mb-8 border-l-8 border-amber-400 pl-5">
+              <p class="text-sm font-black uppercase tracking-[0.28em] text-slate-500">Inquiry Form</p>
+              <h3 class="mt-2 text-3xl font-black">お問い合わせフォーム</h3>
+              <p class="mt-4 leading-7 text-slate-600">
+                必須項目をご入力のうえ送信してください。内容を確認後、担当者よりご連絡いたします。
+              </p>
             </div>
-            <a href="https://www.google.com/maps/search/?api=1&query=%E5%B0%8F%E7%94%B0%E5%8E%9F%E5%B8%82%E9%AB%98%E7%94%B0568-4" target="_blank" rel="noopener" class="mt-10 inline-flex items-center justify-center bg-amber-400 px-6 py-4 text-sm font-black tracking-[0.18em] text-slate-950 transition hover:bg-amber-300">
-              所在地を地図で確認
-            </a>
-          </aside>
+
+            <div class="grid gap-5 sm:grid-cols-2">
+              <label class="block">
+                <span class="mb-2 block text-sm font-bold">会社名</span>
+                <input class="w-full border border-slate-300 px-4 py-3 outline-none transition focus:border-slate-950" type="text" name="company" autocomplete="organization" placeholder="例：株式会社〇〇建設">
+              </label>
+              <label class="block">
+                <span class="mb-2 block text-sm font-bold">お名前 <span class="text-red-600">必須</span></span>
+                <input class="w-full border border-slate-300 px-4 py-3 outline-none transition focus:border-slate-950" type="text" name="name" autocomplete="name" required placeholder="例：山田 太郎">
+              </label>
+              <label class="block">
+                <span class="mb-2 block text-sm font-bold">メールアドレス <span class="text-red-600">必須</span></span>
+                <input class="w-full border border-slate-300 px-4 py-3 outline-none transition focus:border-slate-950" type="email" name="email" autocomplete="email" required placeholder="例：info@example.jp">
+              </label>
+              <label class="block">
+                <span class="mb-2 block text-sm font-bold">電話番号</span>
+                <input class="w-full border border-slate-300 px-4 py-3 outline-none transition focus:border-slate-950" type="tel" name="phone" autocomplete="tel" placeholder="例：0465-00-0000">
+              </label>
+              <label class="block">
+                <span class="mb-2 block text-sm font-bold">工事内容</span>
+                <select class="w-full border border-slate-300 bg-white px-4 py-3 outline-none transition focus:border-slate-950" name="project_type">
+                  <option value="">選択してください</option>
+                  <option value="鉄骨建方">鉄骨建方</option>
+                  <option value="現場取付工事">現場取付工事</option>
+                  <option value="補強・改修対応">補強・改修対応</option>
+                  <option value="金物・付帯工事">金物・付帯工事</option>
+                  <option value="その他">その他</option>
+                </select>
+              </label>
+              <label class="block">
+                <span class="mb-2 block text-sm font-bold">施工希望時期</span>
+                <input class="w-full border border-slate-300 px-4 py-3 outline-none transition focus:border-slate-950" type="text" name="timing" placeholder="例：2026年7月頃">
+              </label>
+              <label class="block sm:col-span-2">
+                <span class="mb-2 block text-sm font-bold">現場住所・エリア</span>
+                <input class="w-full border border-slate-300 px-4 py-3 outline-none transition focus:border-slate-950" type="text" name="site_address" placeholder="例：神奈川県小田原市周辺">
+              </label>
+              <label class="block sm:col-span-2">
+                <span class="mb-2 block text-sm font-bold">お問い合わせ内容 <span class="text-red-600">必須</span></span>
+                <textarea class="min-h-40 w-full border border-slate-300 px-4 py-3 outline-none transition focus:border-slate-950" name="message" required placeholder="工事概要、図面の有無、現場条件、ご相談内容などをご記入ください。"></textarea>
+              </label>
+            </div>
+
+            <label class="mt-6 flex items-start gap-3 text-sm leading-7 text-slate-600">
+              <input class="mt-1 h-4 w-4 shrink-0 accent-slate-950" type="checkbox" name="privacy" value="同意する" required>
+              <span>
+                <a class="font-bold text-slate-950 underline decoration-amber-400 decoration-2 underline-offset-4" href="privacy.html" target="_blank" rel="noopener">プライバシーポリシー</a>
+                に同意のうえ送信します。
+              </span>
+            </label>
+
+            <button type="submit" class="mt-8 w-full bg-slate-950 px-8 py-4 text-sm font-black tracking-[0.18em] text-white transition hover:bg-amber-400 hover:text-slate-950">
+              入力内容を送信する
+            </button>
+            <p class="mt-4 text-xs leading-6 text-slate-500">
+              送信先メールアドレスは、サーバー設置時に contact.php 内の設定から変更できます。
+            </p>
+          </form>
         </div>
       </div>
     </section>
+
   </main>
 
   <footer class="bg-slate-950 px-5 py-8 text-white lg:px-8">
     <div class="mx-auto flex max-w-7xl flex-col justify-between gap-4 border-t border-slate-800 pt-8 text-sm text-slate-400 sm:flex-row">
       <p>株式会社金司 | 神奈川県小田原市高田568-4</p>
-      <p>&copy; <span id="year"></span> Kinji Co., Ltd. All Rights Reserved.</p>
+      <div class="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-5">
+        <a class="transition hover:text-amber-300" href="privacy.html">プライバシーポリシー</a>
+        <p>&copy; <span id="year"></span> Kinji Co., Ltd. All Rights Reserved.</p>
+      </div>
     </div>
   </footer>
 

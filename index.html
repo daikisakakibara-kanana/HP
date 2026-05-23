@@ -44,6 +44,19 @@
       clip-path: polygon(0 0, calc(100% - 36px) 0, 100% 36px, 100% 100%, 36px 100%, 0 calc(100% - 36px));
     }
 
+    h1,
+    h2,
+    h3 {
+      line-break: strict;
+      text-wrap: balance;
+      word-break: keep-all;
+      overflow-wrap: anywhere;
+    }
+
+    .phrase {
+      display: inline-block;
+    }
+
     .reveal {
       opacity: 0;
       transform: translateY(20px);
@@ -116,7 +129,7 @@
               建築業・建築大工
             </p>
             <h1 class="max-w-5xl whitespace-nowrap text-[clamp(1.85rem,5.2vw,4.5rem)] font-black leading-[1.12] tracking-tight">
-              暮らしに合う木工事を、小田原の現場から。
+              <span class="phrase">暮らしに合う木工事を、小田原の現場から。</span>
             </h1>
             <p class="mt-8 max-w-2xl text-lg leading-9 text-stone-700">
               GROWは小田原市府川を拠点に、住宅・店舗の木工事や造作、改修に向き合う建築大工です。
@@ -160,8 +173,7 @@
             <div>
               <p class="text-sm font-black uppercase tracking-[0.28em] text-stone-500">For Home & Builders</p>
               <h2 class="mt-4 text-3xl font-black leading-tight sm:text-5xl">
-                ただ作るのではなく、<br>
-                使う人の毎日に馴染むように。
+                <span class="phrase">ただ作るのではなく、</span><span class="phrase">使う人の毎日に馴染むように。</span>
               </h2>
             </div>
             <p class="text-base leading-8 text-stone-600">
@@ -223,8 +235,7 @@
           <div class="reveal sticky top-28">
             <p class="text-sm font-black uppercase tracking-[0.28em] text-amber-300">Why GROW</p>
             <h2 class="mt-4 text-4xl font-black leading-tight sm:text-5xl">
-              小さな違和感を、<br>
-              現場で見逃さない。
+              <span class="phrase">小さな違和感を、</span><span class="phrase">現場で見逃さない。</span>
             </h2>
             <p class="mt-7 leading-8 text-stone-300">
               木工事の良し悪しは、住み始めてから実感されます。
@@ -310,7 +321,7 @@
         <div class="grid gap-8 lg:grid-cols-[1fr_1.05fr] lg:items-center">
           <div class="reveal">
             <p class="text-sm font-black uppercase tracking-[0.28em] text-amber-200">Scene</p>
-            <h2 class="mt-4 text-4xl font-black leading-tight">こんな時はGROWへ。</h2>
+            <h2 class="mt-4 text-4xl font-black leading-tight"><span class="phrase">こんな時はGROWへ。</span></h2>
             <p class="mt-6 leading-8 text-amber-50">
               大きな工事だけでなく、住まいの小さな違和感や木まわりの相談も、早めに確認することで暮らしやすさにつながります。
             </p>
@@ -344,8 +355,7 @@
             <div class="rounded-[3rem] bg-white p-8 shadow-xl sm:p-12">
               <p class="text-sm font-black uppercase tracking-[0.28em] text-amber-800">Contact</p>
               <h2 class="mt-4 text-4xl font-black leading-tight sm:text-5xl">
-                木工事・住まいのこと、<br>
-                まずはご相談ください。
+                <span class="phrase">木工事・住まいのこと、</span><span class="phrase">まずはご相談ください。</span>
               </h2>
               <p class="mt-6 leading-8 text-stone-600">
                 工事の規模が決まっていなくても構いません。現場住所、困っている内容、希望時期をお聞かせいただければ、確認すべきポイントを整理します。

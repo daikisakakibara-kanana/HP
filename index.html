@@ -40,12 +40,6 @@
       background-size: 28px 28px;
     }
 
-    .pipe-line {
-      position: absolute;
-      border-color: rgba(34, 211, 238, 0.35);
-      pointer-events: none;
-    }
-
     .water-glow {
       box-shadow: 0 24px 90px rgba(14, 165, 233, 0.24);
     }
@@ -112,10 +106,7 @@
   </header>
 
   <main id="top" class="overflow-hidden pt-20">
-    <section class="relative min-h-screen grid-blueprint">
-      <div class="pipe-line left-[8%] top-36 hidden h-44 w-44 rounded-br-[4rem] border-b-[18px] border-r-[18px] lg:block"></div>
-      <div class="pipe-line right-[5%] top-28 hidden h-56 w-56 rounded-bl-[5rem] border-b-[18px] border-l-[18px] lg:block"></div>
-      <div class="pipe-line bottom-20 left-[22%] hidden h-28 w-80 rounded-full border-[16px] lg:block"></div>
+    <section class="relative min-h-screen">
 
       <div class="relative mx-auto grid max-w-7xl gap-12 px-5 py-16 lg:grid-cols-[1.05fr_0.95fr] lg:px-8 lg:py-24">
         <div class="flex min-h-[650px] flex-col justify-center">
@@ -145,8 +136,6 @@
 
         <div class="reveal flex items-center justify-center lg:justify-end">
           <div class="water-glow relative w-full max-w-lg rounded-[2.5rem] bg-sky-950 p-5 text-white">
-            <div class="absolute -left-5 top-16 h-20 w-20 rounded-full border-[14px] border-cyan-300"></div>
-            <div class="absolute -bottom-6 right-10 h-28 w-28 rounded-full border-[18px] border-sky-300/50"></div>
             <div class="relative overflow-hidden rounded-[2rem] border border-cyan-300/20 bg-sky-900 p-7">
               <div class="mb-8 flex items-center justify-between">
                 <p class="text-xs font-black uppercase tracking-[0.3em] text-cyan-200">Facility Status</p>

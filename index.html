@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="小田原油そば 油丸の公式サイト。濃厚だれと香味油が絡む一杯を、小田原エリアで気軽に楽しめる油そば専門店。">
+  <title>小田原油そば 油丸 | 小田原の油そば専門店</title>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <style>
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Yu Gothic", "Meiryo", sans-serif;
+      background: #121212;
+      color: #f8f5ef;
+      padding-bottom: 90px;
+    }
+    h1, h2, h3 {
+      line-break: strict;
+      word-break: keep-all;
+      overflow-wrap: anywhere;
+    }
+    .phrase { display: inline-block; }
+    .hero-copy { text-shadow: 0 6px 28px rgba(0, 0, 0, .65); }
+    .neo-card {
+      border: 2px solid #0e0e0e;
+      box-shadow: 8px 8px 0 #0e0e0e;
+    }
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity .7s ease, transform .7s ease;
+    }
+    .reveal.on {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body class="antialiased">
+  <header class="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-[#121212]/90 backdrop-blur">
+    <div class="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
+      <a href="#top" class="flex items-center gap-3" aria-label="小田原油そば 油丸 トップへ">
+        <span class="grid h-10 w-10 place-items-center rounded-lg bg-[#f6b400] text-base font-black text-[#121212]">油</span>
+        <span>
+          <span class="block text-sm font-black tracking-[0.14em]">小田原油そば 油丸</span>
+          <span class="block text-[10px] font-bold uppercase tracking-[0.2em] text-[#f6b400]">Aburamaru</span>
+        </span>
+      </a>
+      <nav class="hidden items-center gap-6 text-sm font-bold md:flex">
+        <a href="#features" class="hover:text-[#f6b400]">こだわり</a>
+        <a href="#instagram" class="hover:text-[#f6b400]">Instagram</a>
+        <a href="#info" class="hover:text-[#f6b400]">店舗情報</a>
+      </nav>
+      <button id="menuButton" class="grid h-10 w-10 place-items-center rounded-lg border border-white/20 md:hidden" type="button" aria-label="メニューを開く" aria-expanded="false">
+        <span class="relative h-4 w-5">
+          <span class="absolute left-0 top-0 h-0.5 w-5 bg-white"></span>
+          <span class="absolute left-0 top-2 h-0.5 w-5 bg-white"></span>
+          <span class="absolute bottom-0 left-0 h-0.5 w-5 bg-white"></span>
+        </span>
+      </button>
+    </div>
+    <div id="mobileMenu" class="hidden border-t border-white/10 px-4 py-4 md:hidden">
+      <nav class="grid gap-2 text-sm font-bold">
+        <a class="rounded-xl bg-white/8 px-4 py-3" href="#features">こだわり</a>
+        <a class="rounded-xl bg-white/8 px-4 py-3" href="#instagram">Instagram</a>
+        <a class="rounded-xl bg-white/8 px-4 py-3" href="#info">店舗情報</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="relative h-screen min-h-[620px] overflow-hidden">
+      <img src="https://images.unsplash.com/photo-1555126634-323283e090fa?auto=format&fit=crop&w=1800&q=82" alt="湯気の立つ油そば" class="absolute inset-0 h-full w-full object-cover">
+      <div class="absolute inset-0 bg-gradient-to-b from-black/70 via-black/35 to-black/80"></div>
+      <div class="absolute inset-x-0 bottom-0 h-52 bg-gradient-to-t from-[#121212] to-transparent"></div>
+      <div class="relative z-10 mx-auto flex h-full max-w-6xl flex-col items-start justify-center px-5 text-white">
+        <p class="reveal mb-4 rounded-full border border-[#f6b400]/55 bg-[#f6b400]/20 px-4 py-2 text-[11px] font-black uppercase tracking-[0.22em]">
+          Odawara Aburasoba Stand
+        </p>
+        <h1 class="reveal hero-copy max-w-3xl text-[clamp(1.9rem,8vw,3.2rem)] font-black leading-[1.16]">
+          <span class="phrase">混ぜるほど、</span>
+          <span class="phrase">旨さが立ち上がる。</span>
+        </h1>
+        <p class="reveal mt-6 max-w-xl text-sm leading-8 text-white/85 sm:text-base">
+          小田原油そば 油丸は、濃厚だれと香味油の一体感を追求した油そば専門店です。
+          仕事帰りでも、週末の一杯でも、迷わず寄れる満足感を届けます。
+        </p>
+        <a href="#info" class="reveal neo-card mt-8 inline-flex items-center justify-center rounded-xl bg-[#f6b400] px-7 py-4 text-sm font-black tracking-[0.14em] text-[#121212] transition hover:translate-y-[1px] hover:shadow-none">
+          今すぐ店舗情報を見る
+        </a>
+      </div>
+    </section>
+
+    <section id="features" class="bg-[#121212] py-20">
+      <div class="mx-auto max-w-6xl px-5">
+        <div class="reveal mb-8">
+          <p class="text-xs font-black uppercase tracking-[0.28em] text-[#f6b400]">Features</p>
+          <h2 class="mt-3 text-[clamp(1.6rem,3.5vw,2.4rem)] font-black leading-tight">
+            <span class="phrase">小田原で油そばを選ぶなら、</span>
+            <span class="phrase">油丸のこの3点。</span>
+          </h2>
+        </div>
+        <div class="grid gap-5 md:grid-cols-3">
+          <article class="reveal neo-card rounded-2xl bg-[#f8f5ef] p-6 text-[#121212]">
+            <p class="text-xs font-black tracking-[0.24em] text-[#e55100]">01 TARE</p>
+            <h3 class="mt-3 text-xl font-black">濃厚だれの設計</h3>
+            <p class="mt-3 text-sm leading-7">甘みとキレを両立させた濃厚だれで、混ぜた瞬間から最後の一口まで輪郭のある味を保ちます。</p>
+          </article>
+          <article class="reveal neo-card rounded-2xl bg-[#1f1f1f] p-6">
+            <p class="text-xs font-black tracking-[0.24em] text-[#f6b400]">02 NOODLE</p>
+            <h3 class="mt-3 text-xl font-black">もちっと絡む太麺</h3>
+            <p class="mt-3 text-sm leading-7 text-white/85">たれと油をしっかり受け止める太麺を採用。麺の存在感が強く、食後の満足度に直結します。</p>
+          </article>
+          <article class="reveal neo-card rounded-2xl bg-[#f6b400] p-6 text-[#121212]">
+            <p class="text-xs font-black tracking-[0.24em] text-[#7a2300]">03 SPEED</p>
+            <h3 class="mt-3 text-xl font-black">回転と提供の速さ</h3>
+            <p class="mt-3 text-sm leading-7">ランチの限られた時間でも入りやすい導線設計。短時間で満足できる一杯を目指しています。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="instagram" class="bg-[#1a1a1a] py-20">
+      <div class="mx-auto max-w-6xl px-5">
+        <div class="reveal mb-8 flex items-end justify-between gap-4">
+          <div>
+            <p class="text-xs font-black uppercase tracking-[0.28em] text-[#f6b400]">Instagram</p>
+            <h2 class="mt-3 text-[clamp(1.6rem,3.5vw,2.4rem)] font-black leading-tight">
+              <span class="phrase">今日の一杯・限定情報は、</span>
+              <span class="phrase">投稿でチェック。</span>
+            </h2>
+          </div>
+        </div>
+        <div class="reveal neo-card rounded-2xl bg-white p-3 sm:p-4">
+          <behold-widget feed-id="YbcNBneKTTGnAI31DPuO"></behold-widget>
+        </div>
+      </div>
+    </section>
+
+    <section id="info" class="bg-[#121212] py-20">
+      <div class="mx-auto max-w-6xl px-5">
+        <div class="reveal mb-8">
+          <p class="text-xs font-black uppercase tracking-[0.28em] text-[#f6b400]">Shop Info</p>
+          <h2 class="mt-3 text-[clamp(1.6rem,3.5vw,2.4rem)] font-black leading-tight">店舗情報・アクセス</h2>
+        </div>
+        <div class="grid gap-5 lg:grid-cols-[.9fr_1.1fr]">
+          <div class="reveal neo-card rounded-2xl bg-[#f8f5ef] p-6 text-[#121212]">
+            <dl class="grid gap-4 text-sm leading-7">
+              <div class="grid grid-cols-[88px_1fr] gap-3 border-b border-black/10 pb-3"><dt class="font-black">店名</dt><dd>小田原油そば 油丸</dd></div>
+              <div class="grid grid-cols-[88px_1fr] gap-3 border-b border-black/10 pb-3"><dt class="font-black">業態</dt><dd>油そば専門店</dd></div>
+              <div class="grid grid-cols-[88px_1fr] gap-3 border-b border-black/10 pb-3"><dt class="font-black">エリア</dt><dd>小田原エリア</dd></div>
+              <div class="grid grid-cols-[88px_1fr] gap-3 border-b border-black/10 pb-3"><dt class="font-black">営業時間</dt><dd>最新情報はInstagramでご確認ください</dd></div>
+              <div class="grid grid-cols-[88px_1fr] gap-3"><dt class="font-black">アクセス</dt><dd>詳細住所はGoogleマップの店舗情報をご確認ください</dd></div>
+            </dl>
+            <a href="https://www.google.com/maps/search/?api=1&query=%E5%B0%8F%E7%94%B0%E5%8E%9F%E6%B2%B9%E3%81%9D%E3%81%B0%20%E6%B2%B9%E4%B8%B8" target="_blank" rel="noopener" class="neo-card mt-6 inline-flex rounded-xl bg-[#f6b400] px-5 py-3 text-xs font-black tracking-[0.14em]">
+              Googleマップで開く
+            </a>
+          </div>
+          <div class="reveal overflow-hidden rounded-2xl border-2 border-[#f6b400]/50 bg-black/30 p-3">
+            <iframe title="小田原油そば 油丸のGoogleマップ検索" class="h-[360px] w-full rounded-xl border-0 bg-white sm:h-[430px]" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=%E5%B0%8F%E7%94%B0%E5%8E%9F%E6%B2%B9%E3%81%9D%E3%81%B0%20%E6%B2%B9%E4%B8%B8&output=embed"></iframe>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="border-t border-white/10 bg-[#121212] px-5 py-8 text-xs text-white/50">
+    <div class="mx-auto flex max-w-6xl flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+      <p>小田原油そば 油丸</p>
+      <p>&copy; <span id="year"></span> Aburamaru. All Rights Reserved.</p>
+    </div>
+  </footer>
+
+  <a href="https://www.google.com/maps/search/?api=1&query=%E5%B0%8F%E7%94%B0%E5%8E%9F%E6%B2%B9%E3%81%9D%E3%81%B0%20%E6%B2%B9%E4%B8%B8" target="_blank" rel="noopener" class="fixed inset-x-4 bottom-4 z-50 mx-auto flex max-w-md items-center justify-center rounded-xl bg-[#f6b400] px-6 py-4 text-sm font-black tracking-[0.15em] text-[#121212] shadow-[0_10px_24px_rgba(0,0,0,.35)]">
+    今すぐ場所を確認する
+  </a>
+
+  <script>
+    (() => {
+      const d = document;
+      const s = d.createElement("script");
+      s.type = "module";
+      s.src = "https://w.behold.so/widget.js";
+      d.head.append(s);
+    })();
+
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    const menuButton = document.getElementById("menuButton");
+    const mobileMenu = document.getElementById("mobileMenu");
+    menuButton.addEventListener("click", () => {
+      const open = !mobileMenu.classList.contains("hidden");
+      mobileMenu.classList.toggle("hidden", open);
+      menuButton.setAttribute("aria-expanded", String(!open));
+    });
+    mobileMenu.querySelectorAll("a").forEach((link) => link.addEventListener("click", () => {
+      mobileMenu.classList.add("hidden");
+      menuButton.setAttribute("aria-expanded", "false");
+    }));
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("on");
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    document.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
+  </script>
+</body>
+</html>

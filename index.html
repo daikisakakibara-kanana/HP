@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="HIRA蕎麦は小田原市蓮正寺にある蕎麦カフェです。十割蕎麦、フレンチプレス珈琲、もち米スイーツを、静かに整う午後の時間とともに楽しめます。">
+  <title>HIRA蕎麦 | 小田原・螢田の十割蕎麦カフェ</title>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <style>
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Yu Gothic", "Meiryo", sans-serif;
+      background: #fbf7ee;
+      color: #221a14;
+      padding-bottom: 88px;
+    }
+    h1, h2, h3 {
+      line-break: strict;
+      word-break: keep-all;
+      overflow-wrap: anywhere;
+    }
+    .phrase { display: inline-block; }
+    .hero-shadow { text-shadow: 0 3px 18px rgba(0, 0, 0, .55); }
+    .paper-grain {
+      background-image:
+        radial-gradient(circle at 1px 1px, rgba(74, 52, 37, .12) 1px, transparent 0),
+        linear-gradient(135deg, rgba(255,255,255,.55), rgba(255,255,255,.08));
+      background-size: 22px 22px, auto;
+    }
+    .vertical-copy {
+      writing-mode: vertical-rl;
+      letter-spacing: .18em;
+    }
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity .7s ease, transform .7s ease;
+    }
+    .reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .modal-open { overflow: hidden; }
+  </style>
+</head>
+<body class="antialiased">
+  <header class="fixed inset-x-0 top-0 z-50 bg-[#fbf7ee]/85 backdrop-blur-xl">
+    <div class="mx-auto flex max-w-6xl items-center justify-between px-5 py-4">
+      <a href="#top" class="flex items-center gap-3" aria-label="HIRA蕎麦 トップへ">
+        <span class="grid h-11 w-11 place-items-center rounded-full bg-[#2e241c] text-lg font-black text-[#f1d6a6]">蕎</span>
+        <span>
+          <span class="block text-lg font-black tracking-[0.12em]">HIRA蕎麦</span>
+          <span class="block text-[11px] font-bold uppercase tracking-[0.25em] text-[#83623d]">Soba Cafe / Hotaruda</span>
+        </span>
+      </a>
+      <nav class="hidden items-center gap-7 text-sm font-bold text-[#3b2d22] md:flex" aria-label="メインナビゲーション">
+        <a class="transition hover:text-[#9a6732]" href="#concept">こだわり</a>
+        <a class="transition hover:text-[#9a6732]" href="#instagram">Instagram</a>
+        <a class="transition hover:text-[#9a6732]" href="#info">店舗情報</a>
+        <a class="transition hover:text-[#9a6732]" href="#reserve">来店前確認</a>
+      </nav>
+      <a href="tel:05058891076" class="hidden rounded-full bg-[#2e241c] px-5 py-3 text-sm font-black text-white transition hover:bg-[#9a6732] sm:inline-flex">
+        050-5889-1076
+      </a>
+      <button id="menuButton" class="grid h-11 w-11 place-items-center rounded-full border border-[#2e241c]/15 bg-white md:hidden" type="button" aria-label="メニューを開く" aria-expanded="false">
+        <span class="relative h-4 w-5">
+          <span class="absolute left-0 top-0 h-0.5 w-5 bg-[#2e241c]"></span>
+          <span class="absolute left-0 top-2 h-0.5 w-5 bg-[#2e241c]"></span>
+          <span class="absolute bottom-0 left-0 h-0.5 w-5 bg-[#2e241c]"></span>
+        </span>
+      </button>
+    </div>
+    <div id="mobileMenu" class="hidden border-t border-[#2e241c]/10 bg-[#fbf7ee] px-5 py-4 md:hidden">
+      <nav class="mx-auto grid max-w-6xl gap-3 text-sm font-bold text-[#2e241c]" aria-label="モバイルナビゲーション">
+        <a class="rounded-2xl bg-white px-4 py-3" href="#concept">こだわり</a>
+        <a class="rounded-2xl bg-white px-4 py-3" href="#instagram">Instagram</a>
+        <a class="rounded-2xl bg-white px-4 py-3" href="#info">店舗情報</a>
+        <a class="rounded-2xl bg-white px-4 py-3" href="#reserve">来店前確認</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="relative h-screen min-h-[620px] overflow-hidden">
+      <img
+        src="https://images.unsplash.com/photo-1617196034796-73dfa7b1fd56?auto=format&fit=crop&w=1800&q=82"
+        alt="蕎麦の器と落ち着いた食卓"
+        class="absolute inset-0 h-full w-full object-cover"
+      >
+      <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-black/28 to-black/70"></div>
+      <div class="absolute inset-x-0 bottom-0 h-44 bg-gradient-to-t from-[#221a14] to-transparent"></div>
+      <div class="relative z-10 mx-auto flex h-full max-w-6xl flex-col items-center justify-center px-5 text-center text-white">
+        <p class="reveal mb-5 rounded-full border border-white/35 bg-white/10 px-4 py-2 text-xs font-black uppercase tracking-[0.28em] backdrop-blur">
+          Gluten Free Soba Cafe
+        </p>
+        <h1 class="reveal hero-shadow max-w-4xl text-[clamp(2rem,8vw,3.2rem)] font-black leading-[1.16] tracking-tight">
+          <span class="phrase">十割蕎麦と珈琲で、</span><br>
+          <span class="phrase">午後が静かに整う。</span>
+        </h1>
+        <p class="reveal hero-shadow mt-6 max-w-2xl text-base font-medium leading-8 text-white/90 sm:text-lg">
+          小田原・螢田駅から徒歩約4分。手打ちの十割蕎麦、フレンチプレス珈琲、もち米スイーツを楽しむ、小さな蕎麦カフェです。
+        </p>
+        <div class="reveal mt-8 flex flex-col gap-3 sm:flex-row">
+          <a href="#reserve" class="inline-flex items-center justify-center rounded-full bg-[#f1d6a6] px-8 py-4 text-sm font-black tracking-[0.16em] text-[#221a14] shadow-xl shadow-black/25 transition hover:bg-white">
+            来店前に確認する
+          </a>
+          <a href="tel:05058891076" class="inline-flex items-center justify-center rounded-full border border-white/60 bg-white/15 px-8 py-4 text-sm font-black tracking-[0.12em] text-white backdrop-blur transition hover:bg-white hover:text-[#221a14]">
+            電話する
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section id="concept" class="paper-grain bg-[#fbf7ee] py-20 lg:py-28">
+      <div class="mx-auto grid max-w-6xl gap-10 px-5 lg:grid-cols-[180px_1fr]">
+        <div class="reveal hidden lg:block">
+          <p class="vertical-copy text-sm font-black uppercase text-[#9a6732]">Concept</p>
+        </div>
+        <div>
+          <div class="reveal max-w-3xl">
+            <p class="text-sm font-black uppercase tracking-[0.28em] text-[#9a6732]">About HIRA Soba</p>
+            <h2 class="mt-4 text-[clamp(1.65rem,3vw,2.55rem)] font-black leading-tight">
+              <span class="phrase">そば粉の香り、</span>
+              <span class="phrase">静かな時間、</span>
+              <span class="phrase">からだにやさしい一皿。</span>
+            </h2>
+            <p class="mt-6 leading-8 text-[#5b4637]">
+              HIRA蕎麦は、十割蕎麦とフレンチプレス珈琲を軸にした蕎麦カフェです。
+              基本のメニューはグルテンフリー、ベジタリアンにも配慮し、ランチにもカフェタイムにも立ち寄りやすい時間を用意しています。
+            </p>
+          </div>
+          <div class="mt-12 grid gap-5 md:grid-cols-3">
+            <article class="reveal rounded-[2rem] bg-white p-7 shadow-sm">
+              <span class="text-sm font-black text-[#9a6732]">01</span>
+              <h3 class="mt-4 text-2xl font-black">手打ち十割蕎麦</h3>
+              <p class="mt-4 leading-8 text-[#5b4637]">小麦粉を使わない蕎麦を、香りと喉ごしを楽しめる一皿として提供します。</p>
+            </article>
+            <article class="reveal rounded-[2rem] bg-[#efe4d2] p-7">
+              <span class="text-sm font-black text-[#9a6732]">02</span>
+              <h3 class="mt-4 text-2xl font-black">珈琲と甘味</h3>
+              <p class="mt-4 leading-8 text-[#5b4637]">フレンチプレス珈琲、もち米スイーツ、健康茶で午後のカフェ利用にも寄り添います。</p>
+            </article>
+            <article class="reveal rounded-[2rem] bg-[#2e241c] p-7 text-white">
+              <span class="text-sm font-black text-[#f1d6a6]">03</span>
+              <h3 class="mt-4 text-2xl font-black">静かに過ごせる小さな店</h3>
+              <p class="mt-4 leading-8 text-white/75">口コミ傾向からも伝わる、落ち着きと丁寧さを大切にした隠れ家のような空間です。</p>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="instagram" class="bg-[#221a14] py-20 text-white lg:py-28">
+      <div class="mx-auto max-w-6xl px-5">
+        <div class="reveal mb-10 flex flex-col justify-between gap-5 sm:flex-row sm:items-end">
+          <div>
+            <p class="text-sm font-black uppercase tracking-[0.28em] text-[#f1d6a6]">Instagram</p>
+            <h2 class="mt-4 text-[clamp(1.65rem,3vw,2.55rem)] font-black leading-tight">
+              <span class="phrase">最新の蕎麦と甘味は、</span>
+              <span class="phrase">Instagramで。</span>
+            </h2>
+          </div>
+          <p class="max-w-md text-sm leading-7 text-white/70">
+            納品後はBehold.so等の埋め込みツールに差し替える想定です。現在は連動イメージのダミーグリッドを表示しています。
+          </p>
+        </div>
+        <div class="reveal rounded-[2rem] border border-white/10 bg-white/6 p-4 sm:p-5">
+          <div class="mb-4 rounded-2xl border border-dashed border-white/20 p-4 text-xs leading-6 text-white/60">
+            Instagram埋め込み枠: Behold.so等のiframe/scriptをここに安全に差し替え可能
+          </div>
+          <div class="grid grid-cols-3 gap-2 sm:grid-cols-4 sm:gap-3">
+            <img loading="lazy" class="aspect-square w-full rounded-xl object-cover" src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=500&q=75" alt="野菜の小鉢イメージ">
+            <img loading="lazy" class="aspect-square w-full rounded-xl object-cover" src="https://images.unsplash.com/photo-1617196034796-73dfa7b1fd56?auto=format&fit=crop&w=500&q=75" alt="蕎麦イメージ">
+            <img loading="lazy" class="aspect-square w-full rounded-xl object-cover" src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=500&q=75" alt="珈琲イメージ">
+            <img loading="lazy" class="aspect-square w-full rounded-xl object-cover" src="https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?auto=format&fit=crop&w=500&q=75" alt="甘味イメージ">
+            <img loading="lazy" class="aspect-square w-full rounded-xl object-cover" src="https://images.unsplash.com/photo-1523906630133-f6934a1ab2b9?auto=format&fit=crop&w=500&q=75" alt="店内テーブルイメージ">
+            <img loading="lazy" class="aspect-square w-full rounded-xl object-cover" src="https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&w=500&q=75" alt="温かい器イメージ">
+            <img loading="lazy" class="aspect-square w-full rounded-xl object-cover" src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=500&q=75" alt="カフェ時間イメージ">
+            <img loading="lazy" class="aspect-square w-full rounded-xl object-cover" src="https://images.unsplash.com/photo-1514517220031-07d450b8b04f?auto=format&fit=crop&w=500&q=75" alt="和の食卓イメージ">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="info" class="bg-white py-20 lg:py-28">
+      <div class="mx-auto max-w-6xl px-5">
+        <div class="reveal mb-8">
+          <p class="text-sm font-black uppercase tracking-[0.28em] text-[#9a6732]">Information</p>
+          <h2 class="mt-4 text-[clamp(1.65rem,3vw,2.55rem)] font-black leading-tight">店舗情報・アクセス</h2>
+        </div>
+        <div class="grid gap-5 lg:grid-cols-[.9fr_1.1fr]">
+          <div class="reveal grid gap-4 rounded-[2rem] bg-[#fbf7ee] p-6">
+            <div class="grid grid-cols-[110px_1fr] gap-4 border-b border-[#2e241c]/10 pb-4"><dt class="font-black text-[#9a6732]">店名</dt><dd class="font-bold">HIRA蕎麦</dd></div>
+            <div class="grid grid-cols-[110px_1fr] gap-4 border-b border-[#2e241c]/10 pb-4"><dt class="font-black text-[#9a6732]">住所</dt><dd>小田原市蓮正寺848-7</dd></div>
+            <div class="grid grid-cols-[110px_1fr] gap-4 border-b border-[#2e241c]/10 pb-4"><dt class="font-black text-[#9a6732]">アクセス</dt><dd>螢田駅から徒歩約4分</dd></div>
+            <div class="grid grid-cols-[110px_1fr] gap-4 border-b border-[#2e241c]/10 pb-4"><dt class="font-black text-[#9a6732]">営業時間</dt><dd>11:00〜18:00</dd></div>
+            <div class="grid grid-cols-[110px_1fr] gap-4 border-b border-[#2e241c]/10 pb-4"><dt class="font-black text-[#9a6732]">定休日</dt><dd>木曜日</dd></div>
+            <div class="grid grid-cols-[110px_1fr] gap-4"><dt class="font-black text-[#9a6732]">電話</dt><dd><a class="font-black underline decoration-[#f1d6a6] decoration-4 underline-offset-4" href="tel:05058891076">050-5889-1076</a></dd></div>
+            <p class="rounded-2xl bg-white p-4 text-sm leading-7 text-[#5b4637]">営業時間・定休日は変更となる場合があります。ご来店前に店舗へご確認ください。</p>
+          </div>
+          <div class="reveal overflow-hidden rounded-[2rem] bg-[#2e241c] p-3">
+            <div class="flex flex-col justify-between gap-3 px-3 py-3 text-white sm:flex-row sm:items-center">
+              <p class="text-sm font-black uppercase tracking-[0.24em] text-[#f1d6a6]">Google Map</p>
+              <a class="text-sm font-bold text-[#f1d6a6] underline underline-offset-4" href="https://www.google.com/maps/search/?api=1&query=%E5%B0%8F%E7%94%B0%E5%8E%9F%E5%B8%82%E8%93%AE%E6%AD%A3%E5%AF%BA848-7" target="_blank" rel="noopener">Googleマップで開く</a>
+            </div>
+            <iframe title="HIRA蕎麦 Googleマップ" class="h-[330px] w-full rounded-[1.5rem] border-0 bg-white sm:h-[430px]" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=%E5%B0%8F%E7%94%B0%E5%8E%9F%E5%B8%82%E8%93%AE%E6%AD%A3%E5%AF%BA848-7&output=embed"></iframe>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="reserve" class="bg-[#fbf7ee] py-20 lg:py-28">
+      <div class="mx-auto max-w-5xl px-5 text-center">
+        <div class="reveal rounded-[2.5rem] bg-white p-8 shadow-xl sm:p-12">
+          <p class="text-sm font-black uppercase tracking-[0.28em] text-[#9a6732]">Before Visit</p>
+          <h2 class="mt-4 text-[clamp(1.65rem,3vw,2.55rem)] font-black leading-tight">
+            <span class="phrase">小さなお店です。</span>
+            <span class="phrase">来店前の確認がおすすめです。</span>
+          </h2>
+          <p class="mx-auto mt-6 max-w-2xl leading-8 text-[#5b4637]">
+            駐車場や営業状況は変更となる場合があります。お急ぎの方、席や営業状況を確認したい方は、お電話での確認が安心です。
+          </p>
+          <div class="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
+            <a href="tel:05058891076" class="inline-flex items-center justify-center rounded-full bg-[#2e241c] px-8 py-4 text-sm font-black tracking-[0.16em] text-white transition hover:bg-[#9a6732]">
+              電話で確認する
+            </a>
+            <a href="#instagram" class="inline-flex items-center justify-center rounded-full border border-[#2e241c]/20 bg-[#fbf7ee] px-8 py-4 text-sm font-black tracking-[0.12em] text-[#2e241c] transition hover:bg-[#efe4d2]">
+              最新投稿を見る
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer id="privacy" class="bg-[#221a14] px-5 py-10 text-white">
+    <div class="mx-auto max-w-6xl border-t border-white/10 pt-8">
+      <div class="grid gap-6 md:grid-cols-[.9fr_1.1fr]">
+        <div>
+          <p class="text-xs font-black uppercase tracking-[0.28em] text-[#f1d6a6]">Privacy Policy</p>
+          <h2 class="mt-2 text-xl font-black">プライバシーポリシー</h2>
+          <p class="mt-4 text-sm leading-7 text-white/55">
+            HIRA蕎麦は、お問い合わせや来店前確認で取得した個人情報を、連絡・確認対応の目的に限り利用します。
+            法令に基づく場合を除き、ご本人の同意なく第三者へ提供しません。
+          </p>
+          <button id="privacyOpen" class="mt-4 rounded-full border border-white/20 px-4 py-2 text-xs font-black text-white/70 transition hover:border-[#f1d6a6] hover:text-[#f1d6a6]" type="button">詳細を確認</button>
+        </div>
+        <div class="grid gap-3 text-xs leading-6 text-white/45 sm:grid-cols-2">
+          <div class="rounded-2xl border border-white/10 p-4"><h3 class="font-black text-white/75">利用目的</h3><p class="mt-2">来店前の確認、連絡対応、営業情報の案内に必要な範囲で利用します。</p></div>
+          <div class="rounded-2xl border border-white/10 p-4"><h3 class="font-black text-white/75">安全管理</h3><p class="mt-2">個人情報の漏えい、滅失、不正アクセスを防ぐため、適切な管理に努めます。</p></div>
+        </div>
+      </div>
+      <div class="mt-8 flex flex-col justify-between gap-4 border-t border-white/10 pt-6 text-sm text-white/45 sm:flex-row">
+        <p>HIRA蕎麦 | 小田原市蓮正寺848-7 | 050-5889-1076</p>
+        <p>&copy; <span id="year"></span> HIRA Soba. All Rights Reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <a href="#reserve" class="fixed inset-x-4 bottom-4 z-50 mx-auto flex max-w-md items-center justify-center rounded-full bg-[#f1d6a6] px-6 py-4 text-sm font-black tracking-[0.16em] text-[#221a14] shadow-2xl shadow-black/25 transition hover:bg-white">
+    今すぐ来店前確認
+  </a>
+
+  <div id="privacyModal" class="fixed inset-0 z-[80] hidden items-center justify-center bg-black/70 px-5 py-8 backdrop-blur-sm" role="dialog" aria-modal="true" aria-labelledby="privacyTitle">
+    <div class="max-h-[88vh] w-full max-w-3xl overflow-y-auto rounded-[2rem] bg-white p-7 shadow-2xl sm:p-10">
+      <div class="flex items-start justify-between gap-5">
+        <div>
+          <p class="text-sm font-black uppercase tracking-[0.28em] text-[#9a6732]">Privacy Policy</p>
+          <h2 id="privacyTitle" class="mt-3 text-3xl font-black">個人情報の取り扱いについて</h2>
+        </div>
+        <button id="privacyClose" class="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-[#fbf7ee] text-2xl font-black" type="button" aria-label="閉じる">×</button>
+      </div>
+      <div class="mt-8 space-y-6 leading-8 text-[#5b4637]">
+        <section><h3 class="text-lg font-black text-[#221a14]">1. 取得する情報</h3><p class="mt-2">電話やフォーム等で、お名前、連絡先、お問い合わせ内容を取得する場合があります。</p></section>
+        <section><h3 class="text-lg font-black text-[#221a14]">2. 利用目的</h3><p class="mt-2">取得した情報は、来店前確認、連絡対応、営業情報の案内に必要な範囲で利用します。</p></section>
+        <section><h3 class="text-lg font-black text-[#221a14]">3. 第三者提供</h3><p class="mt-2">法令に基づく場合を除き、ご本人の同意なく第三者へ提供しません。</p></section>
+        <section><h3 class="text-lg font-black text-[#221a14]">4. お問い合わせ窓口</h3><p class="mt-2">HIRA蕎麦 / 小田原市蓮正寺848-7 / 050-5889-1076</p></section>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+    const menuButton = document.getElementById("menuButton");
+    const mobileMenu = document.getElementById("mobileMenu");
+    menuButton.addEventListener("click", () => {
+      const isOpen = !mobileMenu.classList.contains("hidden");
+      mobileMenu.classList.toggle("hidden", isOpen);
+      menuButton.setAttribute("aria-expanded", String(!isOpen));
+    });
+    mobileMenu.querySelectorAll("a").forEach((link) => link.addEventListener("click", () => {
+      mobileMenu.classList.add("hidden");
+      menuButton.setAttribute("aria-expanded", "false");
+    }));
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: .15 });
+    document.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
+    const privacyModal = document.getElementById("privacyModal");
+    const privacyOpen = document.getElementById("privacyOpen");
+    const privacyClose = document.getElementById("privacyClose");
+    function openPrivacy() {
+      privacyModal.classList.remove("hidden");
+      privacyModal.classList.add("flex");
+      document.body.classList.add("modal-open");
+      privacyClose.focus();
+    }
+    function closePrivacy() {
+      privacyModal.classList.add("hidden");
+      privacyModal.classList.remove("flex");
+      document.body.classList.remove("modal-open");
+    }
+    privacyOpen.addEventListener("click", openPrivacy);
+    privacyClose.addEventListener("click", closePrivacy);
+    privacyModal.addEventListener("click", (event) => {
+      if (event.target === privacyModal) closePrivacy();
+    });
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && !privacyModal.classList.contains("hidden")) closePrivacy();
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="株式会社トムズは湯河原町宮下を拠点に、温泉設備の総合工事及び管理を行う建設会社です。温泉配管、設備改修、保守管理、施設運用の相談に対応します。">
+  <title>株式会社トムズ | 湯河原町の温泉設備総合工事・管理</title>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <style>
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Yu Gothic", "Meiryo", sans-serif;
+      color: #182f32;
+      background:
+        radial-gradient(circle at 12% 12%, rgba(239, 115, 72, .16), transparent 30%),
+        radial-gradient(circle at 92% 8%, rgba(20, 184, 166, .13), transparent 28%),
+        linear-gradient(180deg, #f8f1e6 0%, #edf7f3 44%, #fffaf0 100%);
+    }
+    h1, h2, h3 { line-break: strict; word-break: keep-all; overflow-wrap: anywhere; }
+    .phrase { display: inline-block; }
+    .steam-lines {
+      background-image:
+        linear-gradient(90deg, rgba(255,255,255,.08) 1px, transparent 1px),
+        linear-gradient(rgba(255,255,255,.06) 1px, transparent 1px),
+        radial-gradient(circle at 30% 20%, rgba(251,146,60,.22), transparent 34%);
+      background-size: 46px 46px, 46px 46px, auto;
+    }
+    .yu-mark { writing-mode: vertical-rl; text-orientation: mixed; letter-spacing: .2em; }
+    .ticket-shadow { box-shadow: 14px 14px 0 rgba(24, 47, 50, .12); }
+    .reveal { opacity: 0; transform: translateY(22px); transition: opacity .72s ease, transform .72s ease; }
+    .reveal.is-visible { opacity: 1; transform: translateY(0); }
+    .modal-open { overflow: hidden; }
+  </style>
+</head>
+<body class="antialiased">
+  <header class="fixed inset-x-0 top-0 z-50 border-b border-[#183033]/10 bg-[#f8f1e6]/90 backdrop-blur-xl">
+    <div class="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 lg:px-8">
+      <a href="#top" class="flex items-center gap-3" aria-label="株式会社トムズ トップへ">
+        <span class="grid h-11 w-11 place-items-center rounded-full bg-[#183033] text-xl font-black text-[#f7b267]">湯</span>
+        <span>
+          <span class="block text-lg font-black tracking-[0.12em]">株式会社トムズ</span>
+          <span class="block text-[11px] font-bold uppercase tracking-[0.28em] text-teal-700">Onsen Facility Management</span>
+        </span>
+      </a>
+      <nav class="hidden items-center gap-7 text-sm font-bold text-[#183033] lg:flex" aria-label="メインナビゲーション">
+        <a class="transition hover:text-orange-700" href="#strength">選ばれる理由</a>
+        <a class="transition hover:text-orange-700" href="#service">事業内容</a>
+        <a class="transition hover:text-orange-700" href="#company">会社概要</a>
+        <a class="transition hover:text-orange-700" href="#contact">お問い合わせ</a>
+      </nav>
+      <div class="flex items-center gap-3">
+        <a href="tel:0465642644" class="hidden rounded-full bg-[#183033] px-5 py-3 text-sm font-black text-white transition hover:bg-orange-700 md:inline-flex">0465-64-2644</a>
+        <button id="menuButton" class="grid h-11 w-11 place-items-center rounded-full border border-[#183033]/15 bg-white lg:hidden" type="button" aria-label="メニューを開く" aria-expanded="false">
+          <span class="relative h-4 w-5"><span class="absolute left-0 top-0 h-0.5 w-5 bg-[#183033]"></span><span class="absolute left-0 top-2 h-0.5 w-5 bg-[#183033]"></span><span class="absolute bottom-0 left-0 h-0.5 w-5 bg-[#183033]"></span></span>
+        </button>
+      </div>
+    </div>
+    <div id="mobileMenu" class="hidden border-t border-[#183033]/10 bg-[#f8f1e6] px-5 py-5 lg:hidden">
+      <nav class="mx-auto grid max-w-7xl gap-3 text-sm font-bold text-[#183033]" aria-label="モバイルナビゲーション">
+        <a class="rounded-2xl bg-white px-4 py-3 shadow-sm" href="#strength">選ばれる理由</a>
+        <a class="rounded-2xl bg-white px-4 py-3 shadow-sm" href="#service">事業内容</a>
+        <a class="rounded-2xl bg-white px-4 py-3 shadow-sm" href="#company">会社概要</a>
+        <a class="rounded-2xl bg-white px-4 py-3 shadow-sm" href="#contact">お問い合わせ</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top" class="overflow-hidden pt-20">
+    <section class="relative bg-[#f8f1e6]">
+      <div class="mx-auto grid min-h-[calc(100vh-5rem)] max-w-7xl gap-8 px-5 py-10 sm:py-14 lg:grid-cols-[1.04fr_.96fr] lg:px-8 lg:py-24">
+        <div class="reveal flex flex-col justify-center">
+          <div class="mb-7 flex items-center gap-4">
+            <span class="h-px w-14 bg-orange-600"></span>
+            <p class="text-xs font-black uppercase tracking-[0.28em] text-teal-800">Yugawara / Hot Spring Works</p>
+          </div>
+          <h1 class="max-w-4xl text-[clamp(1.75rem,3.2vw,3rem)] font-black leading-[1.12] tracking-tight text-[#183033]">
+            <span class="phrase">湯を届ける設備を、</span><br class="hidden sm:block">
+            <span class="phrase">日々の管理まで支える。</span>
+          </h1>
+          <p class="mt-7 max-w-2xl text-base leading-8 text-[#355558] sm:mt-8 sm:text-lg sm:leading-9">
+            株式会社トムズは、湯河原町宮下を拠点に温泉設備の総合工事及び管理を行う建設会社です。旅館、温浴施設、共同設備など、温泉を安定して使い続けるための工事と管理を支えます。
+          </p>
+          <div class="mt-8 flex flex-col gap-3 sm:mt-10 sm:flex-row sm:gap-4">
+            <a href="#contact" class="inline-flex items-center justify-center rounded-full bg-orange-500 px-8 py-4 text-sm font-black tracking-[0.16em] text-[#183033] shadow-lg shadow-orange-900/20 transition hover:bg-orange-300">温泉設備を相談する</a>
+            <a href="tel:0465642644" class="inline-flex items-center justify-center rounded-full border border-[#183033]/15 bg-white px-8 py-4 text-sm font-black tracking-[0.12em] text-[#183033] shadow-lg shadow-slate-900/10 transition hover:border-teal-500 hover:bg-teal-50">電話 0465-64-2644</a>
+          </div>
+        </div>
+        <div class="reveal flex items-center justify-center lg:justify-end">
+          <div class="relative w-full max-w-xl overflow-hidden rounded-[2.5rem] bg-[#183033] p-4 text-white steam-lines">
+            <div class="absolute right-5 top-5 rounded-full border border-white/20 px-4 py-2 text-xs font-black tracking-[0.24em] text-orange-100">ONSEN OPS</div>
+            <div class="grid min-h-[430px] gap-4 rounded-[2rem] border border-white/10 bg-white/8 p-5 backdrop-blur sm:p-7">
+              <div class="grid grid-cols-[64px_1fr] gap-5">
+                <div class="grid place-items-center rounded-full bg-orange-300 text-3xl font-black text-[#183033]">湯</div>
+                <div>
+                  <p class="text-xs font-black uppercase tracking-[0.26em] text-teal-100">Facility Flow</p>
+                  <h2 class="mt-3 text-[clamp(1.35rem,2.5vw,2.15rem)] font-black leading-tight">源泉、配管、機械室、利用設備をひとつの流れで見る。</h2>
+                </div>
+              </div>
+              <div class="grid gap-3 sm:grid-cols-3">
+                <div class="rounded-3xl bg-white p-5 text-[#183033]"><p class="text-3xl font-black text-orange-600">01</p><p class="mt-2 text-sm font-bold">調査</p></div>
+                <div class="rounded-3xl bg-teal-500 p-5 text-white"><p class="text-3xl font-black">02</p><p class="mt-2 text-sm font-bold">施工</p></div>
+                <div class="rounded-3xl bg-orange-300 p-5 text-[#183033]"><p class="text-3xl font-black">03</p><p class="mt-2 text-sm font-bold">管理</p></div>
+              </div>
+              <div class="rounded-[1.5rem] border border-white/10 bg-[#0f2426]/80 p-5">
+                <p class="text-sm font-bold leading-7 text-teal-50">温泉設備は、工事して終わりではありません。使われる時間、湯量、温度、点検しやすさまで含めて、安定運用を考えます。</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="strength" class="bg-white py-20 lg:py-28">
+      <div class="mx-auto max-w-7xl px-5 lg:px-8">
+        <div class="grid gap-10 lg:grid-cols-[220px_1fr]">
+          <div class="reveal hidden lg:block"><p class="yu-mark text-sm font-black uppercase text-orange-700">Reasons</p></div>
+          <div>
+            <div class="reveal max-w-3xl">
+              <p class="text-sm font-black uppercase tracking-[0.28em] text-teal-700">Why Toms</p>
+              <h2 class="mt-4 text-[clamp(1.65rem,3vw,2.55rem)] font-black leading-tight text-[#183033]"><span class="phrase">温泉設備は、</span><span class="phrase">管理まで見てこそ安心。</span></h2>
+              <p class="mt-6 leading-8 text-slate-600">温泉設備は熱や成分の影響を受けるため、一般設備とは異なる視点が必要です。トムズは総合工事と管理の両面から、施設が安心して温泉を使える状態を支えます。</p>
+            </div>
+            <div class="mt-12 grid gap-5 md:grid-cols-3">
+              <article class="reveal rounded-[2rem] bg-orange-50 p-7"><p class="text-sm font-black text-orange-700">POINT 01</p><h3 class="mt-4 text-2xl font-black">流れ全体を把握</h3><p class="mt-4 leading-8 text-slate-600">源泉から利用設備まで、配管、機器、点検動線をまとめて確認します。</p></article>
+              <article class="reveal rounded-[2rem] bg-teal-50 p-7"><p class="text-sm font-black text-teal-700">POINT 02</p><h3 class="mt-4 text-2xl font-black">管理性を重視</h3><p class="mt-4 leading-8 text-slate-600">施工後の点検、交換、清掃のしやすさを見据えて計画します。</p></article>
+              <article class="reveal rounded-[2rem] bg-[#183033] p-7 text-white"><p class="text-sm font-black text-orange-200">POINT 03</p><h3 class="mt-4 text-2xl font-black">温泉地の現場感</h3><p class="mt-4 leading-8 text-teal-50/80">湯河原エリアの施設や管理物件の設備課題へ、地域に根ざして対応します。</p></article>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="service" class="bg-[#183033] py-20 text-white lg:py-28">
+      <div class="mx-auto max-w-7xl px-5 lg:px-8">
+        <div class="reveal mb-12 flex flex-col justify-between gap-6 lg:flex-row lg:items-end">
+          <div>
+            <p class="text-sm font-black uppercase tracking-[0.28em] text-orange-200">Service</p>
+            <h2 class="mt-4 text-[clamp(1.7rem,3.1vw,2.65rem)] font-black leading-tight"><span class="phrase">温泉設備の工事も、</span><span class="phrase">日々の管理も。</span></h2>
+          </div>
+          <p class="max-w-xl leading-8 text-teal-50/75">温泉設備の総合工事、配管・設備更新、保守管理、施設改修に関する相談に対応します。</p>
+        </div>
+        <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+          <article class="reveal rounded-[2rem] border border-white/10 bg-white/8 p-6"><span class="text-xs font-black uppercase tracking-[0.24em] text-orange-200">Work 01</span><h3 class="mt-5 text-xl font-black">温泉設備の総合工事</h3><p class="mt-4 leading-7 text-teal-50/75">施設条件に合わせて、温泉設備まわりの施工を整理します。</p></article>
+          <article class="reveal rounded-[2rem] border border-white/10 bg-white/8 p-6"><span class="text-xs font-black uppercase tracking-[0.24em] text-orange-200">Work 02</span><h3 class="mt-5 text-xl font-black">配管・機器更新</h3><p class="mt-4 leading-7 text-teal-50/75">老朽化や不具合に合わせ、更新や改修を検討します。</p></article>
+          <article class="reveal rounded-[2rem] border border-white/10 bg-white/8 p-6"><span class="text-xs font-black uppercase tracking-[0.24em] text-orange-200">Work 03</span><h3 class="mt-5 text-xl font-black">保守管理</h3><p class="mt-4 leading-7 text-teal-50/75">日々の運用で困りにくい設備状態を保つ相談に対応します。</p></article>
+          <article class="reveal rounded-[2rem] border border-white/10 bg-white/8 p-6"><span class="text-xs font-black uppercase tracking-[0.24em] text-orange-200">Work 04</span><h3 class="mt-5 text-xl font-black">施設改修</h3><p class="mt-4 leading-7 text-teal-50/75">浴場、機械室、配管経路など、現場に合わせて改修を考えます。</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="bg-white py-20 lg:py-28">
+      <div class="mx-auto max-w-7xl px-5 lg:px-8">
+        <div class="grid gap-5 md:grid-cols-[1.2fr_.8fr]">
+          <div class="reveal rounded-[2rem] bg-orange-50 p-8"><p class="text-sm font-black uppercase tracking-[0.28em] text-orange-700">Facility Scenes</p><h2 class="mt-4 text-[clamp(1.65rem,3vw,2.55rem)] font-black leading-tight text-[#183033]"><span class="phrase">旅館、温浴施設、</span><span class="phrase">管理物件へ。</span></h2><p class="mt-6 leading-8 text-slate-600">温泉設備は施設の信頼に直結します。稼働を止めにくい現場でも、状況を整理しながら必要な工事と管理を考えます。</p></div>
+          <div class="reveal grid gap-5">
+            <div class="rounded-[2rem] bg-teal-50 p-6"><h3 class="text-xl font-black">旅館・宿泊施設</h3><p class="mt-3 leading-7 text-slate-600">利用者の満足度を支える温泉設備の安定運用を考えます。</p></div>
+            <div class="rounded-[2rem] bg-slate-100 p-6"><h3 class="text-xl font-black">共同設備・管理物件</h3><p class="mt-3 leading-7 text-slate-600">共用配管や機械室まわりの課題を確認します。</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="company" class="bg-[#f4fbf8] py-20 lg:py-28">
+      <div class="mx-auto max-w-7xl px-5 lg:px-8">
+        <div class="reveal mb-8 rounded-[2rem] bg-white p-6 shadow-xl sm:p-8">
+          <div class="grid gap-6 lg:grid-cols-[1fr_1fr_1fr_1.2fr] lg:items-center">
+            <div><p class="text-xs font-black uppercase tracking-[0.22em] text-teal-700">Company</p><h2 class="mt-2 text-[clamp(1.65rem,3vw,2.55rem)] font-black text-[#183033]">会社概要</h2></div>
+            <div><p class="text-xs font-black uppercase tracking-[0.22em] text-slate-500">Name</p><p class="mt-2 font-black">株式会社トムズ</p></div>
+            <div><p class="text-xs font-black uppercase tracking-[0.22em] text-slate-500">Tel</p><p class="mt-2 font-black"><a href="tel:0465642644" class="hover:text-teal-700">0465-64-2644</a></p></div>
+            <div><p class="text-xs font-black uppercase tracking-[0.22em] text-slate-500">Business</p><p class="mt-2 font-black leading-7">建設業（温泉設備の総合工事及び管理）</p></div>
+          </div>
+          <div class="mt-6 border-t border-slate-200 pt-5"><p class="text-xs font-black uppercase tracking-[0.22em] text-slate-500">Address</p><p class="mt-2 font-bold">湯河原町宮下32 カトリビル2階</p></div>
+        </div>
+        <div class="reveal overflow-hidden rounded-[2rem] bg-[#183033] p-3 shadow-xl">
+          <div class="flex flex-col justify-between gap-3 px-3 py-3 text-white sm:flex-row sm:items-center"><p class="text-sm font-black uppercase tracking-[0.24em] text-orange-200">Panorama Access Map</p><a class="text-sm font-bold text-orange-200 underline underline-offset-4" href="https://www.google.com/maps/search/?api=1&query=%E6%B9%AF%E6%B2%B3%E5%8E%9F%E7%94%BA%E5%AE%AE%E4%B8%8B32%20%E3%82%AB%E3%83%88%E3%83%AA%E3%83%93%E3%83%AB2%E9%9A%8E" target="_blank" rel="noopener">Googleマップで開く</a></div>
+          <iframe title="株式会社トムズ 所在地 Googleマップ" class="h-[300px] w-full rounded-[1.5rem] border-0 bg-white sm:h-[380px]" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=%E6%B9%AF%E6%B2%B3%E5%8E%9F%E7%94%BA%E5%AE%AE%E4%B8%8B32%20%E3%82%AB%E3%83%88%E3%83%AA%E3%83%93%E3%83%AB2%E9%9A%8E&output=embed"></iframe>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="bg-white py-20 lg:py-28">
+      <div class="mx-auto max-w-7xl px-5 lg:px-8">
+        <div class="reveal rounded-[2.5rem] bg-[#fff8ed] p-5 shadow-xl sm:p-8 lg:grid lg:grid-cols-[.85fr_1.15fr] lg:gap-8">
+          <div class="rounded-[2rem] bg-[#183033] p-7 text-white lg:p-9"><p class="text-sm font-black uppercase tracking-[0.28em] text-orange-200">Maintenance Ticket</p><h2 class="mt-4 text-[clamp(1.65rem,3vw,2.55rem)] font-black leading-tight"><span class="phrase">温泉設備の状況を、</span><span class="phrase">お聞かせください。</span></h2><p class="mt-6 leading-8 text-teal-50/80">工事、更新、管理、現地確認など、内容が固まっていない段階でも相談できます。</p><a href="tel:0465642644" class="mt-8 inline-flex rounded-full bg-orange-300 px-7 py-4 text-sm font-black tracking-[0.16em] text-[#183033] transition hover:bg-orange-200">電話で相談する</a></div>
+          <form id="contactForm" class="mt-6 grid gap-5 lg:mt-0">
+            <div class="grid gap-5 sm:grid-cols-2">
+              <label class="block"><span class="mb-2 block text-sm font-bold">お名前 <span class="text-red-600">必須</span></span><input class="w-full rounded-2xl border border-slate-300 bg-white px-4 py-3 outline-none transition focus:border-teal-600 focus:ring-4 focus:ring-teal-100" type="text" name="name" autocomplete="name" required placeholder="例：山田 太郎"></label>
+              <label class="block"><span class="mb-2 block text-sm font-bold">会社名</span><input class="w-full rounded-2xl border border-slate-300 bg-white px-4 py-3 outline-none transition focus:border-teal-600 focus:ring-4 focus:ring-teal-100" type="text" name="company" autocomplete="organization" placeholder="例：〇〇旅館"></label>
+              <label class="block"><span class="mb-2 block text-sm font-bold">メールアドレス <span class="text-red-600">必須</span></span><input class="w-full rounded-2xl border border-slate-300 bg-white px-4 py-3 outline-none transition focus:border-teal-600 focus:ring-4 focus:ring-teal-100" type="email" name="email" autocomplete="email" required placeholder="例：info@example.jp"></label>
+              <label class="block"><span class="mb-2 block text-sm font-bold">電話番号</span><input class="w-full rounded-2xl border border-slate-300 bg-white px-4 py-3 outline-none transition focus:border-teal-600 focus:ring-4 focus:ring-teal-100" type="tel" name="phone" autocomplete="tel" placeholder="例：0465-00-0000"></label>
+              <label class="block sm:col-span-2"><span class="mb-2 block text-sm font-bold">お問い合わせ内容 <span class="text-red-600">必須</span></span><textarea class="min-h-40 w-full rounded-2xl border border-slate-300 bg-white px-4 py-3 outline-none transition focus:border-teal-600 focus:ring-4 focus:ring-teal-100" name="message" required placeholder="温泉設備の工事、管理、改修、現場状況などをご記入ください。"></textarea></label>
+            </div>
+            <label class="flex items-start gap-3 text-sm leading-7 text-slate-600"><input class="mt-1 h-4 w-4 shrink-0 accent-teal-700" type="checkbox" name="privacy" required><span><button id="privacyOpenInline" class="font-bold text-[#183033] underline decoration-orange-400 decoration-2 underline-offset-4" type="button">プライバシーポリシー</button> に同意のうえ送信します。</span></label>
+            <button class="rounded-full bg-teal-800 px-8 py-4 text-sm font-black tracking-[0.18em] text-white transition hover:bg-teal-700" type="submit">入力内容を確認する</button>
+            <p id="formMessage" class="hidden rounded-2xl bg-orange-100 p-4 text-sm font-bold text-[#183033]" role="status"></p>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer id="privacy" class="bg-slate-950 px-5 py-10 text-white lg:px-8">
+    <div class="mx-auto max-w-7xl border-t border-white/10 pt-8">
+      <div class="grid gap-6 lg:grid-cols-[.95fr_1.05fr]"><div><p class="text-xs font-black uppercase tracking-[0.28em] text-orange-200">Privacy Policy</p><h2 class="mt-2 text-xl font-black">プライバシーポリシー</h2><p class="mt-4 text-sm leading-7 text-slate-400">株式会社トムズは、お問い合わせで取得した個人情報を、温泉設備工事や管理に関する回答、現地確認、見積、連絡の目的に限り利用します。法令に基づく場合を除き、ご本人の同意なく第三者へ提供しません。</p><button id="privacyOpen" class="mt-4 rounded-full border border-slate-700 px-4 py-2 text-xs font-black text-slate-300 transition hover:border-orange-300 hover:text-orange-200" type="button">詳細を確認</button></div><div class="grid gap-3 text-xs leading-6 text-slate-500 sm:grid-cols-2"><div class="rounded-2xl border border-white/10 p-4"><h3 class="font-black text-slate-300">利用目的</h3><p class="mt-2">温泉設備の工事、管理、改修に関する相談対応、現地確認、見積、連絡、業務上必要な記録のために利用します。</p></div><div class="rounded-2xl border border-white/10 p-4"><h3 class="font-black text-slate-300">安全管理</h3><p class="mt-2">個人情報の漏えい、滅失、毀損、不正アクセスを防ぐため、適切な管理に努めます。</p></div></div></div>
+      <div class="mt-8 flex flex-col justify-between gap-4 border-t border-white/10 pt-6 text-sm text-slate-500 sm:flex-row"><p>株式会社トムズ | 湯河原町宮下32 カトリビル2階 | 0465-64-2644</p><p>&copy; <span id="year"></span> Toms. All Rights Reserved.</p></div>
+    </div>
+  </footer>
+
+  <div id="privacyModal" class="fixed inset-0 z-[80] hidden items-center justify-center bg-slate-950/75 px-5 py-8 backdrop-blur-sm" role="dialog" aria-modal="true" aria-labelledby="privacyTitle">
+    <div class="max-h-[88vh] w-full max-w-3xl overflow-y-auto rounded-[2rem] bg-white p-7 shadow-2xl sm:p-10"><div class="flex items-start justify-between gap-5"><div><p class="text-sm font-black uppercase tracking-[0.28em] text-teal-700">Privacy Policy</p><h2 id="privacyTitle" class="mt-3 text-3xl font-black text-slate-950">個人情報の取り扱いについて</h2></div><button id="privacyClose" class="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-slate-100 text-2xl font-black text-slate-950 transition hover:bg-orange-100" type="button" aria-label="閉じる">×</button></div><div class="mt-8 space-y-6 leading-8 text-slate-700"><section><h3 class="text-lg font-black text-slate-950">1. 取得する情報</h3><p class="mt-2">お問い合わせフォーム送信時に、お名前、会社名、メールアドレス、電話番号、お問い合わせ内容を取得します。</p></section><section><h3 class="text-lg font-black text-slate-950">2. 利用目的</h3><p class="mt-2">取得した情報は、温泉設備の工事、管理、改修に関するご相談への回答、現地確認、見積、連絡、業務上必要な記録のために利用します。</p></section><section><h3 class="text-lg font-black text-slate-950">3. 第三者提供</h3><p class="mt-2">法令に基づく場合を除き、ご本人の同意なく個人情報を第三者へ提供しません。工事対応に必要な範囲で協力会社等と共有する場合があります。</p></section><section><h3 class="text-lg font-black text-slate-950">4. 安全管理</h3><p class="mt-2">個人情報の漏えい、滅失、毀損、不正アクセスを防ぐため、適切な管理に努めます。</p></section><section><h3 class="text-lg font-black text-slate-950">5. お問い合わせ窓口</h3><p class="mt-2">株式会社トムズ / 湯河原町宮下32 カトリビル2階 / 0465-64-2644</p></section></div></div>
+  </div>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+    const menuButton = document.getElementById("menuButton");
+    const mobileMenu = document.getElementById("mobileMenu");
+    menuButton.addEventListener("click", () => { const isOpen = !mobileMenu.classList.contains("hidden"); mobileMenu.classList.toggle("hidden", isOpen); menuButton.setAttribute("aria-expanded", String(!isOpen)); });
+    mobileMenu.querySelectorAll("a").forEach((link) => link.addEventListener("click", () => { mobileMenu.classList.add("hidden"); menuButton.setAttribute("aria-expanded", "false"); }));
+    const observer = new IntersectionObserver((entries) => { entries.forEach((entry) => { if (entry.isIntersecting) { entry.target.classList.add("is-visible"); observer.unobserve(entry.target); } }); }, { threshold: .15 });
+    document.querySelectorAll(".reveal").forEach((element) => observer.observe(element));
+    const privacyModal = document.getElementById("privacyModal");
+    const privacyOpen = document.getElementById("privacyOpen");
+    const privacyOpenInline = document.getElementById("privacyOpenInline");
+    const privacyClose = document.getElementById("privacyClose");
+    function openPrivacy() { privacyModal.classList.remove("hidden"); privacyModal.classList.add("flex"); document.body.classList.add("modal-open"); privacyClose.focus(); }
+    function closePrivacy() { privacyModal.classList.add("hidden"); privacyModal.classList.remove("flex"); document.body.classList.remove("modal-open"); }
+    privacyOpen.addEventListener("click", openPrivacy); privacyOpenInline.addEventListener("click", openPrivacy); privacyClose.addEventListener("click", closePrivacy);
+    privacyModal.addEventListener("click", (event) => { if (event.target === privacyModal) closePrivacy(); });
+    document.addEventListener("keydown", (event) => { if (event.key === "Escape" && !privacyModal.classList.contains("hidden")) closePrivacy(); });
+    const contactForm = document.getElementById("contactForm");
+    const formMessage = document.getElementById("formMessage");
+    contactForm.addEventListener("submit", (event) => { event.preventDefault(); if (!contactForm.reportValidity()) return; formMessage.textContent = "入力内容を確認しました。実運用時はこのフォームからメール送信できるよう接続します。お急ぎの場合は 0465-64-2644 へお電話ください。"; formMessage.classList.remove("hidden"); formMessage.scrollIntoView({ behavior: "smooth", block: "center" }); });
+  </script>
+</body>
+</html>

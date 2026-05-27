@@ -161,37 +161,34 @@
             </h2>
           </div>
           <p class="max-w-md text-sm leading-7 text-white/70">
-            納品後はBehold.so等の埋め込みツールに差し替える想定です。現在は連動イメージのダミーグリッドを表示しています。
+            @insyokuten_sample の埋め込み表示を中心に構成しています。アカウント側の投稿更新に応じて表示内容が変わります。
           </p>
         </div>
         <div class="reveal rounded-[2rem] border border-white/10 bg-white/6 p-4 sm:p-5">
           <div class="mb-5 rounded-2xl border border-white/15 bg-black/20 p-4 sm:p-5">
             <p class="text-xs font-bold tracking-[0.16em] text-[#f1d6a6]">INSTAGRAM SAMPLE ACCOUNT</p>
             <a href="https://www.instagram.com/insyokuten_sample/" target="_blank" rel="noopener" class="mt-2 inline-flex text-sm font-black text-white underline underline-offset-4">@insyokuten_sample を開く</a>
-            <p class="mt-3 text-xs leading-6 text-white/70">指定のサンプルアカウント表示を組み込み済みです。投稿が追加されると、埋め込み表示側で反映されます。</p>
+            <p class="mt-3 text-xs leading-6 text-white/70">まず埋め込みでアカウント内容を表示し、読み込み不可時のために下段へ補助カードを用意しています。</p>
           </div>
-          <div class="grid grid-cols-3 gap-2 sm:gap-3">
+          <div class="overflow-hidden rounded-2xl border border-white/15 bg-black/25 p-2 sm:p-3">
+            <iframe
+              title="insyokuten_sample Instagram feed"
+              src="https://www.instagram.com/insyokuten_sample/embed"
+              class="h-[560px] w-full rounded-xl border-0 bg-white"
+              loading="lazy"
+              referrerpolicy="strict-origin-when-cross-origin"
+            ></iframe>
+          </div>
+          <div class="mt-4 grid grid-cols-3 gap-2 sm:gap-3">
             <a href="https://www.instagram.com/insyokuten_sample/" target="_blank" rel="noopener" class="group block overflow-hidden rounded-xl border border-white/15 bg-white/5">
-              <img loading="lazy" class="aspect-square w-full object-cover transition duration-300 group-hover:scale-105" src="https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=720&q=76" alt="盛り付け蕎麦の投稿イメージ">
+              <img loading="lazy" class="aspect-square w-full object-cover transition duration-300 group-hover:scale-105" src="https://instagram.famd15-2.fna.fbcdn.net/v/t51.2885-19/573323465_1219825463302212_7278921664109726296_n.png?stp=dst-jpg_e0_s150x150_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xNTAuYzIifQ&_nc_ht=instagram.famd15-2.fna.fbcdn.net&_nc_cat=1&_nc_oc=Q6cZ2gGUQz4rYAgeHUcisMglQ3N-km4Jv63ME1J98GaQCLtWZulP4qC79Ij40gPgeD79CCX-EmtSebsjlkGJjT0huECu&_nc_ohc=hexn_7aa4p0Q7kNvwG4oUm8&_nc_gid=7bGXnhrqsRQ8MmCBD6r6mQ&edm=AFs-eF8BAAAA&ccb=7-5&ig_cache_key=YW5vbnltb3VzX3Byb2ZpbGVfcGlj.3-ccb7-5&oh=00_Af66SvicRCJ7JgVuOBO5bK9m_qXZLdBV56VLEUiBilNc6A&oe=6A1CCFEA&_nc_sid=72eed0" alt="insyokuten_sample プロフィール画像">
               <div class="border-t border-white/10 px-2 py-2 text-[10px] font-bold tracking-[0.08em] text-white/80">@insyokuten_sample</div>
             </a>
-            <a href="https://www.instagram.com/insyokuten_sample/" target="_blank" rel="noopener" class="group block overflow-hidden rounded-xl border border-white/15 bg-white/5">
-              <img loading="lazy" class="aspect-square w-full object-cover transition duration-300 group-hover:scale-105" src="https://images.unsplash.com/photo-1476718406336-bb5a9690ee2a?auto=format&fit=crop&w=720&q=76" alt="カフェ時間の投稿イメージ">
-              <div class="border-t border-white/10 px-2 py-2 text-[10px] font-bold tracking-[0.08em] text-white/80">#蕎麦カフェ</div>
+            <a href="https://www.instagram.com/insyokuten_sample/embed" target="_blank" rel="noopener" class="group block overflow-hidden rounded-xl border border-white/15 bg-white/5">
+              <img loading="lazy" class="aspect-square w-full object-cover transition duration-300 group-hover:scale-105" src="https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=720&q=76" alt="埋め込み表示フォールバック画像">
+              <div class="border-t border-white/10 px-2 py-2 text-[10px] font-bold tracking-[0.08em] text-white/80">Embed Preview</div>
             </a>
-            <a href="https://www.instagram.com/insyokuten_sample/" target="_blank" rel="noopener" class="group block overflow-hidden rounded-xl border border-white/15 bg-white/5">
-              <img loading="lazy" class="aspect-square w-full object-cover transition duration-300 group-hover:scale-105" src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=720&q=76" alt="珈琲の投稿イメージ">
-              <div class="border-t border-white/10 px-2 py-2 text-[10px] font-bold tracking-[0.08em] text-white/80">#FrenchPress</div>
-            </a>
-            <a href="https://www.instagram.com/insyokuten_sample/" target="_blank" rel="noopener" class="group block overflow-hidden rounded-xl border border-white/15 bg-white/5">
-              <img loading="lazy" class="aspect-square w-full object-cover transition duration-300 group-hover:scale-105" src="https://images.unsplash.com/photo-1514517220031-07d450b8b04f?auto=format&fit=crop&w=720&q=76" alt="和スイーツの投稿イメージ">
-              <div class="border-t border-white/10 px-2 py-2 text-[10px] font-bold tracking-[0.08em] text-white/80">#もち米スイーツ</div>
-            </a>
-            <a href="https://www.instagram.com/insyokuten_sample/" target="_blank" rel="noopener" class="group block overflow-hidden rounded-xl border border-white/15 bg-white/5">
-              <img loading="lazy" class="aspect-square w-full object-cover transition duration-300 group-hover:scale-105" src="https://images.unsplash.com/photo-1617196034796-73dfa7b1fd56?auto=format&fit=crop&w=720&q=76" alt="十割蕎麦の投稿イメージ">
-              <div class="border-t border-white/10 px-2 py-2 text-[10px] font-bold tracking-[0.08em] text-white/80">#十割蕎麦</div>
-            </a>
-            <a href="https://www.instagram.com/insyokuten_sample/embed" target="_blank" rel="noopener" class="grid place-items-center rounded-xl border border-dashed border-white/25 bg-white/5 p-3 text-center text-[10px] leading-5 text-white/70">埋め込み連携枠<br>Behold.so等に差替可</a>
+            <a href="https://www.instagram.com/insyokuten_sample/" target="_blank" rel="noopener" class="grid place-items-center rounded-xl border border-dashed border-white/25 bg-white/5 p-3 text-center text-[10px] leading-5 text-white/70">投稿一覧を開く<br>Instagram App/Web</a>
           </div>
         </div>
       </div>

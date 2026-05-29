@@ -127,6 +127,11 @@
     @media (min-width: 1024px) {
       body { padding-bottom: 0; }
     }
+
+    /* ヒーロー：JS前でも油そば画像を表示 */
+    #hero-bg {
+      background-image: url("https://images.pexels.com/photos/8846008/pexels-photo-8846008.jpeg?auto=compress&cs=tinysrgb&w=1920");
+    }
   </style>
 </head>
 <body class="antialiased">
@@ -170,12 +175,17 @@
 
     <!-- ========== HERO ========== -->
     <section id="hero" class="relative min-h-[calc(100svh-88px)] overflow-hidden md:min-h-[calc(100svh-104px)]">
-      <div
-        id="hero-bg"
-        class="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        role="img"
-        aria-label="油そばのシズル写真"
-      ></div>
+      <div id="hero-bg" class="absolute inset-0 bg-cover bg-center bg-no-repeat" aria-hidden="true"></div>
+      <img
+        id="hero-img"
+        src="https://images.pexels.com/photos/8846008/pexels-photo-8846008.jpeg?auto=compress&cs=tinysrgb&w=1920"
+        alt="油そばのシズル写真"
+        class="absolute inset-0 h-full w-full object-cover object-center"
+        fetchpriority="high"
+        referrerpolicy="no-referrer"
+        width="1920"
+        height="1280"
+      />
       <div class="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-black/25"></div>
 
       <div class="relative mx-auto flex min-h-[calc(100svh-88px)] max-w-[1600px] flex-col justify-center px-4 py-10 pb-28 md:min-h-[calc(100svh-104px)] md:flex-row md:items-center md:justify-between md:px-10 md:pb-12 lg:px-16">
@@ -231,6 +241,7 @@
             src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1200&q=80"
             alt="店内カウンター席"
             class="h-full w-full object-cover"
+            referrerpolicy="no-referrer"
             loading="lazy"
             width="1200"
             height="800"
@@ -259,7 +270,7 @@
               ① 国産小麦100%の特製極太麺
             </h3>
             <div class="aspect-[4/3] border-b-4 border-black bg-neutral-200">
-              <img data-img="feature01" src="https://images.unsplash.com/photo-1555126634-323283e09099?auto=format&fit=crop&w=800&q=80" alt="特製極太麺" class="h-full w-full object-cover" loading="lazy" width="800" height="600" />
+              <img data-img="feature01" src="https://images.unsplash.com/photo-1771308457245-36bda18c21d9?auto=format&fit=crop&w=800&q=80" alt="特製極太麺" class="h-full w-full object-cover" referrerpolicy="no-referrer" loading="lazy" width="800" height="600" />
             </div>
             <p class="px-4 py-4 text-sm font-bold leading-relaxed md:text-base">
               ワシワシ・モチモチとした圧倒的な噛みごたえと小麦の香り。
@@ -271,7 +282,7 @@
               ② 五感を刺激する、無料の無限味変キット
             </h3>
             <div class="aspect-[4/3] border-b-4 border-black bg-neutral-200">
-              <img data-img="feature02" src="https://images.unsplash.com/photo-1603133872877-684f208fb16b?auto=format&fit=crop&w=800&q=80" alt="味変キット" class="h-full w-full object-cover" loading="lazy" width="800" height="600" />
+              <img data-img="feature02" src="https://images.pexels.com/photos/699953/pexels-photo-699953.jpeg?auto=compress&cs=tinysrgb&w=800" alt="味変キット" class="h-full w-full object-cover" referrerpolicy="no-referrer" loading="lazy" width="800" height="600" />
             </div>
             <p class="px-4 py-4 text-sm font-bold leading-relaxed md:text-base">
               卓上のお酢、ラー油、無料の刻み玉葱、カレー粉、魚粉、刻みニンニクで、自分だけの最強の一杯へ育てる楽しさ。
@@ -283,7 +294,7 @@
               ③ 鰹節香る〆スープで極上のフィニッシュ
             </h3>
             <div class="aspect-[4/3] border-b-4 border-black bg-neutral-200">
-              <img data-img="feature03" src="https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&w=800&q=80" alt="〆スープ" class="h-full w-full object-cover" loading="lazy" width="800" height="600" />
+              <img data-img="feature03" src="https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&w=800&q=80" alt="〆スープ" class="h-full w-full object-cover" referrerpolicy="no-referrer" loading="lazy" width="800" height="600" />
             </div>
             <p class="px-4 py-4 text-sm font-bold leading-relaxed md:text-base">
               麺とタレを少し残した器に、セルフで注ぐ特製割りスープ。これぞ油丸の完全体。
@@ -348,7 +359,7 @@
         <div class="grid flex-1 gap-8 border-t-4 border-black p-6 md:grid-cols-3 md:border-t-0 md:border-l-4 md:p-10 lg:gap-10">
           <article class="menu-card flex flex-col brutal-border brutal-shadow bg-white" style="--card-rotate: rotate(-1.5deg);" data-menu-card>
             <div class="aspect-square border-b-4 border-black bg-neutral-200">
-              <img data-img="menuAburamaru" src="https://images.unsplash.com/photo-1617093727343-374698b0fccc?auto=format&fit=crop&w=800&q=80" alt="油丸" class="h-full w-full object-cover" loading="lazy" width="800" height="800" />
+              <img data-img="menuAburamaru" src="https://images.pexels.com/photos/842571/pexels-photo-842571.jpeg?auto=compress&cs=tinysrgb&w=800" alt="油丸" class="h-full w-full object-cover" referrerpolicy="no-referrer" loading="lazy" width="800" height="800" />
             </div>
             <div class="px-4 py-5">
               <p class="font-en mb-1 text-sm font-black text-black/50">01</p>
@@ -359,7 +370,7 @@
 
           <article class="menu-card flex flex-col brutal-border brutal-shadow bg-white" style="--card-rotate: rotate(1.5deg);" data-menu-card>
             <div class="aspect-square border-b-4 border-black bg-neutral-200">
-              <img data-img="menuKaramaru" src="https://images.unsplash.com/photo-1598866594230-a7c127754f8b?auto=format&fit=crop&w=800&q=80" alt="辛丸" class="h-full w-full object-cover" loading="lazy" width="800" height="800" />
+              <img data-img="menuKaramaru" src="https://images.pexels.com/photos/2233348/pexels-photo-2233348.jpeg?auto=compress&cs=tinysrgb&w=800" alt="辛丸" class="h-full w-full object-cover" referrerpolicy="no-referrer" loading="lazy" width="800" height="800" />
             </div>
             <div class="px-4 py-5">
               <p class="font-en mb-1 text-sm font-black text-black/50">02</p>
@@ -370,7 +381,7 @@
 
           <article class="menu-card flex flex-col brutal-border brutal-shadow bg-white" style="--card-rotate: rotate(-1.2deg);" data-menu-card>
             <div class="aspect-square border-b-4 border-black bg-neutral-200">
-              <img data-img="menuJiromaru" src="https://images.unsplash.com/photo-1569718212165-3a8278dfeaa5?auto=format&fit=crop&w=800&q=80" alt="次郎丸" class="h-full w-full object-cover" loading="lazy" width="800" height="800" />
+              <img data-img="menuJiromaru" src="https://images.pexels.com/photos/1199960/pexels-photo-1199960.jpeg?auto=compress&cs=tinysrgb&w=800" alt="次郎丸" class="h-full w-full object-cover" referrerpolicy="no-referrer" loading="lazy" width="800" height="800" />
             </div>
             <div class="px-4 py-5">
               <p class="font-en mb-1 text-sm font-black text-black/50">03</p>
@@ -395,7 +406,7 @@
         <div class="grid gap-6 md:grid-cols-3 md:gap-8">
           <figure class="insta-card group relative overflow-hidden brutal-border brutal-shadow bg-white">
             <div class="aspect-[4/5] bg-neutral-200">
-              <img data-img="insta01" src="https://images.unsplash.com/photo-1617093727343-374698b0fccc?auto=format&fit=crop&w=600&q=80" alt="油そば" class="h-full w-full object-cover" loading="lazy" width="600" height="750" />
+              <img data-img="insta01" src="https://images.pexels.com/photos/8846008/pexels-photo-8846008.jpeg?auto=compress&cs=tinysrgb&w=600" alt="油そば" class="h-full w-full object-cover" referrerpolicy="no-referrer" loading="lazy" width="600" height="750" />
             </div>
             <figcaption class="border-t-4 border-black px-4 py-3 text-sm font-bold">油そば</figcaption>
             <div class="insta-overlay absolute inset-0 flex items-end bg-black/75 p-5">
@@ -405,7 +416,7 @@
 
           <figure class="insta-card group relative overflow-hidden brutal-border brutal-shadow bg-white">
             <div class="aspect-[4/5] bg-neutral-200">
-              <img data-img="insta02" src="https://images.unsplash.com/photo-1603133872877-684f208fb16b?auto=format&fit=crop&w=600&q=80" alt="味変キット" class="h-full w-full object-cover" loading="lazy" width="600" height="750" />
+              <img data-img="insta02" src="https://images.pexels.com/photos/539451/pexels-photo-539451.jpeg?auto=compress&cs=tinysrgb&w=600" alt="味変キット" class="h-full w-full object-cover" referrerpolicy="no-referrer" loading="lazy" width="600" height="750" />
             </div>
             <figcaption class="border-t-4 border-black px-4 py-3 text-sm font-bold">味変キット</figcaption>
             <div class="insta-overlay absolute inset-0 flex items-end bg-black/75 p-5">
@@ -415,7 +426,7 @@
 
           <figure class="insta-card group relative overflow-hidden brutal-border brutal-shadow bg-white">
             <div class="aspect-[4/5] bg-neutral-200">
-              <img data-img="insta03" src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=600&q=80" alt="店舗外観" class="h-full w-full object-cover" loading="lazy" width="600" height="750" />
+              <img data-img="insta03" src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=600&q=80" alt="店舗外観" class="h-full w-full object-cover" referrerpolicy="no-referrer" loading="lazy" width="600" height="750" />
             </div>
             <figcaption class="border-t-4 border-black px-4 py-3 text-sm font-bold">店舗外観</figcaption>
             <div class="insta-overlay absolute inset-0 flex items-end bg-black/75 p-5">
@@ -524,20 +535,20 @@
 
   <script>
     /**
-     * ===== 画像URL一括管理（O-DAN / Unsplash 仮素材） =====
+     * ===== 画像URL一括管理（Pexels / Unsplash フリー素材・表示確認済） =====
      * 本番は店舗撮影素材に差し替え
      */
     const IMAGES = {
-      hero: "https://images.unsplash.com/photo-1617093727343-374698b0fccc?auto=format&fit=crop&w=1920&q=85",
+      hero: "https://images.pexels.com/photos/8846008/pexels-photo-8846008.jpeg?auto=compress&cs=tinysrgb&w=1920",
       shop: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1200&q=80",
-      feature01: "https://images.unsplash.com/photo-1555126634-323283e09099?auto=format&fit=crop&w=800&q=80",
-      feature02: "https://images.unsplash.com/photo-1603133872877-684f208fb16b?auto=format&fit=crop&w=800&q=80",
+      feature01: "https://images.unsplash.com/photo-1771308457245-36bda18c21d9?auto=format&fit=crop&w=800&q=80",
+      feature02: "https://images.pexels.com/photos/699953/pexels-photo-699953.jpeg?auto=compress&cs=tinysrgb&w=800",
       feature03: "https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&w=800&q=80",
-      menuAburamaru: "https://images.unsplash.com/photo-1617093727343-374698b0fccc?auto=format&fit=crop&w=800&q=80",
-      menuKaramaru: "https://images.unsplash.com/photo-1598866594230-a7c127754f8b?auto=format&fit=crop&w=800&q=80",
-      menuJiromaru: "https://images.unsplash.com/photo-1569718212165-3a8278dfeaa5?auto=format&fit=crop&w=800&q=80",
-      insta01: "https://images.unsplash.com/photo-1617093727343-374698b0fccc?auto=format&fit=crop&w=600&q=80",
-      insta02: "https://images.unsplash.com/photo-1603133872877-684f208fb16b?auto=format&fit=crop&w=600&q=80",
+      menuAburamaru: "https://images.pexels.com/photos/842571/pexels-photo-842571.jpeg?auto=compress&cs=tinysrgb&w=800",
+      menuKaramaru: "https://images.pexels.com/photos/2233348/pexels-photo-2233348.jpeg?auto=compress&cs=tinysrgb&w=800",
+      menuJiromaru: "https://images.pexels.com/photos/1199960/pexels-photo-1199960.jpeg?auto=compress&cs=tinysrgb&w=800",
+      insta01: "https://images.pexels.com/photos/8846008/pexels-photo-8846008.jpeg?auto=compress&cs=tinysrgb&w=600",
+      insta02: "https://images.pexels.com/photos/539451/pexels-photo-539451.jpeg?auto=compress&cs=tinysrgb&w=600",
       insta03: "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=600&q=80",
     };
 
@@ -549,10 +560,23 @@
     };
 
     function applyImagePaths() {
-      document.getElementById("hero-bg").style.backgroundImage = "url('" + IMAGES.hero + "')";
+      var heroBg = document.getElementById("hero-bg");
+      var heroImg = document.getElementById("hero-img");
+      if (heroBg) heroBg.style.backgroundImage = "url('" + IMAGES.hero + "')";
+      if (heroImg) heroImg.src = IMAGES.hero;
       document.querySelectorAll("[data-img]").forEach(function (el) {
         var key = el.getAttribute("data-img");
         if (IMAGES[key]) el.src = IMAGES[key];
+      });
+    }
+
+    function initImageErrorFallback() {
+      document.querySelectorAll("img[data-img], #hero-img").forEach(function (img) {
+        img.addEventListener("error", function () {
+          if (img.id === "hero-img" || img.getAttribute("data-img") === "menuAburamaru" || img.getAttribute("data-img") === "insta01") {
+            img.src = IMAGES.hero;
+          }
+        });
       });
     }
 
@@ -613,6 +637,7 @@
     }
 
     applyImagePaths();
+    initImageErrorFallback();
     initMenuCardPress();
     initMenuScrollReveal();
     initLinks();

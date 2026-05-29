@@ -3,261 +3,351 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="小田原油そば 油丸の公式サイト。混ぜて完成する油そばを主役に、メニュー・営業時間案内・アクセス・Instagram更新情報を掲載。">
-  <title>小田原油そば 油丸 | 混ぜて完成する一杯</title>
+  <meta name="description" content="油そば専門店 油丸｜小田原寿町。極太麺と秘伝タレ、無料味変キット、〆スープまで。並盛も大盛300gも同一価格。">
+  <title>油そば専門店 油丸 | 小田原・寿町</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&display=swap" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
   <style>
     html { scroll-behavior: smooth; }
     body {
       font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Yu Gothic", "Meiryo", sans-serif;
-      background: #0b0b0b;
-      color: #f4f4f4;
-      padding-bottom: 90px;
+      background: #ffffff;
+      color: #000000;
+      padding-bottom: 100px;
     }
-    h1,h2,h3 { line-break: strict; word-break: keep-all; overflow-wrap: anywhere; }
+    .font-display { font-family: "Syne", "Noto Sans JP", sans-serif; }
+    h1, h2, h3 {
+      line-break: strict;
+      word-break: keep-all;
+      overflow-wrap: anywhere;
+    }
     .phrase { display: inline-block; }
-    .reveal { opacity: 0; transform: translateY(22px); transition: opacity .65s ease, transform .65s ease; }
-    .reveal.show { opacity: 1; transform: translateY(0); }
-    .hero-glow { text-shadow: 0 0 24px rgba(0,0,0,.55); }
-    .frame { border: 1px solid rgba(255,255,255,.16); }
-    .grid-line {
-      background-image:
-        linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px);
-      background-size: 24px 24px;
+    .neo {
+      border: 4px solid #000;
+      box-shadow: 8px 8px 0 #000;
+      transition: transform .15s ease, box-shadow .15s ease;
+    }
+    .neo:active, .neo-press:active {
+      transform: translate(4px, 4px);
+      box-shadow: 2px 2px 0 #000;
+    }
+    .neo-press:hover {
+      transform: translate(2px, 2px);
+      box-shadow: 4px 4px 0 #000;
+    }
+    .neo-offset-a { transform: translate(-6px, 4px); }
+    .neo-offset-b { transform: translate(8px, -5px); }
+    .neo-offset-c { transform: translate(4px, 8px); }
+    .reveal-up {
+      opacity: 0;
+      transform: translateY(36px);
+      transition: opacity .65s ease, transform .65s ease;
+    }
+    .reveal-up.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .ig-card .ig-caption {
+      opacity: 0;
+      transform: translateY(8px);
+      transition: opacity .3s ease, transform .3s ease;
+    }
+    .ig-card:hover .ig-caption,
+    .ig-card:focus-within .ig-caption {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .hero-num {
+      font-size: clamp(3.5rem, 14vw, 7rem);
+      line-height: 0.9;
+      letter-spacing: -0.04em;
     }
   </style>
 </head>
 <body class="antialiased">
-  <header class="fixed inset-x-0 top-0 z-50 border-b border-white/15 bg-black/75 backdrop-blur">
-    <div class="mx-auto flex max-w-7xl items-center justify-between px-4 py-3">
-      <a href="#top" class="flex items-center gap-3" aria-label="小田原油そば 油丸 トップへ">
-        <span class="grid h-10 w-10 place-items-center rounded-md bg-[#d50f25] text-sm font-black text-white">油</span>
-        <span>
-          <span class="block text-sm font-black tracking-[0.14em]">小田原油そば 油丸</span>
-          <span class="block text-[10px] font-bold uppercase tracking-[0.3em] text-white/60">ABURAMARU</span>
-        </span>
-      </a>
-      <nav class="hidden items-center gap-6 text-sm font-bold md:flex">
-        <a href="#reason" class="hover:text-[#ff4d4f]">選ばれる理由</a>
-        <a href="#menu" class="hover:text-[#ff4d4f]">メニュー</a>
-        <a href="#instagram" class="hover:text-[#ff4d4f]">Instagram</a>
-        <a href="#info" class="hover:text-[#ff4d4f]">アクセス</a>
+  <header class="sticky top-0 z-40 border-b-4 border-black bg-[#FBBF24]">
+    <div class="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
+      <a href="#top" class="font-display text-lg font-extrabold uppercase tracking-tight md:text-xl">ABURAMARU</a>
+      <nav class="hidden items-center gap-4 text-xs font-black md:flex">
+        <a href="#menu" class="neo rounded-md bg-white px-3 py-2 neo-press">メニュー</a>
+        <a href="#interior" class="neo rounded-md bg-white px-3 py-2 neo-press">店内</a>
+        <a href="#kodawari" class="neo rounded-md bg-white px-3 py-2 neo-press">こだわり</a>
+        <a href="#reserve" class="neo rounded-md bg-white px-3 py-2 neo-press">WEB予約</a>
+        <a href="#instagram" class="neo rounded-md bg-white px-3 py-2 neo-press">Instagram</a>
+        <a href="#access" class="neo rounded-md bg-white px-3 py-2 neo-press">アクセス</a>
       </nav>
-      <button id="menuButton" type="button" class="grid h-10 w-10 place-items-center rounded-md border border-white/30 md:hidden" aria-label="メニューを開く" aria-expanded="false">
-        <span class="relative h-4 w-5">
-          <span class="absolute left-0 top-0 h-0.5 w-5 bg-white"></span>
-          <span class="absolute left-0 top-2 h-0.5 w-5 bg-white"></span>
-          <span class="absolute bottom-0 left-0 h-0.5 w-5 bg-white"></span>
-        </span>
+      <button id="menuBtn" type="button" class="neo grid h-10 w-10 place-items-center rounded-md bg-white md:hidden" aria-label="メニュー" aria-expanded="false">
+        <span class="text-lg font-black">≡</span>
       </button>
     </div>
-    <div id="mobileMenu" class="hidden border-t border-white/15 px-4 py-4 md:hidden">
-      <nav class="grid gap-2 text-sm font-bold">
-        <a class="rounded-lg bg-white/10 px-4 py-3" href="#reason">選ばれる理由</a>
-        <a class="rounded-lg bg-white/10 px-4 py-3" href="#menu">メニュー</a>
-        <a class="rounded-lg bg-white/10 px-4 py-3" href="#instagram">Instagram</a>
-        <a class="rounded-lg bg-white/10 px-4 py-3" href="#info">アクセス</a>
+    <div id="mobileNav" class="hidden border-t-4 border-black px-4 py-3 md:hidden">
+      <nav class="grid gap-2 text-sm font-black">
+        <a class="neo rounded-md bg-white px-4 py-3" href="#menu">メニュー</a>
+        <a class="neo rounded-md bg-white px-4 py-3" href="#interior">店内</a>
+        <a class="neo rounded-md bg-white px-4 py-3" href="#kodawari">こだわり</a>
+        <a class="neo rounded-md bg-white px-4 py-3" href="#reserve">WEB予約</a>
+        <a class="neo rounded-md bg-white px-4 py-3" href="#instagram">Instagram</a>
+        <a class="neo rounded-md bg-white px-4 py-3" href="#access">アクセス</a>
       </nav>
     </div>
   </header>
 
   <main id="top">
-    <section class="relative h-screen min-h-[640px] overflow-hidden">
-      <img src="https://images.unsplash.com/photo-1617093727343-374698b1b08d?auto=format&fit=crop&w=2000&q=82" alt="黒い器の油そば" class="absolute inset-0 h-full w-full object-cover">
-      <div class="absolute inset-0 bg-gradient-to-r from-black/85 via-black/45 to-black/75"></div>
-      <div class="absolute inset-0 grid-line opacity-35"></div>
-      <div class="relative z-10 mx-auto flex h-full max-w-7xl items-center px-5">
-        <div class="max-w-3xl">
-          <p class="reveal mb-5 inline-flex rounded-full border border-[#ff4d4f]/60 bg-[#ff4d4f]/20 px-4 py-2 text-[11px] font-black tracking-[0.22em]">ODAWARA OIL NOODLE STAND</p>
-          <h1 class="reveal hero-glow text-[clamp(2rem,7vw,3.3rem)] font-black leading-[1.12]">
-            <span class="phrase">タレと油を混ぜて、</span>
-            <span class="phrase">最後の一口で完成する。</span>
-          </h1>
-          <p class="reveal mt-6 max-w-2xl text-sm leading-8 text-white/85 sm:text-base">
-            小田原油そば 油丸は、濃度の異なる香味油と秘伝だれを合わせ、
-            混ぜる工程そのものを美味しさへ変える油そば専門店です。ランチの短時間利用から、夜のしっかり飯まで対応します。
+    <!-- Hero -->
+    <section class="relative overflow-hidden border-b-4 border-black bg-white">
+      <div class="mx-auto grid max-w-6xl lg:grid-cols-2">
+        <div class="relative z-10 flex flex-col justify-center px-5 py-12 lg:py-16">
+          <p class="font-display mb-4 inline-flex w-fit rounded-md border-4 border-black bg-[#FBBF24] px-4 py-2 text-xs font-extrabold uppercase tracking-[0.2em]">
+            Odawara / Kotobuki-cho
           </p>
-          <div class="reveal mt-8 flex flex-col gap-3 sm:flex-row">
-            <a href="#menu" class="inline-flex items-center justify-center rounded-md bg-[#ff4d4f] px-8 py-4 text-sm font-black tracking-[0.14em] text-white">人気メニューを見る</a>
-            <a href="#info" class="inline-flex items-center justify-center rounded-md border border-white/45 bg-white/10 px-8 py-4 text-sm font-black tracking-[0.14em] text-white">店舗情報を見る</a>
+          <p class="font-display hero-num font-extrabold text-black" aria-label="大盛300gまで無料">
+            <span class="block text-[clamp(1.75rem,7vw,3.25rem)] leading-none text-black">大盛</span>
+            <span class="block text-[#FBBF24]" style="-webkit-text-stroke: 2px #000;">300g</span>
+            <span class="block text-[clamp(1.1rem,4.5vw,2rem)] tracking-tight">まで無料！</span>
+          </p>
+          <h1 class="mt-4 text-[clamp(1.35rem,4.8vw,2.35rem)] font-black leading-[1.2]">
+            <span class="phrase">並盛も、大盛300gも、</span>
+            <span class="phrase">同一価格。</span><br>
+            <span class="phrase">小田原で一番ジャンキーな、</span>
+            <span class="phrase">極上の塊に喰らいつけ。</span>
+          </h1>
+          <p class="mt-5 max-w-xl text-sm font-bold leading-8 text-black/85 sm:text-base">
+            100%国産小麦を使用した特製極太麺 × 芳醇な秘伝タレ。最後の一滴まで中毒者続出の油そば専門店、寿町に堂々降臨。
+          </p>
+          <div class="mt-6 flex flex-wrap gap-3">
+            <a href="#menu" class="neo neo-press inline-flex rounded-lg bg-black px-6 py-4 text-sm font-black tracking-wide text-[#FBBF24]">メニューを見る</a>
+            <a href="#access" class="neo neo-press inline-flex rounded-lg bg-[#FBBF24] px-6 py-4 text-sm font-black tracking-wide text-black">アクセス</a>
+          </div>
+        </div>
+        <div class="relative min-h-[320px] border-t-4 border-black lg:min-h-[520px] lg:border-t-0 lg:border-l-4">
+          <img
+            src="https://images.unsplash.com/photo-1618438297091-c249a5b3a4a1?auto=format&fit=crop&w=1200&q=80"
+            alt="極太まぜそばのシズル写真"
+            class="h-full w-full object-cover"
+            loading="lazy"
+          >
+          <div class="absolute bottom-4 left-4 neo rounded-lg bg-white px-4 py-3 text-xs font-black">
+            ※ヒーロー画像は納品時に店舗素材へ差し替え可能
           </div>
         </div>
       </div>
     </section>
 
-    <section id="reason" class="bg-[#0d0d0d] py-20 lg:py-24">
-      <div class="mx-auto max-w-7xl px-5">
-        <div class="reveal mb-8 max-w-3xl">
-          <p class="text-xs font-black uppercase tracking-[0.3em] text-[#ff4d4f]">Reason</p>
-          <h2 class="mt-3 text-[clamp(1.65rem,3.3vw,2.45rem)] font-black leading-tight">
-            <span class="phrase">油丸が選ばれる理由は、</span>
-            <span class="phrase">「味設計」と「使いやすさ」。</span>
-          </h2>
+    <!-- Menu -->
+    <section id="menu" class="border-b-4 border-black bg-[#FBBF24] py-16 md:py-20">
+      <div class="mx-auto max-w-6xl px-5">
+        <div class="mb-10 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+          <div>
+            <p class="font-display text-sm font-extrabold uppercase tracking-[0.25em]">Menu</p>
+            <h2 class="mt-2 text-[clamp(1.6rem,4vw,2.6rem)] font-black leading-tight">主力メニュー</h2>
+          </div>
+          <p class="neo max-w-sm rounded-xl bg-white p-4 text-sm font-bold leading-7">
+            三段レイヤーのカードで、王道から限界系まで一気に選べる。
+          </p>
         </div>
-        <div class="grid gap-4 lg:grid-cols-12">
-          <article class="reveal frame rounded-2xl bg-[#121212] p-6 lg:col-span-4">
-            <p class="text-xs font-black tracking-[0.22em] text-[#ff4d4f]">01 SAUCE DESIGN</p>
-            <h3 class="mt-3 text-xl font-black">混ぜる前提の濃度設計</h3>
-            <p class="mt-3 text-sm leading-7 text-white/75">最初の一口だけで終わらないよう、卓上調味を加えたときに味のピークが伸びる設計にしています。</p>
+        <div class="grid gap-6 md:grid-cols-3">
+          <article class="reveal-up neo-offset-a neo rounded-2xl bg-white p-6 md:rotate-[-1deg]">
+            <p class="font-display text-5xl font-extrabold">01</p>
+            <h3 class="mt-3 text-2xl font-black">油丸</h3>
+            <p class="mt-3 text-sm font-bold leading-7">王道にして頂点。まずはここから。秘伝タレと極太麺のバランスをそのまま味わう一杯。</p>
           </article>
-          <article class="reveal frame rounded-2xl bg-[#161616] p-6 lg:col-span-4">
-            <p class="text-xs font-black tracking-[0.22em] text-[#ff4d4f]">02 NOODLE BALANCE</p>
-            <h3 class="mt-3 text-xl font-black">太麺と油の絡みを最適化</h3>
-            <p class="mt-3 text-sm leading-7 text-white/75">麺の弾力とタレの持ち上がりを両立。重すぎず、でも物足りなくない一杯を狙っています。</p>
+          <article class="reveal-up neo-offset-b neo rounded-2xl bg-white p-6 md:mt-8 md:rotate-[1.5deg]">
+            <p class="font-display text-5xl font-extrabold">02</p>
+            <h3 class="mt-3 text-2xl font-black">辛丸</h3>
+            <p class="mt-3 text-sm font-bold leading-7">刺激を求めるあなたへ。ラー油と特製スパイスの極限の辛旨で、後味まで攻める。</p>
           </article>
-          <article class="reveal frame rounded-2xl bg-[#1b1b1b] p-6 lg:col-span-4">
-            <p class="text-xs font-black tracking-[0.22em] text-[#ff4d4f]">03 DAILY USE</p>
-            <h3 class="mt-3 text-xl font-black">日常使いしやすい導線</h3>
-            <p class="mt-3 text-sm leading-7 text-white/75">短い昼休み、仕事帰り、週末の食べ歩き。利用シーンごとに入りやすい導線を重視しています。</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section id="menu" class="bg-[#f4f4f4] py-20 text-[#111] lg:py-24">
-      <div class="mx-auto max-w-7xl px-5">
-        <div class="reveal mb-8 max-w-3xl">
-          <p class="text-xs font-black uppercase tracking-[0.3em] text-[#d50f25]">Menu</p>
-          <h2 class="mt-3 text-[clamp(1.65rem,3.3vw,2.45rem)] font-black leading-tight">
-            <span class="phrase">定番から限定まで、</span>
-            <span class="phrase">まず試したい8メニュー。</span>
-          </h2>
-          <p class="mt-4 text-sm leading-7 text-[#3e3e3e]">価格・提供時間は変動するため、最新情報は店舗またはInstagramでご確認ください。</p>
-        </div>
-        <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-          <article class="reveal rounded-xl border border-black/10 bg-white p-4"><h3 class="font-black">油そば（定番）</h3><p class="mt-2 text-xs leading-6 text-[#555]">香味油と秘伝だれの基準になる一杯。</p></article>
-          <article class="reveal rounded-xl border border-black/10 bg-white p-4"><h3 class="font-black">たまご油そば</h3><p class="mt-2 text-xs leading-6 text-[#555]">卵黄でまろやかさを加える人気系。</p></article>
-          <article class="reveal rounded-xl border border-black/10 bg-white p-4"><h3 class="font-black">辛味油そば</h3><p class="mt-2 text-xs leading-6 text-[#555]">辛さとコクの両立を狙った一杯。</p></article>
-          <article class="reveal rounded-xl border border-black/10 bg-white p-4"><h3 class="font-black">ねぎ増し油そば</h3><p class="mt-2 text-xs leading-6 text-[#555]">香りの立体感を楽しむアレンジ。</p></article>
-          <article class="reveal rounded-xl border border-black/10 bg-white p-4"><h3 class="font-black">肉増し油そば</h3><p class="mt-2 text-xs leading-6 text-[#555]">食べ応え重視で満足感を強化。</p></article>
-          <article class="reveal rounded-xl border border-black/10 bg-white p-4"><h3 class="font-black">追い飯セット</h3><p class="mt-2 text-xs leading-6 text-[#555]">残った旨だれを最後まで活かす。</p></article>
-          <article class="reveal rounded-xl border border-black/10 bg-white p-4"><h3 class="font-black">炙りチャーシュー丼</h3><p class="mt-2 text-xs leading-6 text-[#555]">サイドでも主役級の満足感。</p></article>
-          <article class="reveal rounded-xl border border-black/10 bg-white p-4"><h3 class="font-black">季節限定メニュー</h3><p class="mt-2 text-xs leading-6 text-[#555]">時期限定の味は投稿で告知。</p></article>
-        </div>
-      </div>
-    </section>
-
-    <section class="bg-[#101010] py-20">
-      <div class="mx-auto max-w-7xl px-5">
-        <div class="grid gap-4 md:grid-cols-3">
-          <article class="reveal frame rounded-2xl bg-[#141414] p-6">
-            <h3 class="text-lg font-black">ランチ利用</h3>
-            <p class="mt-3 text-sm leading-7 text-white/75">短時間でも満足しやすい提供導線。休憩の限られた平日利用にも対応しやすい構成です。</p>
-          </article>
-          <article class="reveal frame rounded-2xl bg-[#141414] p-6">
-            <h3 class="text-lg font-black">仕事帰り利用</h3>
-            <p class="mt-3 text-sm leading-7 text-white/75">しっかり食べたい夜向けに、トッピングと追い飯で満足度を調整できます。</p>
-          </article>
-          <article class="reveal frame rounded-2xl bg-[#141414] p-6">
-            <h3 class="text-lg font-black">週末の食べ歩き</h3>
-            <p class="mt-3 text-sm leading-7 text-white/75">小田原エリア巡りの途中でも入りやすく、限定情報はSNSですぐ確認できます。</p>
+          <article class="reveal-up neo-offset-c neo rounded-2xl bg-white p-6 md:rotate-[-0.5deg]">
+            <p class="font-display text-5xl font-extrabold">03</p>
+            <h3 class="mt-3 text-2xl font-black">次郎丸</h3>
+            <p class="mt-3 text-sm font-bold leading-7">背脂・もやし増し増し。ガッツリ系の限界へ挑む、圧倒的ボリュームの挑戦枠。</p>
           </article>
         </div>
       </div>
     </section>
 
-    <section id="instagram" class="bg-[#0b0b0b] py-20 lg:py-24">
-      <div class="mx-auto max-w-7xl px-5">
-        <div class="reveal mb-8">
-          <p class="text-xs font-black uppercase tracking-[0.3em] text-[#ff4d4f]">Instagram</p>
-          <h2 class="mt-3 text-[clamp(1.65rem,3.3vw,2.45rem)] font-black leading-tight">
-            <span class="phrase">営業案内・限定情報は、</span>
-            <span class="phrase">投稿で随時更新。</span>
-          </h2>
-        </div>
-        <div class="reveal overflow-hidden rounded-2xl border border-white/20 bg-white p-3 sm:p-4">
-          <behold-widget feed-id="YbcNBneKTTGnAI31DPuO"></behold-widget>
+    <!-- Interior -->
+    <section id="interior" class="border-b-4 border-black bg-white py-16 md:py-20">
+      <div class="mx-auto max-w-6xl px-5">
+        <div class="grid gap-6 lg:grid-cols-12 lg:items-center">
+          <div class="neo lg:col-span-5 rounded-2xl bg-[#FBBF24] p-8 lg:translate-x-2">
+            <p class="font-display text-sm font-extrabold uppercase tracking-[0.2em]">Interior</p>
+            <h2 class="mt-3 text-[clamp(1.5rem,3.5vw,2.3rem)] font-black leading-tight">店内は、<br>カウンター11席の没入空間。</h2>
+            <p class="mt-4 text-sm font-bold leading-8">
+              麺をすする音、タレを混ぜる音、味変を足す瞬間。ストリートカジュアルな熱量がそのまま店内に宿る、小田原寿町の油そばスタンド。
+            </p>
+          </div>
+          <div class="neo lg:col-span-7 overflow-hidden rounded-2xl border-4 border-black lg:-translate-y-3">
+            <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=1200&q=75" alt="活気ある飲食店内のイメージ" class="aspect-[16/10] w-full object-cover" loading="lazy">
+          </div>
         </div>
       </div>
     </section>
 
-    <section id="info" class="bg-[#f4f4f4] py-20 text-[#111] lg:py-24">
-      <div class="mx-auto max-w-7xl px-5">
-        <div class="reveal mb-8">
-          <p class="text-xs font-black uppercase tracking-[0.3em] text-[#d50f25]">Access</p>
-          <h2 class="mt-3 text-[clamp(1.65rem,3.3vw,2.45rem)] font-black leading-tight">店舗情報・アクセス</h2>
+    <!-- Kodawari -->
+    <section id="kodawari" class="border-b-4 border-black bg-black py-16 text-white md:py-20">
+      <div class="mx-auto max-w-6xl px-5">
+        <p class="font-display text-sm font-extrabold uppercase tracking-[0.25em] text-[#FBBF24]">Kodawari</p>
+        <h2 class="mt-2 text-[clamp(1.6rem,4vw,2.5rem)] font-black leading-tight">油丸の3大こだわり</h2>
+        <div class="mt-10 grid gap-5 md:grid-cols-3">
+          <article class="neo rounded-2xl bg-[#FBBF24] p-6 text-black">
+            <p class="font-display text-4xl font-extrabold">①</p>
+            <h3 class="mt-2 text-xl font-black">国産小麦100%の特製極太麺</h3>
+            <p class="mt-3 text-sm font-bold leading-7">ワシワシ・モチモチとした圧倒的な噛みごたえと、小麦の香りが立つ麺体。</p>
+          </article>
+          <article class="neo rounded-2xl bg-white p-6 text-black md:translate-y-6">
+            <p class="font-display text-4xl font-extrabold">②</p>
+            <h3 class="mt-2 text-xl font-black">五感を刺激する、無料の無限味変キット</h3>
+            <p class="mt-3 text-sm font-bold leading-7">卓上のお酢、ラー油、無料の刻み玉葱、カレー粉、魚粉、刻みニンニクで、自分だけの最強の一杯へ育てる楽しさ。</p>
+          </article>
+          <article class="neo rounded-2xl bg-[#FBBF24] p-6 text-black">
+            <p class="font-display text-4xl font-extrabold">③</p>
+            <h3 class="mt-2 text-xl font-black">鰹節香る〆スープで極上のフィニッシュ</h3>
+            <p class="mt-3 text-sm font-bold leading-7">麺とタレを少し残した器に、セルフで注ぐ特製割りスープ。これぞ油丸の完全体。</p>
+          </article>
         </div>
-        <div class="grid gap-5 lg:grid-cols-[1fr_1.1fr]">
-          <div class="reveal rounded-2xl border border-black/12 bg-white p-6">
-            <dl class="grid gap-4 text-sm leading-7">
-              <div class="grid grid-cols-[88px_1fr] gap-3 border-b border-black/10 pb-3"><dt class="font-black">店名</dt><dd>小田原油そば 油丸</dd></div>
-              <div class="grid grid-cols-[88px_1fr] gap-3 border-b border-black/10 pb-3"><dt class="font-black">業態</dt><dd>油そば専門店</dd></div>
-              <div class="grid grid-cols-[88px_1fr] gap-3 border-b border-black/10 pb-3"><dt class="font-black">住所</dt><dd>詳細住所はGoogleマップでご確認ください</dd></div>
-              <div class="grid grid-cols-[88px_1fr] gap-3 border-b border-black/10 pb-3"><dt class="font-black">営業時間</dt><dd>最新情報はSNS投稿でご確認ください</dd></div>
-              <div class="grid grid-cols-[88px_1fr] gap-3 border-b border-black/10 pb-3"><dt class="font-black">定休日</dt><dd>最新情報は店舗案内をご確認ください</dd></div>
-              <div class="grid grid-cols-[88px_1fr] gap-3"><dt class="font-black">電話</dt><dd><a href="tel:0465000000" class="font-black underline decoration-[#d50f25] decoration-4 underline-offset-4">0465-00-0000（仮）</a></dd></div>
+      </div>
+    </section>
+
+    <!-- Reserve / Visit -->
+    <section id="reserve" class="border-b-4 border-black bg-[#FBBF24] py-16 md:py-20">
+      <div class="mx-auto max-w-6xl px-5 text-center">
+        <p class="font-display text-sm font-extrabold uppercase tracking-[0.25em]">Visit</p>
+        <h2 class="mt-3 text-[clamp(1.5rem,4vw,2.4rem)] font-black leading-tight">今すぐ来店。迷ったら地図から。</h2>
+        <p class="mx-auto mt-4 max-w-2xl text-sm font-bold leading-8">
+          WEB予約導線は店舗運用に合わせて差し替え可能。現時点ではGoogleマップでのルート確認と電話確認をメイン導線にしています。
+        </p>
+        <div class="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
+          <a href="https://www.google.com/maps/dir/?api=1&destination=%E7%A5%9E%E5%A5%88%E5%B7%9D%E7%9C%8C%E5%B0%8F%E7%94%B0%E5%8E%9F%E5%B8%82%E5%AF%BF%E7%94%BA%EF%BC%93%E4%B8%81%E7%9B%AE%EF%BC%91%E2%88%92%EF%BC%91" target="_blank" rel="noopener" class="neo neo-press inline-flex w-full max-w-md items-center justify-center rounded-xl bg-black px-8 py-5 text-sm font-black tracking-wide text-[#FBBF24] sm:w-auto">
+            今すぐGoogleマップでルート案内
+          </a>
+          <a href="tel:04650000000" class="neo neo-press inline-flex w-full max-w-md items-center justify-center rounded-xl bg-white px-8 py-5 text-sm font-black tracking-wide text-black sm:w-auto">
+            電話で確認（0465-XX-XXXX）
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Instagram -->
+    <section id="instagram" class="border-b-4 border-black bg-white py-16 md:py-20">
+      <div class="mx-auto max-w-6xl px-5">
+        <p class="font-display text-sm font-extrabold uppercase tracking-[0.25em]">Instagram</p>
+        <h2 class="mt-2 text-[clamp(1.6rem,4vw,2.4rem)] font-black leading-tight">最新の一杯は、ここで更新。</h2>
+        <div class="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-3">
+          <a href="#" class="ig-card neo group relative block overflow-hidden rounded-2xl bg-black" tabindex="0">
+            <img src="https://images.unsplash.com/photo-1617093727343-374698b1b08d?auto=format&fit=crop&w=800&q=75" alt="油そばのダミー投稿" class="aspect-square w-full object-cover opacity-90 transition group-hover:opacity-70" loading="lazy">
+            <div class="ig-caption absolute inset-0 flex items-end bg-gradient-to-t from-black/85 to-transparent p-4">
+              <p class="text-sm font-black leading-6 text-white">極太麺とタレが絡む、油丸の王道ショット。</p>
+            </div>
+          </a>
+          <a href="#" class="ig-card neo group relative block overflow-hidden rounded-2xl bg-black md:translate-y-4" tabindex="0">
+            <img src="https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=800&q=75" alt="味変キットのダミー投稿" class="aspect-square w-full object-cover opacity-90 transition group-hover:opacity-70" loading="lazy">
+            <div class="ig-caption absolute inset-0 flex items-end bg-gradient-to-t from-black/85 to-transparent p-4">
+              <p class="text-sm font-black leading-6 text-white">無料味変キットで、最後まで自分仕様に育てる。</p>
+            </div>
+          </a>
+          <a href="#" class="ig-card neo group relative block overflow-hidden rounded-2xl bg-black" tabindex="0">
+            <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=800&q=75" alt="店舗外観のダミー投稿" class="aspect-square w-full object-cover opacity-90 transition group-hover:opacity-70" loading="lazy">
+            <div class="ig-caption absolute inset-0 flex items-end bg-gradient-to-t from-black/85 to-transparent p-4">
+              <p class="text-sm font-black leading-6 text-white">寿町の路面から見える、油丸の外観イメージ。</p>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Access -->
+    <section id="access" class="bg-white py-16 md:py-20">
+      <div class="mx-auto max-w-6xl px-5">
+        <p class="font-display text-sm font-extrabold uppercase tracking-[0.25em]">Access</p>
+        <h2 class="mt-2 text-[clamp(1.6rem,4vw,2.4rem)] font-black leading-tight">店舗概要・アクセス</h2>
+
+        <div class="mt-8 grid gap-6 lg:grid-cols-2">
+          <div class="neo rounded-2xl bg-[#FBBF24] p-6 md:p-8">
+            <dl class="grid gap-5">
+              <div class="border-b-4 border-black pb-4">
+                <dt class="font-display text-xs font-extrabold uppercase">Shop</dt>
+                <dd class="mt-1 text-lg font-black">油そば専門店 油丸</dd>
+              </div>
+              <div class="border-b-4 border-black pb-4">
+                <dt class="font-display text-xs font-extrabold uppercase">Address</dt>
+                <dd class="mt-1 text-sm font-bold leading-7">〒250-0013<br>神奈川県小田原市寿町３丁目１−１</dd>
+              </div>
+              <div class="border-b-4 border-black pb-4">
+                <dt class="font-display text-xs font-extrabold uppercase">Hours</dt>
+                <dd class="mt-1 text-sm font-bold leading-7">11:00〜15:00 / 17:00〜21:00<br><span class="text-xs">（L.O. 20:45）</span></dd>
+              </div>
+              <div class="border-b-4 border-black pb-4">
+                <dt class="font-display text-xs font-extrabold uppercase">Closed</dt>
+                <dd class="mt-1 text-2xl font-black">年中無休</dd>
+              </div>
+              <div class="border-b-4 border-black pb-4">
+                <dt class="font-display text-xs font-extrabold uppercase">Seats</dt>
+                <dd class="mt-1 font-display text-4xl font-extrabold">11</dd>
+                <dd class="text-sm font-bold">カウンター席</dd>
+              </div>
+              <div>
+                <dt class="font-display text-xs font-extrabold uppercase">Access</dt>
+                <dd class="mt-1 text-sm font-bold leading-7">小田原タンメン総本店近く<br>（旧：ラーメンとモツ煮 しまの 跡地）</dd>
+              </div>
             </dl>
-            <p class="mt-4 rounded-xl bg-[#f8f8f8] p-3 text-xs leading-6 text-[#555]">電話番号は仮表示です。正式番号の共有後に差し替えてください。</p>
-            <a href="https://www.google.com/maps/search/?api=1&query=%E5%B0%8F%E7%94%B0%E5%8E%9F%E6%B2%B9%E3%81%9D%E3%81%B0%20%E6%B2%B9%E4%B8%B8" target="_blank" rel="noopener" class="mt-5 inline-flex rounded-md bg-[#d50f25] px-5 py-3 text-xs font-black tracking-[0.14em] text-white">Googleマップで開く</a>
           </div>
-          <div class="reveal overflow-hidden rounded-2xl border border-black/15 bg-black p-3">
-            <iframe title="小田原油そば 油丸 Googleマップ検索" class="h-[360px] w-full rounded-xl border-0 bg-white sm:h-[430px]" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=%E5%B0%8F%E7%94%B0%E5%8E%9F%E6%B2%B9%E3%81%9D%E3%81%B0%20%E6%B2%B9%E4%B8%B8&output=embed"></iframe>
+          <div class="neo overflow-hidden rounded-2xl border-4 border-black bg-white p-2">
+            <iframe
+              title="油そば専門店 油丸 Googleマップ"
+              class="h-[360px] w-full rounded-xl border-0 sm:h-[430px]"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              src="https://www.google.com/maps?q=%E7%A5%9E%E5%A5%88%E5%B7%9D%E7%9C%8C%E5%B0%8F%E7%94%B0%E5%8E%9F%E5%B8%82%E5%AF%BF%E7%94%BA%EF%BC%93%E4%B8%81%E7%9B%AE%EF%BC%91%E2%88%92%EF%BC%91&output=embed"
+            ></iframe>
           </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="bg-[#0f0f0f] py-20">
-      <div class="mx-auto max-w-7xl px-5">
-        <div class="reveal mb-6">
-          <p class="text-xs font-black uppercase tracking-[0.3em] text-[#ff4d4f]">FAQ</p>
-          <h2 class="mt-3 text-[clamp(1.65rem,3.3vw,2.45rem)] font-black leading-tight">よくある質問</h2>
-        </div>
-        <div class="grid gap-3">
-          <details class="reveal rounded-xl border border-white/18 bg-white/5 p-5"><summary class="cursor-pointer font-black">初めてでも注文しやすいですか？</summary><p class="mt-3 text-sm leading-7 text-white/75">定番メニューから選びやすい案内を想定しています。迷った場合は店頭でおすすめを確認してください。</p></details>
-          <details class="reveal rounded-xl border border-white/18 bg-white/5 p-5"><summary class="cursor-pointer font-black">辛さの調整は可能ですか？</summary><p class="mt-3 text-sm leading-7 text-white/75">卓上調味やトッピングで調整しやすい構成です。詳細は店頭メニューをご確認ください。</p></details>
-          <details class="reveal rounded-xl border border-white/18 bg-white/5 p-5"><summary class="cursor-pointer font-black">テイクアウト情報はどこで確認できますか？</summary><p class="mt-3 text-sm leading-7 text-white/75">対応状況は時期で変わるため、Instagramの最新投稿をご確認ください。</p></details>
-          <details class="reveal rounded-xl border border-white/18 bg-white/5 p-5"><summary class="cursor-pointer font-black">駐車場の有無は？</summary><p class="mt-3 text-sm leading-7 text-white/75">最新の駐車情報はGoogleマップまたは店舗案内をご確認ください。</p></details>
         </div>
       </div>
     </section>
   </main>
 
-  <footer class="border-t border-white/15 bg-black px-5 py-8 text-xs text-white/60">
-    <div class="mx-auto flex max-w-7xl flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-      <p>小田原油そば 油丸</p>
-      <p>&copy; <span id="year"></span> Aburamaru. All Rights Reserved.</p>
-    </div>
+  <footer class="border-t-4 border-black bg-black px-5 py-8 text-center text-xs font-bold text-white/70">
+    <p>油そば専門店 油丸｜小田原市寿町</p>
+    <p class="mt-2">&copy; <span id="year"></span> Aburamaru</p>
   </footer>
 
-  <a href="https://www.google.com/maps/search/?api=1&query=%E5%B0%8F%E7%94%B0%E5%8E%9F%E6%B2%B9%E3%81%9D%E3%81%B0%20%E6%B2%B9%E4%B8%B8" target="_blank" rel="noopener" class="fixed inset-x-4 bottom-4 z-50 mx-auto flex max-w-md items-center justify-center rounded-md bg-[#d50f25] px-6 py-4 text-sm font-black tracking-[0.14em] text-white shadow-[0_10px_24px_rgba(0,0,0,.35)]">
-    今すぐ場所を確認する
-  </a>
+  <!-- Fixed mobile CTAs -->
+  <div class="fixed inset-x-0 bottom-0 z-50 border-t-4 border-black bg-white px-3 py-3">
+    <div class="mx-auto flex max-w-lg gap-2">
+      <a href="https://www.google.com/maps/dir/?api=1&destination=%E7%A5%9E%E5%A5%88%E5%B7%9D%E7%9C%8C%E5%B0%8F%E7%94%B0%E5%8E%9F%E5%B8%82%E5%AF%BF%E7%94%BA%EF%BC%93%E4%B8%81%E7%9B%AE%EF%BC%91%E2%88%92%EF%BC%91" target="_blank" rel="noopener" class="neo neo-press flex flex-[1.2] items-center justify-center rounded-lg bg-[#FBBF24] px-2 py-3 text-center text-[10px] font-black leading-tight text-black sm:flex-1 sm:px-3 sm:text-xs">
+        今すぐGoogleマップでルート案内
+      </a>
+      <a href="tel:04650000000" class="neo neo-press flex flex-1 items-center justify-center rounded-lg bg-black px-3 py-3 text-center text-[11px] font-black leading-tight text-[#FBBF24] sm:text-xs">
+        電話する
+      </a>
+    </div>
+  </div>
 
   <script>
-    (() => {
-      const d = document;
-      const s = d.createElement("script");
-      s.type = "module";
-      s.src = "https://w.behold.so/widget.js";
-      d.head.append(s);
-    })();
-
     document.getElementById("year").textContent = new Date().getFullYear();
 
-    const menuButton = document.getElementById("menuButton");
-    const mobileMenu = document.getElementById("mobileMenu");
-    menuButton.addEventListener("click", () => {
-      const open = !mobileMenu.classList.contains("hidden");
-      mobileMenu.classList.toggle("hidden", open);
-      menuButton.setAttribute("aria-expanded", String(!open));
+    const menuBtn = document.getElementById("menuBtn");
+    const mobileNav = document.getElementById("mobileNav");
+    menuBtn.addEventListener("click", () => {
+      const open = !mobileNav.classList.contains("hidden");
+      mobileNav.classList.toggle("hidden", open);
+      menuBtn.setAttribute("aria-expanded", String(!open));
     });
-    mobileMenu.querySelectorAll("a").forEach((link) => link.addEventListener("click", () => {
-      mobileMenu.classList.add("hidden");
-      menuButton.setAttribute("aria-expanded", "false");
+    mobileNav.querySelectorAll("a").forEach((a) => a.addEventListener("click", () => {
+      mobileNav.classList.add("hidden");
+      menuBtn.setAttribute("aria-expanded", "false");
     }));
 
-    const observer = new IntersectionObserver((entries) => {
+    const revealObserver = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           entry.target.classList.add("show");
-          observer.unobserve(entry.target);
+          revealObserver.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.15 });
-
-    document.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
+    }, { threshold: 0.12 });
+    document.querySelectorAll(".reveal-up").forEach((el) => revealObserver.observe(el));
   </script>
 </body>
 </html>

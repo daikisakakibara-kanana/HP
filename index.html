@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="株式会社金司は、小田原市高田を拠点に鋼構造物工事を手がける施工会社です。ゼネコン・建設会社のパートナーとして、精度、段取り、安全管理を重視した鉄骨工事を支えます。">
+  <title>株式会社金司 | 鋼構造物工事業</title>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Yu Gothic", "Meiryo", sans-serif;
+      background:
+        linear-gradient(90deg, rgba(15, 23, 42, 0.04) 1px, transparent 1px),
+        linear-gradient(rgba(15, 23, 42, 0.04) 1px, transparent 1px),
+        #f3f4f6;
+      background-size: 36px 36px;
+    }
+
+    .steel-panel {
+      background-image:
+        linear-gradient(135deg, rgba(255, 255, 255, 0.10), transparent 36%),
+        repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.04) 0 1px, transparent 1px 14px);
+    }
+
+    .section-mark {
+      writing-mode: vertical-rl;
+      text-orientation: mixed;
+      letter-spacing: 0.18em;
+    }
+
+    .beam-shadow {
+      box-shadow: 18px 18px 0 rgba(15, 23, 42, 0.10);
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity 700ms ease, transform 700ms ease;
+    }
+
+    .reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body class="text-slate-900 antialiased">
+  <header class="fixed left-0 right-0 top-0 z-50 border-b border-white/10 bg-slate-950/90 text-white backdrop-blur">
+    <div class="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 lg:px-8">
+      <a href="#top" class="group flex items-center gap-3" aria-label="株式会社金司 トップへ">
+        <span class="grid h-10 w-10 place-items-center border-2 border-amber-400 text-lg font-black tracking-tight text-amber-300">金</span>
+        <span>
+          <span class="block text-base font-bold tracking-[0.18em]">株式会社金司</span>
+          <span class="block text-[11px] uppercase tracking-[0.28em] text-slate-400">Steel Structure Works</span>
+        </span>
+      </a>
+      <nav class="hidden items-center gap-8 text-sm font-semibold text-slate-200 md:flex" aria-label="メインナビゲーション">
+        <a class="transition hover:text-amber-300" href="#works">施工対応</a>
+        <a class="transition hover:text-amber-300" href="#strength">強み</a>
+        <a class="transition hover:text-amber-300" href="#process">品質管理</a>
+        <a class="transition hover:text-amber-300" href="#contact">お問い合わせ</a>
+      </nav>
+      <a href="#contact" class="hidden border border-amber-300 px-4 py-2 text-sm font-bold text-amber-200 transition hover:bg-amber-300 hover:text-slate-950 sm:inline-flex">
+        施工相談
+      </a>
+    </div>
+  </header>
+
+  <main id="top" class="overflow-hidden">
+    <section class="relative min-h-screen bg-slate-950 pt-24 text-white">
+      <div class="absolute inset-0 steel-panel opacity-70"></div>
+      <div class="absolute -right-20 top-28 h-[520px] w-[520px] rotate-45 border-[34px] border-amber-400/20"></div>
+      <div class="absolute bottom-0 left-0 right-0 h-36 bg-gradient-to-t from-slate-950 to-transparent"></div>
+
+      <div class="relative mx-auto grid max-w-7xl gap-12 px-5 py-16 lg:grid-cols-[1.05fr_0.95fr] lg:px-8 lg:py-24">
+        <div class="flex min-h-[620px] flex-col justify-center">
+          <div class="mb-8 flex items-center gap-4">
+            <span class="h-px w-16 bg-amber-300"></span>
+            <p class="text-xs font-bold uppercase tracking-[0.35em] text-amber-200">Odawara / Steel Partner</p>
+          </div>
+          <h1 class="max-w-4xl text-5xl font-black leading-[1.08] tracking-tight sm:text-6xl lg:text-7xl">
+            鉄骨の精度で、<br>
+            現場の信頼を<br class="hidden sm:block">
+            組み上げる。
+          </h1>
+          <p class="mt-8 max-w-2xl text-lg leading-9 text-slate-300">
+            株式会社金司は、小田原市高田を拠点に鋼構造物工事を担う施工会社です。
+            ゼネコン・地元建設会社の皆さまが求める「納まりの確かさ」「段取りの早さ」「安全な施工体制」に向き合い、建築物の骨格を支えます。
+          </p>
+          <div class="mt-10 flex flex-col gap-4 sm:flex-row">
+            <a href="#contact" class="inline-flex items-center justify-center bg-amber-400 px-7 py-4 text-sm font-black tracking-[0.18em] text-slate-950 transition hover:bg-amber-300">
+              見積・施工相談をする
+            </a>
+            <a href="#strength" class="inline-flex items-center justify-center border border-slate-500 px-7 py-4 text-sm font-bold tracking-[0.18em] text-white transition hover:border-white hover:bg-white hover:text-slate-950">
+              金司の強みを見る
+            </a>
+          </div>
+        </div>
+
+        <div class="relative flex items-center justify-center lg:justify-end">
+          <div class="relative w-full max-w-lg">
+            <div class="absolute -left-6 top-10 h-40 w-7 bg-amber-400"></div>
+            <div class="absolute -bottom-8 right-8 h-24 w-24 border-8 border-slate-500"></div>
+            <div class="beam-shadow relative border border-slate-600 bg-slate-900 p-5">
+              <div class="grid grid-cols-[72px_1fr] border border-slate-700 bg-slate-950">
+                <div class="border-r border-slate-700 bg-slate-900 p-4 text-center">
+                  <p class="section-mark mx-auto text-[11px] font-bold uppercase tracking-[0.24em] text-slate-400">Blueprint</p>
+                </div>
+                <div class="p-6 sm:p-8">
+                  <div class="mb-8 flex items-center justify-between border-b border-slate-700 pb-4">
+                    <p class="text-xs font-bold tracking-[0.28em] text-amber-300">STRUCTURE DATA</p>
+                    <p class="text-xs text-slate-500">ODAWARA</p>
+                  </div>
+                  <div class="space-y-5">
+                    <div class="grid grid-cols-[96px_1fr] gap-4">
+                      <span class="text-xs font-bold text-slate-500">業種</span>
+                      <span class="font-bold text-slate-100">鋼構造物工事業</span>
+                    </div>
+                    <div class="grid grid-cols-[96px_1fr] gap-4">
+                      <span class="text-xs font-bold text-slate-500">対応</span>
+                      <span class="text-slate-300">鉄骨建方・現場取付・補強部材・金物工事</span>
+                    </div>
+                    <div class="grid grid-cols-[96px_1fr] gap-4">
+                      <span class="text-xs font-bold text-slate-500">重視</span>
+                      <span class="text-slate-300">安全管理 / 工程順守 / 図面理解 / 施工精度</span>
+                    </div>
+                    <div class="grid grid-cols-[96px_1fr] gap-4">
+                      <span class="text-xs font-bold text-slate-500">所在地</span>
+                      <span class="text-slate-300">神奈川県小田原市高田568-4</span>
+                    </div>
+                  </div>
+                  <div class="mt-10 grid grid-cols-3 gap-3 text-center">
+                    <div class="border border-slate-700 p-4">
+                      <p class="text-2xl font-black text-amber-300">01</p>
+                      <p class="mt-1 text-[11px] text-slate-400">段取り</p>
+                    </div>
+                    <div class="border border-slate-700 p-4">
+                      <p class="text-2xl font-black text-amber-300">02</p>
+                      <p class="mt-1 text-[11px] text-slate-400">精度</p>
+                    </div>
+                    <div class="border border-slate-700 p-4">
+                      <p class="text-2xl font-black text-amber-300">03</p>
+                      <p class="mt-1 text-[11px] text-slate-400">安全</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="relative bg-white py-20 lg:py-28">
+      <div class="mx-auto max-w-7xl px-5 lg:px-8">
+        <div class="grid gap-10 lg:grid-cols-[0.35fr_1fr]">
+          <div class="reveal">
+            <p class="section-mark text-xs font-black uppercase tracking-[0.28em] text-amber-600">Message</p>
+          </div>
+          <div class="reveal grid gap-8 lg:grid-cols-[1fr_0.75fr]">
+            <div>
+              <p class="text-sm font-black tracking-[0.28em] text-slate-500">建築の骨格を任される責任。</p>
+              <h2 class="mt-4 text-3xl font-black leading-tight sm:text-4xl">
+                図面の意図を読み、現場で迷わせない。<br>
+                金司は「次工程が進めやすい鉄骨工事」を追求します。
+              </h2>
+            </div>
+            <p class="text-base leading-8 text-slate-600">
+              鋼構造物工事は、完成後に見えにくくなる部分ほど品質が問われます。
+              金司は、事前確認、搬入計画、建方時の安全確保、取付精度の確認までを一つの流れとして捉え、
+              元請会社・協力業者との連携を大切にしています。
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="works" class="bg-slate-100 py-20 lg:py-28">
+      <div class="mx-auto max-w-7xl px-5 lg:px-8">
+        <div class="mb-12 flex flex-col justify-between gap-5 border-l-8 border-amber-400 pl-6 md:flex-row md:items-end">
+          <div class="reveal">
+            <p class="text-sm font-black uppercase tracking-[0.28em] text-slate-500">Construction Scope</p>
+            <h2 class="mt-3 text-4xl font-black">施工対応領域</h2>
+          </div>
+          <p class="reveal max-w-xl leading-8 text-slate-600">
+            新築・改修・増築など、現場条件に応じて必要な鋼構造物工事を組み立てます。
+            規模の大小にかかわらず、施工前の確認と現場での納まりを重視します。
+          </p>
+        </div>
+
+        <div class="grid gap-5 md:grid-cols-2 lg:grid-cols-4">
+          <article class="reveal group border border-slate-200 bg-white p-7 transition hover:-translate-y-1 hover:border-slate-400 hover:shadow-xl">
+            <span class="mb-8 block h-2 w-20 bg-slate-900 transition group-hover:bg-amber-400"></span>
+            <h3 class="text-xl font-black">鉄骨建方</h3>
+            <p class="mt-4 leading-7 text-slate-600">
+              建築物の骨組みとなる鉄骨を、工程と安全を確認しながら建て込みます。重機・搬入・作業動線を踏まえ、現場全体の進行に合わせた施工を行います。
+            </p>
+          </article>
+          <article class="reveal group border border-slate-200 bg-white p-7 transition hover:-translate-y-1 hover:border-slate-400 hover:shadow-xl">
+            <span class="mb-8 block h-2 w-20 bg-slate-900 transition group-hover:bg-amber-400"></span>
+            <h3 class="text-xl font-black">現場取付工事</h3>
+            <p class="mt-4 leading-7 text-slate-600">
+              梁・柱・階段・手すり・下地金物など、図面と現場状況を照合しながら取付を実施。後工程の仕上がりを見据えた精度管理を大切にします。
+            </p>
+          </article>
+          <article class="reveal group border border-slate-200 bg-white p-7 transition hover:-translate-y-1 hover:border-slate-400 hover:shadow-xl">
+            <span class="mb-8 block h-2 w-20 bg-slate-900 transition group-hover:bg-amber-400"></span>
+            <h3 class="text-xl font-black">補強・改修対応</h3>
+            <p class="mt-4 leading-7 text-slate-600">
+              既存建物の改修や用途変更に伴う鋼材補強にも対応。限られた作業スペースや稼働中施設での施工など、条件整理から丁寧に進めます。
+            </p>
+          </article>
+          <article class="reveal group border border-slate-200 bg-white p-7 transition hover:-translate-y-1 hover:border-slate-400 hover:shadow-xl">
+            <span class="mb-8 block h-2 w-20 bg-slate-900 transition group-hover:bg-amber-400"></span>
+            <h3 class="text-xl font-black">金物・付帯工事</h3>
+            <p class="mt-4 leading-7 text-slate-600">
+              建築金物、架台、ブラケット、下地材など、躯体と設備・仕上げをつなぐ部材を施工。小さな納まりにも責任を持って対応します。
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="strength" class="relative bg-slate-950 py-20 text-white lg:py-28">
+      <div class="absolute inset-y-0 right-0 hidden w-1/3 bg-amber-400 lg:block"></div>
+      <div class="relative mx-auto max-w-7xl px-5 lg:px-8">
+        <div class="grid gap-12 lg:grid-cols-[0.92fr_1.08fr] lg:items-center">
+          <div class="reveal">
+            <p class="text-sm font-black uppercase tracking-[0.28em] text-amber-300">Our Strength</p>
+            <h2 class="mt-4 text-4xl font-black leading-tight sm:text-5xl">
+              BtoBの現場で<br>
+              選ばれるための<br>
+              3つの基準。
+            </h2>
+            <p class="mt-7 leading-8 text-slate-300">
+              金司が大切にしているのは、派手さではなく、元請会社が安心して任せられる基本品質です。
+              連絡が早い、段取りが見える、現場での判断が的確。そうした積み重ねが、継続的な信頼につながると考えています。
+            </p>
+          </div>
+
+          <div class="reveal grid gap-4">
+            <article class="grid gap-5 border border-slate-700 bg-slate-900 p-6 sm:grid-cols-[92px_1fr]">
+              <div class="flex h-20 w-20 items-center justify-center bg-amber-400 text-3xl font-black text-slate-950">01</div>
+              <div>
+                <h3 class="text-2xl font-black">図面と現場条件をつなぐ確認力</h3>
+                <p class="mt-3 leading-7 text-slate-300">
+                  施工前に納まり、搬入経路、作業順序、干渉箇所を確認。現場での手戻りを減らし、ゼネコン・建設会社の工程管理を支えます。
+                </p>
+              </div>
+            </article>
+            <article class="grid gap-5 border border-slate-700 bg-slate-900 p-6 sm:grid-cols-[92px_1fr]">
+              <div class="flex h-20 w-20 items-center justify-center bg-amber-400 text-3xl font-black text-slate-950">02</div>
+              <div>
+                <h3 class="text-2xl font-black">安全を前提にした施工体制</h3>
+                <p class="mt-3 leading-7 text-slate-300">
+                  鋼材を扱う工事では、吊り荷、足場、高所作業への意識が欠かせません。作業員同士の声掛けと現場ルールの徹底で、事故を未然に防ぎます。
+                </p>
+              </div>
+            </article>
+            <article class="grid gap-5 border border-slate-700 bg-slate-900 p-6 sm:grid-cols-[92px_1fr]">
+              <div class="flex h-20 w-20 items-center justify-center bg-amber-400 text-3xl font-black text-slate-950">03</div>
+              <div>
+                <h3 class="text-2xl font-black">小回りの利く地域密着対応</h3>
+                <p class="mt-3 leading-7 text-slate-300">
+                  小田原市を拠点に、神奈川県西部エリアの建設現場へ機動的に対応。急な確認や現地調査にも、地元企業ならではの距離感で向き合います。
+                </p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="process" class="bg-white py-20 lg:py-28">
+      <div class="mx-auto max-w-7xl px-5 lg:px-8">
+        <div class="reveal mx-auto max-w-3xl text-center">
+          <p class="text-sm font-black uppercase tracking-[0.28em] text-slate-500">Quality Flow</p>
+          <h2 class="mt-4 text-4xl font-black">信頼を積み上げる施工フロー</h2>
+          <p class="mt-6 leading-8 text-slate-600">
+            鉄骨工事の品質は、現場に入る前から決まります。金司は各工程で確認事項を明確にし、関係者と共有しながら施工を進めます。
+          </p>
+        </div>
+
+        <div class="mt-14 grid gap-0 overflow-hidden border border-slate-200 lg:grid-cols-5">
+          <div class="reveal bg-slate-950 p-6 text-white">
+            <p class="text-4xl font-black text-amber-300">1</p>
+            <h3 class="mt-6 font-black">ご相談・図面確認</h3>
+            <p class="mt-4 text-sm leading-7 text-slate-300">工事概要、図面、現場条件を確認し、必要な施工範囲を整理します。</p>
+          </div>
+          <div class="reveal border-t border-slate-200 p-6 lg:border-l lg:border-t-0">
+            <p class="text-4xl font-black text-slate-300">2</p>
+            <h3 class="mt-6 font-black">現地調査</h3>
+            <p class="mt-4 text-sm leading-7 text-slate-600">搬入経路、作業スペース、既存躯体との取り合いを確認します。</p>
+          </div>
+          <div class="reveal border-t border-slate-200 p-6 lg:border-l lg:border-t-0">
+            <p class="text-4xl font-black text-slate-300">3</p>
+            <h3 class="mt-6 font-black">施工計画</h3>
+            <p class="mt-4 text-sm leading-7 text-slate-600">工程、重機、作業人員、安全対策を整理し、現場全体の流れに合わせます。</p>
+          </div>
+          <div class="reveal border-t border-slate-200 p-6 lg:border-l lg:border-t-0">
+            <p class="text-4xl font-black text-slate-300">4</p>
+            <h3 class="mt-6 font-black">施工・取付</h3>
+            <p class="mt-4 text-sm leading-7 text-slate-600">建方・取付を実施し、水平・垂直・納まりを確認しながら進めます。</p>
+          </div>
+          <div class="reveal border-t border-slate-200 bg-amber-400 p-6 text-slate-950 lg:border-l lg:border-t-0">
+            <p class="text-4xl font-black">5</p>
+            <h3 class="mt-6 font-black">検査・引き渡し</h3>
+            <p class="mt-4 text-sm leading-7">施工箇所を確認し、次工程へ安心して引き継げる状態で完了します。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="bg-slate-100 py-20 lg:py-28">
+      <div class="mx-auto max-w-7xl px-5 lg:px-8">
+        <div class="grid gap-8 lg:grid-cols-[0.8fr_1.2fr]">
+          <div class="reveal border-l-8 border-slate-950 bg-white p-8">
+            <p class="text-sm font-black uppercase tracking-[0.28em] text-slate-500">For Partners</p>
+            <h2 class="mt-4 text-3xl font-black leading-tight">こんな場面でご相談ください</h2>
+            <p class="mt-6 leading-8 text-slate-600">
+              鉄骨工事の協力会社を探している、改修現場で納まりに悩んでいる、地元で動ける施工会社が必要。
+              そのような場面で、金司が現場目線の対応を行います。
+            </p>
+          </div>
+          <div class="grid gap-4 sm:grid-cols-2">
+            <div class="reveal bg-white p-6">
+              <span class="text-sm font-black text-amber-600">CASE 01</span>
+              <h3 class="mt-3 text-xl font-black">短工期の鉄骨建方</h3>
+              <p class="mt-3 leading-7 text-slate-600">工程に余裕がない現場でも、事前調整を徹底し、無理のない施工手順を組み立てます。</p>
+            </div>
+            <div class="reveal bg-white p-6">
+              <span class="text-sm font-black text-amber-600">CASE 02</span>
+              <h3 class="mt-3 text-xl font-black">改修現場の補強工事</h3>
+              <p class="mt-3 leading-7 text-slate-600">既存躯体との取り合いを確認し、限られた条件下でも安全に施工できる方法を検討します。</p>
+            </div>
+            <div class="reveal bg-white p-6">
+              <span class="text-sm font-black text-amber-600">CASE 03</span>
+              <h3 class="mt-3 text-xl font-black">金物・架台の取付</h3>
+              <p class="mt-3 leading-7 text-slate-600">設備や仕上げに関わる付帯部材も、寸法と納まりを確認しながら丁寧に対応します。</p>
+            </div>
+            <div class="reveal bg-white p-6">
+              <span class="text-sm font-black text-amber-600">CASE 04</span>
+              <h3 class="mt-3 text-xl font-black">地元現場の協力体制</h3>
+              <p class="mt-3 leading-7 text-slate-600">小田原周辺の建設会社様と連携し、地域の現場を支えるパートナーとして動きます。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="relative bg-slate-950 py-20 text-white lg:py-28">
+      <div class="absolute inset-0 steel-panel opacity-60"></div>
+      <div class="relative mx-auto max-w-7xl px-5 lg:px-8">
+        <div class="grid gap-10 lg:grid-cols-[0.82fr_1.18fr] lg:items-start">
+          <div class="reveal">
+            <div class="bg-white p-8 text-slate-950 sm:p-10 lg:p-12">
+              <p class="text-sm font-black uppercase tracking-[0.28em] text-slate-500">Contact</p>
+              <h2 class="mt-4 text-4xl font-black leading-tight">鋼構造物工事のご相談は、金司へ。</h2>
+              <p class="mt-6 leading-8 text-slate-600">
+                図面段階での施工可否、現地調査、見積、協力会社としての参加など、まずは工事概要をお聞かせください。
+                元請会社様・建設会社様の工程と品質を支える立場で、誠実に対応いたします。
+              </p>
+              <div class="mt-8 grid gap-4">
+                <div class="border border-slate-200 p-5">
+                  <p class="text-xs font-black uppercase tracking-[0.2em] text-slate-400">Company</p>
+                  <p class="mt-2 text-lg font-black">株式会社金司</p>
+                </div>
+                <div class="border border-slate-200 p-5">
+                  <p class="text-xs font-black uppercase tracking-[0.2em] text-slate-400">Business</p>
+                  <p class="mt-2 text-lg font-black">鋼構造物工事業</p>
+                </div>
+                <div class="border border-slate-200 p-5">
+                  <p class="text-xs font-black uppercase tracking-[0.2em] text-slate-400">Address</p>
+                  <p class="mt-2 text-lg font-black">〒250-0216 神奈川県小田原市高田568-4</p>
+                </div>
+              </div>
+            </div>
+
+            <aside class="mt-6 border border-slate-700 bg-slate-900 p-8 sm:p-10">
+              <p class="text-sm font-black uppercase tracking-[0.28em] text-amber-300">Request Memo</p>
+              <h3 class="mt-4 text-2xl font-black">お問い合わせ時にお伝えいただきたい内容</h3>
+              <ul class="mt-8 space-y-4 text-slate-300">
+                <li class="flex gap-3"><span class="mt-2 h-2 w-2 shrink-0 bg-amber-300"></span><span>工事場所・建物用途・施工希望時期</span></li>
+                <li class="flex gap-3"><span class="mt-2 h-2 w-2 shrink-0 bg-amber-300"></span><span>鉄骨建方、補強、金物取付などの施工範囲</span></li>
+                <li class="flex gap-3"><span class="mt-2 h-2 w-2 shrink-0 bg-amber-300"></span><span>図面・現場写真・搬入条件など確認できる資料</span></li>
+                <li class="flex gap-3"><span class="mt-2 h-2 w-2 shrink-0 bg-amber-300"></span><span>元請会社様・協力会社様としてのご相談内容</span></li>
+              </ul>
+              <a href="https://www.google.com/maps/search/?api=1&query=%E5%B0%8F%E7%94%B0%E5%8E%9F%E5%B8%82%E9%AB%98%E7%94%B0568-4" target="_blank" rel="noopener" class="mt-10 inline-flex items-center justify-center bg-amber-400 px-6 py-4 text-sm font-black tracking-[0.18em] text-slate-950 transition hover:bg-amber-300">
+                所在地を地図で確認
+              </a>
+            </aside>
+          </div>
+
+          <form class="reveal bg-white p-6 text-slate-950 shadow-2xl sm:p-8 lg:p-10" action="contact.php" method="post">
+            <input type="text" name="website" class="hidden" tabindex="-1" autocomplete="off" aria-hidden="true">
+            <div class="mb-8 border-l-8 border-amber-400 pl-5">
+              <p class="text-sm font-black uppercase tracking-[0.28em] text-slate-500">Inquiry Form</p>
+              <h3 class="mt-2 text-3xl font-black">お問い合わせフォーム</h3>
+              <p class="mt-4 leading-7 text-slate-600">
+                必須項目をご入力のうえ送信してください。内容を確認後、担当者よりご連絡いたします。
+              </p>
+            </div>
+
+            <div class="grid gap-5 sm:grid-cols-2">
+              <label class="block">
+                <span class="mb-2 block text-sm font-bold">会社名</span>
+                <input class="w-full border border-slate-300 px-4 py-3 outline-none transition focus:border-slate-950" type="text" name="company" autocomplete="organization" placeholder="例：株式会社〇〇建設">
+              </label>
+              <label class="block">
+                <span class="mb-2 block text-sm font-bold">お名前 <span class="text-red-600">必須</span></span>
+                <input class="w-full border border-slate-300 px-4 py-3 outline-none transition focus:border-slate-950" type="text" name="name" autocomplete="name" required placeholder="例：山田 太郎">
+              </label>
+              <label class="block">
+                <span class="mb-2 block text-sm font-bold">メールアドレス <span class="text-red-600">必須</span></span>
+                <input class="w-full border border-slate-300 px-4 py-3 outline-none transition focus:border-slate-950" type="email" name="email" autocomplete="email" required placeholder="例：info@example.jp">
+              </label>
+              <label class="block">
+                <span class="mb-2 block text-sm font-bold">電話番号</span>
+                <input class="w-full border border-slate-300 px-4 py-3 outline-none transition focus:border-slate-950" type="tel" name="phone" autocomplete="tel" placeholder="例：0465-00-0000">
+              </label>
+              <label class="block">
+                <span class="mb-2 block text-sm font-bold">工事内容</span>
+                <select class="w-full border border-slate-300 bg-white px-4 py-3 outline-none transition focus:border-slate-950" name="project_type">
+                  <option value="">選択してください</option>
+                  <option value="鉄骨建方">鉄骨建方</option>
+                  <option value="現場取付工事">現場取付工事</option>
+                  <option value="補強・改修対応">補強・改修対応</option>
+                  <option value="金物・付帯工事">金物・付帯工事</option>
+                  <option value="その他">その他</option>
+                </select>
+              </label>
+              <label class="block">
+                <span class="mb-2 block text-sm font-bold">施工希望時期</span>
+                <input class="w-full border border-slate-300 px-4 py-3 outline-none transition focus:border-slate-950" type="text" name="timing" placeholder="例：2026年7月頃">
+              </label>
+              <label class="block sm:col-span-2">
+                <span class="mb-2 block text-sm font-bold">現場住所・エリア</span>
+                <input class="w-full border border-slate-300 px-4 py-3 outline-none transition focus:border-slate-950" type="text" name="site_address" placeholder="例：神奈川県小田原市周辺">
+              </label>
+              <label class="block sm:col-span-2">
+                <span class="mb-2 block text-sm font-bold">お問い合わせ内容 <span class="text-red-600">必須</span></span>
+                <textarea class="min-h-40 w-full border border-slate-300 px-4 py-3 outline-none transition focus:border-slate-950" name="message" required placeholder="工事概要、図面の有無、現場条件、ご相談内容などをご記入ください。"></textarea>
+              </label>
+            </div>
+
+            <label class="mt-6 flex items-start gap-3 text-sm leading-7 text-slate-600">
+              <input class="mt-1 h-4 w-4 shrink-0 accent-slate-950" type="checkbox" name="privacy" value="同意する" required>
+              <span>
+                <a class="font-bold text-slate-950 underline decoration-amber-400 decoration-2 underline-offset-4" href="privacy.html" target="_blank" rel="noopener">プライバシーポリシー</a>
+                に同意のうえ送信します。
+              </span>
+            </label>
+
+            <button type="submit" class="mt-8 w-full bg-slate-950 px-8 py-4 text-sm font-black tracking-[0.18em] text-white transition hover:bg-amber-400 hover:text-slate-950">
+              入力内容を送信する
+            </button>
+            <p class="mt-4 text-xs leading-6 text-slate-500">
+              送信先メールアドレスは、サーバー設置時に contact.php 内の設定から変更できます。
+            </p>
+          </form>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="bg-slate-950 px-5 py-8 text-white lg:px-8">
+    <div class="mx-auto flex max-w-7xl flex-col justify-between gap-4 border-t border-slate-800 pt-8 text-sm text-slate-400 sm:flex-row">
+      <p>株式会社金司 | 神奈川県小田原市高田568-4</p>
+      <div class="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-5">
+        <a class="transition hover:text-amber-300" href="privacy.html">プライバシーポリシー</a>
+        <p>&copy; <span id="year"></span> Kinji Co., Ltd. All Rights Reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const year = document.getElementById("year");
+    year.textContent = new Date().getFullYear();
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.16 });
+
+    document.querySelectorAll(".reveal").forEach((element) => {
+      observer.observe(element);
+    });
+  </script>
+</body>
+</html>

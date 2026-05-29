@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>油丸 ABURAMARU｜油そば専門店</title>
+  <meta name="description" content="100%国産小麦を使用した特製極太麺 × 芳醇な秘伝タレ。小田原寿町の油そば専門店、油丸。" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Noto+Sans+JP:wght@700;900&display=swap" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <style type="text/tailwindcss">
+    @theme {
+      --color-abura-white: #ffffff;
+      --color-abura-yellow: #fbbf24;
+      --color-abura-black: #000000;
+      --font-display: "Archivo Black", "Noto Sans JP", sans-serif;
+      --font-jp: "Noto Sans JP", sans-serif;
+      --shadow-brutal-sm: 4px 4px 0 0 #000;
+      --shadow-brutal: 8px 8px 0 0 #000;
+      --shadow-brutal-lg: 12px 12px 0 0 #000;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font-jp);
+      background: #ffffff;
+      color: #000000;
+      padding-bottom: 5.5rem;
+    }
+
+    .font-en {
+      font-family: "Archivo Black", sans-serif;
+      letter-spacing: 0.02em;
+    }
+
+    .brutal-border {
+      border: 4px solid #000;
+    }
+
+    .brutal-border-thick {
+      border: 6px solid #000;
+    }
+
+    .brutal-shadow {
+      box-shadow: var(--shadow-brutal);
+    }
+
+    .brutal-shadow-sm {
+      box-shadow: var(--shadow-brutal-sm);
+    }
+
+    .brutal-shadow-lg {
+      box-shadow: var(--shadow-brutal-lg);
+    }
+
+    .nav-btn {
+      transition: transform 0.12s ease, box-shadow 0.12s ease;
+    }
+
+    .nav-btn:hover {
+      transform: translate(3px, 3px);
+      box-shadow: none;
+    }
+
+    .nav-btn:active {
+      transform: translate(4px, 4px);
+      box-shadow: none;
+    }
+
+    .menu-card {
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .menu-card.is-pressed,
+    .menu-card:hover {
+      transform: var(--card-rotate) translate(8px, 8px);
+      box-shadow: none;
+    }
+
+    .vertical-label {
+      writing-mode: vertical-rl;
+      text-orientation: mixed;
+    }
+
+    .hero-banner {
+      transform: rotate(-2.5deg);
+      transform-origin: left center;
+    }
+
+    .stamp-burst {
+      clip-path: polygon(
+        50% 0%, 61% 12%, 75% 5%, 78% 20%, 95% 22%, 88% 38%,
+        100% 50%, 88% 62%, 95% 78%, 78% 80%, 75% 95%, 61% 88%,
+        50% 100%, 39% 88%, 25% 95%, 22% 80%, 5% 78%, 12% 62%,
+        0% 50%, 12% 38%, 5% 22%, 22% 20%, 25% 5%, 39% 12%
+      );
+    }
+
+    .info-table th,
+    .info-table td {
+      border: 4px solid #000;
+    }
+
+    .cta-bar a {
+      transition: background 0.15s ease;
+    }
+
+    .cta-bar a:hover {
+      filter: brightness(0.97);
+    }
+
+    @media (min-width: 1024px) {
+      body {
+        padding-bottom: 4.75rem;
+      }
+    }
+  </style>
+</head>
+<body class="antialiased">
+
+  <!-- ========== HEADER (PC fixed nav) ========== -->
+  <header class="fixed top-0 left-0 right-0 z-40 bg-white brutal-border-b border-b-4 border-black">
+    <div class="mx-auto flex max-w-[1600px] items-stretch">
+      <a href="#" class="flex shrink-0 items-center bg-black px-5 py-3 md:px-8 md:py-4 brutal-border border-r-4 border-black">
+        <img
+          id="logo-img"
+          src="img/logo.png"
+          alt="油そば専門店 油丸 ABURAMARU"
+          class="h-14 w-auto max-w-[220px] object-contain md:h-[76px]"
+          width="220"
+          height="76"
+        />
+        <div id="logo-fallback" class="hidden flex-col items-center text-center text-white">
+          <span class="text-[10px] font-black tracking-widest md:text-xs">油そば専門店</span>
+          <span class="text-3xl font-black leading-none md:text-4xl">油丸</span>
+          <span class="font-en mt-1 text-xs tracking-wider md:text-sm">ABURAMARU</span>
+        </div>
+      </a>
+      <nav class="flex flex-1 flex-wrap items-stretch justify-end gap-0" aria-label="メインナビゲーション">
+        <a href="#menu" class="nav-btn flex min-w-[calc(50%-0px)] flex-1 flex-col items-center justify-center border-b-4 border-l-4 border-black bg-white px-2 py-2 brutal-shadow-sm hover:shadow-none sm:min-w-0 lg:flex-none lg:px-4 lg:py-3">
+          <span class="text-sm font-black leading-tight md:text-base">メニュー</span>
+          <span class="font-en text-[10px] leading-none text-black/80 md:text-xs">MENU</span>
+        </a>
+        <a href="#about-shop" class="nav-btn flex min-w-[calc(50%-0px)] flex-1 flex-col items-center justify-center border-b-4 border-l-4 border-black bg-white px-2 py-2 brutal-shadow-sm hover:shadow-none sm:min-w-0 lg:flex-none lg:px-4 lg:py-3">
+          <span class="text-sm font-black leading-tight md:text-base">店内</span>
+          <span class="font-en text-[10px] leading-none text-black/80 md:text-xs">ABOUT SHOP</span>
+        </a>
+        <a href="#features" class="nav-btn flex min-w-[calc(50%-0px)] flex-1 flex-col items-center justify-center border-b-4 border-l-4 border-black bg-white px-2 py-2 brutal-shadow-sm hover:shadow-none sm:min-w-0 lg:flex-none lg:px-4 lg:py-3">
+          <span class="text-sm font-black leading-tight md:text-base">こだわり</span>
+          <span class="font-en text-[10px] leading-none text-black/80 md:text-xs">FEATURES</span>
+        </a>
+        <a href="#reserve" class="nav-btn flex min-w-[calc(50%-0px)] flex-1 flex-col items-center justify-center border-b-4 border-l-4 border-black bg-white px-2 py-2 brutal-shadow-sm hover:shadow-none sm:min-w-0 lg:flex-none lg:px-4 lg:py-3">
+          <span class="text-sm font-black leading-tight md:text-base">WEB予約</span>
+          <span class="font-en text-[10px] leading-none text-black/80 md:text-xs">RESERVE</span>
+        </a>
+        <a href="#instagram" class="nav-btn flex min-w-[calc(50%-0px)] flex-1 flex-col items-center justify-center border-b-4 border-l-4 border-black bg-white px-2 py-2 brutal-shadow-sm hover:shadow-none sm:min-w-0 lg:flex-none lg:px-4 lg:py-3">
+          <span class="text-sm font-black leading-tight md:text-base">インスタ</span>
+          <span class="font-en text-[10px] leading-none text-black/80 md:text-xs">INSTAGRAM</span>
+        </a>
+        <a href="#access" class="nav-btn flex min-w-[calc(50%-0px)] flex-1 flex-col items-center justify-center border-b-4 border-l-4 border-black bg-white px-2 py-2 brutal-shadow-sm hover:shadow-none sm:min-w-0 lg:flex-none lg:px-4 lg:py-3">
+          <span class="text-sm font-black leading-tight md:text-base">アクセス</span>
+          <span class="font-en text-[10px] leading-none text-black/80 md:text-xs">ACCESS</span>
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="pt-[88px] md:pt-[104px]">
+
+    <!-- ========== HERO ========== -->
+    <section id="hero" class="relative min-h-[calc(100vh-88px)] overflow-hidden md:min-h-[calc(100vh-104px)]">
+      <div
+        id="hero-bg"
+        class="absolute inset-0 bg-cover bg-center bg-no-repeat"
+        role="img"
+        aria-label="油そばのシズル写真"
+      ></div>
+      <div class="absolute inset-0 bg-gradient-to-r from-black/75 via-black/40 to-black/20"></div>
+
+      <div class="relative mx-auto flex min-h-[calc(100vh-88px)] max-w-[1600px] flex-col justify-center px-4 py-12 md:min-h-[calc(100vh-104px)] md:flex-row md:items-center md:justify-between md:px-10 lg:px-16">
+        <div class="max-w-3xl flex-1 md:pr-8">
+          <p class="hero-banner mb-4 inline-block bg-[#fbbf24] px-5 py-3 text-xl font-black leading-snug brutal-border brutal-shadow md:mb-5 md:px-8 md:py-4 md:text-3xl lg:text-4xl">
+            並盛も、大盛300gも、同一価格。
+          </p>
+          <p class="hero-banner mb-8 inline-block bg-[#fbbf24] px-5 py-3 text-lg font-black leading-snug brutal-border brutal-shadow md:mb-10 md:px-8 md:py-4 md:text-2xl lg:text-3xl">
+            小田原で一番ジャンキーな、極上の塊に喰らいつけ。
+          </p>
+          <p class="max-w-2xl bg-black/90 px-5 py-4 text-sm font-bold leading-relaxed text-white brutal-border md:text-base lg:text-lg">
+            100%国産小麦を使用した特製極太麺 × 芳醇な秘伝タレ。最後の一滴まで中毒者続出の油そば専門店、寿町に堂々降臨。
+          </p>
+        </div>
+
+        <div class="mt-10 flex shrink-0 justify-center md:mt-0 md:justify-end">
+          <div class="relative">
+            <img
+              id="stamp-img"
+              src="img/stamp-omori-free.png"
+              alt="大盛 300g まで無料!!"
+              class="stamp-burst h-44 w-44 object-contain md:h-56 md:w-56 lg:h-64 lg:w-64"
+              width="256"
+              height="256"
+            />
+            <div
+              id="stamp-fallback"
+              class="stamp-burst hidden h-44 w-44 flex-col items-center justify-center bg-black p-4 text-center brutal-border-thick md:h-56 md:w-56 lg:h-64 lg:w-64"
+              aria-hidden="true"
+            >
+              <span class="text-base font-black leading-tight text-white md:text-lg">大盛</span>
+              <span class="font-en text-3xl font-black leading-none text-[#fbbf24] md:text-4xl">300g</span>
+              <span class="text-sm font-black text-white md:text-base">まで無料!!</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== FEATURES ========== -->
+    <section id="features" class="border-t-4 border-black bg-white">
+      <div class="mx-auto flex max-w-[1600px] flex-col lg:flex-row">
+        <aside class="flex shrink-0 items-center justify-center bg-black px-4 py-8 lg:w-[96px] lg:py-0">
+          <h2 class="vertical-label text-center text-lg font-black leading-relaxed tracking-widest text-[#fbbf24] lg:text-xl">
+            油丸の<br />
+            <span class="inline-flex items-baseline leading-none">
+              <span class="text-6xl font-black lg:text-7xl">3</span><span>大</span>
+            </span><br />
+            こだわり
+          </h2>
+        </aside>
+
+        <div class="grid flex-1 gap-6 border-t-4 border-black p-6 md:grid-cols-3 md:border-t-0 md:border-l-4 md:p-8 lg:gap-8 lg:p-10">
+          <article class="flex flex-col brutal-border brutal-shadow bg-white">
+            <h3 class="border-b-4 border-black bg-white px-4 py-3 text-base font-black leading-snug md:text-lg">
+              01 国産小麦100%の特製極太麺
+            </h3>
+            <div class="aspect-[4/3] border-b-4 border-black bg-neutral-200">
+              <img data-img="feature01" src="img/feature-noodles.jpg" alt="特製極太麺のクローズアップ" class="h-full w-full object-cover" width="600" height="450" />
+            </div>
+            <p class="px-4 py-4 text-sm font-bold leading-relaxed md:text-base">
+              ワシワシ・モチモチとした圧倒的な噛みごたえと小麦の香り。
+            </p>
+          </article>
+
+          <article class="flex flex-col brutal-border brutal-shadow bg-white">
+            <h3 class="border-b-4 border-black bg-white px-4 py-3 text-base font-black leading-snug md:text-lg">
+              02 五感を刺激する、無料の無限味変キット
+            </h3>
+            <div class="aspect-[4/3] border-b-4 border-black bg-neutral-200">
+              <img data-img="feature02" src="img/feature-condiments.jpg" alt="卓上の調味料ボトル" class="h-full w-full object-cover" width="600" height="450" />
+            </div>
+            <p class="px-4 py-4 text-sm font-bold leading-relaxed md:text-base">
+              卓上のお酢、ラー油、無料の刻み玉葱、カレー粉、魚粉、刻みニンニクで、自分だけの最強の一杯へ育てる楽しさ。
+            </p>
+          </article>
+
+          <article class="flex flex-col brutal-border brutal-shadow bg-white">
+            <h3 class="border-b-4 border-black bg-white px-4 py-3 text-base font-black leading-snug md:text-lg">
+              03 鰹節香る〆スープで極上のフィニッシュ
+            </h3>
+            <div class="aspect-[4/3] border-b-4 border-black bg-neutral-200">
+              <img data-img="feature03" src="img/feature-soup.jpg" alt="〆スープ" class="h-full w-full object-cover" width="600" height="450" />
+            </div>
+            <p class="px-4 py-4 text-sm font-bold leading-relaxed md:text-base">
+              麺とタレを少し残した器に、セルフで注ぐ特製割りスープ。これぞ油丸の完全体。
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== MENU ========== -->
+    <section id="menu" class="border-t-4 border-black bg-white">
+      <div class="mx-auto flex max-w-[1600px] flex-col lg:flex-row">
+        <aside class="flex shrink-0 items-center justify-center bg-[#fbbf24] px-4 py-8 lg:w-[88px] lg:py-0">
+          <h2 class="vertical-label text-center font-en text-lg font-black leading-loose tracking-wide text-black lg:text-xl">
+            MENU<br />主力メニュー
+          </h2>
+        </aside>
+
+        <div class="grid flex-1 gap-8 border-t-4 border-black p-6 md:grid-cols-3 md:border-t-0 md:border-l-4 md:p-10 lg:gap-10">
+          <article
+            class="menu-card flex flex-col brutal-border brutal-shadow bg-white"
+            style="--card-rotate: rotate(-1.5deg); transform: rotate(-1.5deg);"
+            data-menu-card
+          >
+            <div class="aspect-square border-b-4 border-black bg-neutral-200">
+              <img data-img="menuAburamaru" src="img/menu-aburamaru.jpg" alt="油丸" class="h-full w-full object-cover" width="500" height="500" />
+            </div>
+            <div class="px-4 py-5">
+              <p class="text-base font-black leading-relaxed md:text-lg">
+                油丸 / 王道にして頂点。まずはここから。
+              </p>
+            </div>
+          </article>
+
+          <article
+            class="menu-card flex flex-col brutal-border brutal-shadow bg-white"
+            style="--card-rotate: rotate(1.5deg); transform: rotate(1.5deg);"
+            data-menu-card
+          >
+            <div class="aspect-square border-b-4 border-black bg-neutral-200">
+              <img data-img="menuKaramaru" src="img/menu-karamaru.jpg" alt="辛丸" class="h-full w-full object-cover" width="500" height="500" />
+            </div>
+            <div class="px-4 py-5">
+              <p class="text-base font-black leading-relaxed md:text-lg">
+                辛丸 / 刺激を求めるあなたへ。ラー油と特製スパイスの極限の辛旨。
+              </p>
+            </div>
+          </article>
+
+          <article
+            class="menu-card flex flex-col brutal-border brutal-shadow bg-white"
+            style="--card-rotate: rotate(-1.5deg); transform: rotate(-1.5deg);"
+            data-menu-card
+          >
+            <div class="aspect-square border-b-4 border-black bg-neutral-200">
+              <img data-img="menuJiromaru" src="img/menu-jiromaru.jpg" alt="次郎丸" class="h-full w-full object-cover" width="500" height="500" />
+            </div>
+            <div class="px-4 py-5">
+              <p class="text-base font-black leading-relaxed md:text-lg">
+                次郎丸 / 背脂・もやし増し増し。ガッツリ系の限界へ挑む圧倒的ボリューム。
+              </p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== INSTAGRAM ========== -->
+    <section id="instagram" class="border-t-4 border-black">
+      <div class="bg-black px-4 py-4 md:px-10 md:py-5">
+        <h2 class="text-center text-xl font-black tracking-wide text-[#fbbf24] md:text-left md:text-2xl lg:text-3xl">
+          INSTAGRAM <span class="text-white">#油丸の一杯</span>
+        </h2>
+      </div>
+
+      <div class="relative mx-auto max-w-[1600px] bg-white px-4 py-8 md:px-10 md:py-12">
+        <div class="grid gap-6 md:grid-cols-3 md:gap-8">
+          <figure class="brutal-border brutal-shadow bg-white">
+            <div class="aspect-[4/5] bg-neutral-200">
+              <img data-img="insta01" src="img/instagram-01.jpg" alt="極太麺を持ち上げる様子" class="h-full w-full object-cover" width="480" height="600" />
+            </div>
+            <figcaption class="border-t-4 border-black px-4 py-3 text-sm font-bold md:text-base">
+              極太麺が主役。噛むほどに旨い。
+            </figcaption>
+          </figure>
+          <figure class="brutal-border brutal-shadow bg-white">
+            <div class="aspect-[4/5] bg-neutral-200">
+              <img data-img="insta02" src="img/instagram-02.jpg" alt="調味料と味変" class="h-full w-full object-cover" width="480" height="600" />
+            </div>
+            <figcaption class="border-t-4 border-black px-4 py-3 text-sm font-bold md:text-base">
+              無限味変で、自分だけの一杯に。
+            </figcaption>
+          </figure>
+          <figure class="brutal-border brutal-shadow bg-white">
+            <div class="aspect-[4/5] bg-neutral-200">
+              <img data-img="insta03" src="img/instagram-03.jpg" alt="夜の店舗外観" class="h-full w-full object-cover" width="480" height="600" />
+            </div>
+            <figcaption class="border-t-4 border-black px-4 py-3 text-sm font-bold md:text-base">
+              カウンター11席の油そば専門店。
+            </figcaption>
+          </figure>
+        </div>
+
+        <div class="mt-8 flex justify-end md:mt-10">
+          <a
+            id="instagram-link"
+            href="https://www.instagram.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-3 bg-[#fbbf24] px-6 py-4 text-sm font-black brutal-border brutal-shadow transition hover:translate-x-1 hover:translate-y-1 hover:shadow-none md:text-base"
+          >
+            最新情報はこちら
+            <svg class="h-6 w-6 shrink-0" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.226-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+            </svg>
+            <span class="font-en text-lg" aria-hidden="true">→</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== INFORMATION & ACCESS ========== -->
+    <section id="access" class="border-t-4 border-black bg-white">
+      <div class="mx-auto grid max-w-[1600px] gap-0 lg:grid-cols-2">
+        <div id="about-shop" class="border-b-4 border-black p-6 md:p-10 lg:border-b-0 lg:border-r-4">
+          <h2 class="mb-6 inline-block bg-black px-4 py-2 font-en text-xl font-black text-white brutal-border md:text-2xl">
+            INFORMATION
+          </h2>
+          <table class="info-table w-full border-collapse border-4 border-black text-sm font-bold md:text-base">
+            <tbody>
+              <tr>
+                <th class="w-[28%] bg-[#fbbf24] px-3 py-4 text-left font-black md:w-[24%] md:px-4">住所</th>
+                <td class="bg-white px-3 py-4 md:px-4">〒250-0013 神奈川県小田原市寿町3丁目1－1</td>
+              </tr>
+              <tr>
+                <th class="bg-[#fbbf24] px-3 py-4 text-left font-black md:px-4">営業時間</th>
+                <td class="bg-white px-3 py-4 md:px-4">11:00〜15:00 / 17:00〜21:00（※L.O. 20:45）</td>
+              </tr>
+              <tr>
+                <th class="bg-[#fbbf24] px-3 py-4 text-left font-black md:px-4">定休日</th>
+                <td class="bg-white px-3 py-4 md:px-4">年中無休</td>
+              </tr>
+              <tr>
+                <th class="bg-[#fbbf24] px-3 py-4 text-left font-black md:px-4">座席</th>
+                <td class="bg-white px-3 py-4 md:px-4">カウンター11席</td>
+              </tr>
+              <tr>
+                <th class="bg-[#fbbf24] px-3 py-4 text-left font-black md:px-4">アクセス</th>
+                <td class="bg-white px-3 py-4 md:px-4">小田原タンメン総本店近く（旧：ラーメンとモツ煮 しまの 跡地）</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="p-6 md:p-10">
+          <h2 class="mb-6 inline-block bg-black px-4 py-2 font-en text-xl font-black text-white brutal-border md:text-2xl">
+            ACCESS <span class="ml-2 text-base font-black text-[#fbbf24] md:text-lg">アクセス</span>
+          </h2>
+          <div class="brutal-border brutal-shadow-lg bg-white p-2 md:p-3">
+            <iframe
+              id="map-embed"
+              title="油丸 店舗地図"
+              class="aspect-[4/3] w-full border-4 border-black bg-neutral-100 md:aspect-video"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              allowfullscreen
+            ></iframe>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="reserve" class="sr-only" aria-hidden="true">WEB予約</section>
+
+  </main>
+
+  <!-- ========== FIXED FOOTER CTA ========== -->
+  <footer class="cta-bar fixed bottom-0 left-0 right-0 z-50 border-t-4 border-black">
+    <div class="mx-auto flex max-w-[1600px]">
+      <a
+        id="cta-maps"
+        href="https://maps.google.com/?q=神奈川県小田原市寿町3丁目1－1"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="flex w-1/2 items-center justify-between gap-2 bg-[#fbbf24] px-3 py-3 text-xs font-black leading-tight md:px-6 md:py-4 md:text-sm lg:text-base"
+      >
+        <span class="flex items-center gap-2">
+          <svg class="h-5 w-5 shrink-0 md:h-6 md:w-6" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+          </svg>
+          今すぐGoogleマップでルート案内
+        </span>
+        <span class="font-en text-xl" aria-hidden="true">→</span>
+      </a>
+      <a
+        id="cta-tel"
+        href="tel:04650000000"
+        class="flex w-1/2 items-center justify-between gap-2 border-l-4 border-black bg-white px-3 py-3 text-xs font-black leading-tight md:px-6 md:py-4 md:text-sm lg:text-base"
+      >
+        <span class="flex items-center gap-2">
+          <svg class="h-5 w-5 shrink-0 md:h-6 md:w-6" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+          </svg>
+          お電話で問い合わせる 0465-XX-XXXX
+        </span>
+        <span class="font-en text-xl" aria-hidden="true">→</span>
+      </a>
+    </div>
+  </footer>
+
+  <script>
+    /**
+     * 画像パス一括管理（差し替えはここだけ編集）
+     */
+    const IMAGES = {
+      logo: "img/logo.png",
+      hero: "img/hero-aburasoba.jpg",
+      stamp: "img/stamp-omori-free.png",
+      feature01: "img/feature-noodles.jpg",
+      feature02: "img/feature-condiments.jpg",
+      feature03: "img/feature-soup.jpg",
+      menuAburamaru: "img/menu-aburamaru.jpg",
+      menuKaramaru: "img/menu-karamaru.jpg",
+      menuJiromaru: "img/menu-jiromaru.jpg",
+      insta01: "img/instagram-01.jpg",
+      insta02: "img/instagram-02.jpg",
+      insta03: "img/instagram-03.jpg",
+    };
+
+    const LINKS = {
+      instagram: "https://www.instagram.com/",
+      maps: "https://maps.google.com/?q=神奈川県小田原市寿町3丁目1－1",
+      tel: "tel:04650000000",
+      mapEmbed:
+        "https://maps.google.com/maps?q=%E7%A5%9E%E5%A5%88%E5%B7%9D%E7%9C%8C%E5%B0%8F%E7%94%B0%E5%8E%9F%E5%B8%82%E5%AF%BF%E7%94%BA3%E4%B8%81%E7%9B%AE1%EF%BC%8D1&hl=ja&z=17&output=embed",
+    };
+
+    function applyImagePaths() {
+      document.getElementById("logo-img").src = IMAGES.logo;
+      document.getElementById("hero-bg").style.backgroundImage = `url('${IMAGES.hero}')`;
+      document.getElementById("stamp-img").src = IMAGES.stamp;
+
+      document.querySelectorAll("[data-img]").forEach((el) => {
+        const key = el.getAttribute("data-img");
+        if (IMAGES[key]) el.src = IMAGES[key];
+      });
+    }
+
+    function initImageFallback(imgId, fallbackId, flexFallback) {
+      const img = document.getElementById(imgId);
+      const fallback = document.getElementById(fallbackId);
+      if (!img || !fallback) return;
+      const showFallback = () => {
+        img.classList.add("hidden");
+        fallback.classList.remove("hidden");
+        if (flexFallback) fallback.classList.add("flex");
+      };
+      img.addEventListener("error", showFallback);
+      if (img.complete && img.naturalWidth === 0) showFallback();
+    }
+
+    function initStampFallback() {
+      initImageFallback("stamp-img", "stamp-fallback", true);
+      initImageFallback("logo-img", "logo-fallback", true);
+    }
+
+    function initMenuCardPress() {
+      document.querySelectorAll("[data-menu-card]").forEach((card) => {
+        const press = () => card.classList.add("is-pressed");
+        const release = () => card.classList.remove("is-pressed");
+        card.addEventListener("mouseenter", press);
+        card.addEventListener("mouseleave", release);
+        card.addEventListener("mousedown", press);
+        card.addEventListener("mouseup", release);
+        card.addEventListener("touchstart", press, { passive: true });
+        card.addEventListener("touchend", release);
+      });
+    }
+
+    function initLinks() {
+      document.getElementById("instagram-link").href = LINKS.instagram;
+      document.getElementById("cta-maps").href = LINKS.maps;
+      document.getElementById("cta-tel").href = LINKS.tel;
+      document.getElementById("map-embed").src = LINKS.mapEmbed;
+    }
+
+    function initHeaderOffset() {
+      const header = document.querySelector("header");
+      const setPadding = () => {
+        const h = header.offsetHeight;
+        document.querySelector("main").style.paddingTop = `${h}px`;
+        const hero = document.getElementById("hero");
+        if (hero) {
+          hero.style.minHeight = `calc(100vh - ${h}px)`;
+          const inner = hero.querySelector(".relative.mx-auto");
+          if (inner) inner.style.minHeight = `calc(100vh - ${h}px)`;
+        }
+      };
+      setPadding();
+      window.addEventListener("resize", setPadding);
+    }
+
+    applyImagePaths();
+    initStampFallback();
+    initMenuCardPress();
+    initLinks();
+    initHeaderOffset();
+  </script>
+</body>
+</html>

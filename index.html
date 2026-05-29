@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>油そば専門店 油丸｜小田原・寿町</title>
+  <meta name="description" content="100％国産小麦の特製麺 × 芳醇タレ。混ぜて、変えて、最後まで。小田原寿町の油そば専門店 油丸。並盛・大盛同額、駐車場13台。" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Noto+Sans+JP:wght@400;500;700&family=Zen+Kaku+Gothic+New:wght@700;900&display=swap" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <style type="text/tailwindcss">
+    @theme {
+      --color-primary: #2C1810;
+      --color-secondary: #8B4513;
+      --color-accent: #C41E3A;
+      --color-highlight: #F5E6C8;
+      --color-base: #FFFBF5;
+      --color-success: #2D5016;
+      --color-muted: #6B6B6B;
+      --font-heading: "Zen Kaku Gothic New", sans-serif;
+      --font-body: "Noto Sans JP", sans-serif;
+      --font-price: "Bebas Neue", sans-serif;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--color-base);
+      color: #1A1A1A;
+      padding-bottom: 5.5rem;
+    }
+
+    .font-heading {
+      font-family: var(--font-heading);
+    }
+
+    .font-price {
+      font-family: var(--font-price);
+      letter-spacing: 0.04em;
+    }
+
+    /* ===== HERO: 地図テクスチャ + 料理写真 ===== */
+    .hero-map-layer {
+      background-image: url("https://staticmap.openstreetmap.de/staticmap.php?center=35.262951,139.173998&zoom=16&size=1920x1080&markers=35.262951,139.173998,red-pushpin");
+      background-size: cover;
+      background-position: center;
+      opacity: 0.16;
+    }
+
+    .hero-food-layer {
+      background-image: url("https://images.unsplash.com/photo-1617093727343-374698b0fccc?auto=format&fit=crop&w=1920&q=80");
+      background-size: cover;
+      background-position: center 40%;
+    }
+
+    .hero-overlay {
+      background: linear-gradient(
+        to bottom,
+        rgba(44, 24, 16, 0.55) 0%,
+        rgba(44, 24, 16, 0.72) 55%,
+        rgba(44, 24, 16, 0.85) 100%
+      );
+    }
+
+    /* ===== セクションナビ ===== */
+    .section-nav-btn {
+      transition: background 0.2s ease, color 0.2s ease;
+    }
+
+    .section-nav-btn.is-active,
+    .section-nav-btn:hover {
+      background: var(--color-accent);
+      color: #fff;
+    }
+
+    .section-nav-btn.is-active svg,
+    .section-nav-btn:hover svg {
+      stroke: #fff;
+    }
+
+    /* ===== フェードイン ===== */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ===== カード ===== */
+    .feature-card {
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 32px rgba(44, 24, 16, 0.12);
+    }
+
+    .menu-card {
+      transition: transform 0.2s ease;
+    }
+
+    .menu-card:hover {
+      transform: scale(1.02);
+    }
+
+    .insta-item {
+      transition: transform 0.25s ease, opacity 0.25s ease;
+    }
+
+    .insta-item:hover {
+      transform: scale(1.03);
+      opacity: 0.92;
+    }
+
+    /* ===== アクセス：地図一体型レイアウト ===== */
+    .access-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+    }
+
+    @media (min-width: 1024px) {
+      body {
+        padding-bottom: 0;
+      }
+
+      .access-grid {
+        grid-template-columns: 1fr 1.2fr;
+        min-height: 480px;
+      }
+    }
+  </style>
+</head>
+<body class="antialiased">
+
+  <!-- ========== HEADER ========== -->
+  <header class="fixed top-0 left-0 right-0 z-50 bg-base/95 backdrop-blur-sm border-b border-highlight">
+    <div class="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 md:px-8">
+      <a href="#top" class="flex items-center gap-3 group">
+        <span class="flex h-11 w-11 items-center justify-center rounded-full bg-accent text-lg font-heading font-black text-white shadow-md">油</span>
+        <div>
+          <p class="text-[10px] font-medium tracking-widest text-muted">油そば専門店</p>
+          <p class="font-heading text-xl font-black leading-none text-primary md:text-2xl">油丸</p>
+        </div>
+      </a>
+      <a
+        href="https://www.instagram.com/aburamaru20260325/"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="hidden items-center gap-2 rounded-full border border-primary/20 bg-white px-4 py-2 text-sm font-medium text-primary transition hover:border-accent hover:text-accent sm:flex"
+      >
+        <svg class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+        @aburamaru20260325
+      </a>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ========== HERO (#top) ========== -->
+    <section id="top" class="relative flex min-h-svh flex-col justify-center overflow-hidden pt-16">
+      <div class="absolute inset-0 hero-map-layer" aria-hidden="true"></div>
+      <div class="absolute inset-0 hero-food-layer" aria-hidden="true"></div>
+      <div class="absolute inset-0 hero-overlay" aria-hidden="true"></div>
+
+      <div class="relative z-10 mx-auto flex w-full max-w-6xl flex-1 flex-col justify-center px-4 py-10 md:px-8 md:py-16">
+        <span class="mb-4 inline-flex w-fit items-center gap-2 rounded-full bg-success/90 px-4 py-1.5 text-xs font-bold tracking-wide text-white">
+          <span class="font-price text-sm">2026.3.25</span> OPEN — 小田原タンメン系列
+        </span>
+
+        <p class="mb-2 text-sm font-medium tracking-widest text-highlight/90">油そば専門店</p>
+        <h1 class="font-heading text-4xl font-black leading-tight text-white drop-shadow-md sm:text-5xl md:text-6xl">
+          油丸
+        </h1>
+
+        <p class="mt-6 max-w-lg font-heading text-2xl font-bold leading-snug text-white drop-shadow sm:text-3xl md:text-4xl">
+          混ぜて、変えて、最後まで。<br />
+          小田原の新しい油そば。
+        </p>
+        <p class="mt-4 max-w-md text-sm leading-relaxed text-white/85 md:text-base">
+          100％国産小麦の特製麺 × 芳醇タレ。卓上の薬味で、あなただけの一杯を。
+        </p>
+
+        <div class="mt-8 flex flex-wrap gap-3">
+          <a
+            href="#access"
+            class="inline-flex min-h-[44px] min-w-[140px] items-center justify-center rounded-full bg-accent px-8 py-3 text-sm font-bold text-white shadow-lg transition hover:brightness-110"
+          >
+            来店する
+          </a>
+          <a
+            href="#menu"
+            class="inline-flex min-h-[44px] min-w-[140px] items-center justify-center rounded-full border-2 border-white/80 bg-white/10 px-8 py-3 text-sm font-bold text-white backdrop-blur-sm transition hover:bg-white/20"
+          >
+            メニューを見る
+          </a>
+        </div>
+
+        <p class="mt-6 inline-flex items-center gap-2 text-xs text-white/75">
+          <svg class="h-4 w-4 shrink-0 text-accent" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+          寿町 · 緑町駅 徒歩約19分 · 駐車場13台
+        </p>
+      </div>
+
+      <!-- デスクトップ用セクションナビ（ヒーロー内） -->
+      <nav class="relative z-10 mx-auto hidden w-full max-w-6xl px-4 pb-8 md:block md:px-8" aria-label="セクションナビ">
+        <div class="grid grid-cols-5 gap-2 rounded-2xl bg-white/10 p-2 backdrop-blur-md">
+          <a href="#kodawari" data-nav="kodawari" class="section-nav-btn flex min-h-[44px] flex-col items-center justify-center rounded-xl px-2 py-3 text-center text-xs font-bold text-white">
+            <svg class="mb-1 h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            こだわり
+          </a>
+          <a href="#shop" data-nav="shop" class="section-nav-btn flex min-h-[44px] flex-col items-center justify-center rounded-xl px-2 py-3 text-center text-xs font-bold text-white">
+            <svg class="mb-1 h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+            店内
+          </a>
+          <a href="#menu" data-nav="menu" class="section-nav-btn flex min-h-[44px] flex-col items-center justify-center rounded-xl px-2 py-3 text-center text-xs font-bold text-white">
+            <svg class="mb-1 h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 8h1a4 4 0 010 8h-1M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
+            メニュー
+          </a>
+          <a href="#instagram" data-nav="instagram" class="section-nav-btn flex min-h-[44px] flex-col items-center justify-center rounded-xl px-2 py-3 text-center text-xs font-bold text-white">
+            <svg class="mb-1 h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            インスタ
+          </a>
+          <a href="#access" data-nav="access" class="section-nav-btn flex min-h-[44px] flex-col items-center justify-center rounded-xl px-2 py-3 text-center text-xs font-bold text-white">
+            <svg class="mb-1 h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            アクセス
+          </a>
+        </div>
+      </nav>
+    </section>
+
+    <!-- ========== こだわり (#kodawari) ========== -->
+    <section id="kodawari" class="scroll-mt-20 bg-highlight/40 py-16 md:py-24">
+      <div class="mx-auto max-w-6xl px-4 md:px-8">
+        <div class="reveal mb-12 text-center">
+          <p class="font-price text-lg tracking-widest text-accent">KODAWARI</p>
+          <h2 class="font-heading mt-2 text-2xl font-black text-primary md:text-3xl">そのままでも、味変でも。飽きない一杯。</h2>
+          <p class="mx-auto mt-3 max-w-xl text-sm leading-relaxed text-muted">混ぜる · 味変 · スープ割り — 油丸ならではの楽しみ方</p>
+        </div>
+
+        <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          <article class="feature-card reveal overflow-hidden rounded-2xl bg-white shadow-sm">
+            <img src="https://images.unsplash.com/photo-1555126634-323283e09099?auto=format&fit=crop&w=600&q=80" alt="国産小麦の特製麺" class="h-44 w-full object-cover" loading="lazy" width="600" height="176" />
+            <div class="p-5">
+              <span class="font-price text-sm text-accent">01</span>
+              <h3 class="font-heading mt-1 text-lg font-bold text-primary">100％国産小麦の特製麺</h3>
+              <p class="mt-2 text-sm leading-relaxed text-muted">太陽食品製。太くちぢれた多加水麺。もっちりとした弾力と吸い付く食感。</p>
+            </div>
+          </article>
+          <article class="feature-card reveal overflow-hidden rounded-2xl bg-white shadow-sm">
+            <img src="https://images.unsplash.com/photo-1569718212165-3a8278dfeaa5?auto=format&fit=crop&w=600&q=80" alt="芳醇な醤油ベースのタレ" class="h-44 w-full object-cover" loading="lazy" width="600" height="176" />
+            <div class="p-5">
+              <span class="font-price text-sm text-accent">02</span>
+              <h3 class="font-heading mt-1 text-lg font-bold text-primary">芳醇な醤油ベースのタレ</h3>
+              <p class="mt-2 text-sm leading-relaxed text-muted">丸みのある醤油ダレ。よく混ぜるだけで、そのままでも完成する一杯。</p>
+            </div>
+          </article>
+          <article class="feature-card reveal overflow-hidden rounded-2xl bg-white shadow-sm">
+            <img src="https://images.unsplash.com/photo-1603133872877-684f208fb16b?auto=format&fit=crop&w=600&q=80" alt="油そば専用キット" class="h-44 w-full object-cover" loading="lazy" width="600" height="176" />
+            <div class="p-5">
+              <span class="font-price text-sm text-accent">03</span>
+              <h3 class="font-heading mt-1 text-lg font-bold text-primary">油そば専用キット</h3>
+              <p class="mt-2 text-sm leading-relaxed text-muted">酢 · ラー油 · カレー粉 · ニンニク · タマネギ（無料入れ放題）で自分好みに。</p>
+            </div>
+          </article>
+          <article class="feature-card reveal overflow-hidden rounded-2xl bg-white shadow-sm">
+            <img src="https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&w=600&q=80" alt="割スープ" class="h-44 w-full object-cover" loading="lazy" width="600" height="176" />
+            <div class="p-5">
+              <span class="font-price text-sm text-accent">04</span>
+              <h3 class="font-heading mt-1 text-lg font-bold text-primary">割スープで最後まで</h3>
+              <p class="mt-2 text-sm leading-relaxed text-muted">煮干しダシを注いで「なんちゃってラーメン」。最後の一滴まで楽しめる。</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== 店内 (#shop) ========== -->
+    <section id="shop" class="scroll-mt-20 py-16 md:py-24">
+      <div class="mx-auto max-w-6xl px-4 md:px-8">
+        <div class="reveal grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
+          <div class="relative overflow-hidden rounded-3xl shadow-xl">
+            <img
+              src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=900&q=80"
+              alt="店内カウンター席"
+              class="aspect-[4/3] w-full object-cover"
+              loading="lazy"
+              width="900"
+              height="675"
+            />
+            <span class="absolute left-4 top-4 rounded-full bg-primary px-4 py-1.5 text-xs font-bold text-white">カウンター11席</span>
+          </div>
+          <div>
+            <p class="font-price text-lg tracking-widest text-accent">SHOP</p>
+            <h2 class="font-heading mt-2 text-2xl font-black text-primary md:text-3xl">落ち着いたカウンターで、<br />自分好みの一杯を。</h2>
+            <p class="mt-4 text-sm leading-relaxed text-muted md:text-base">
+              カウンター11席（3·3·5）、全席禁煙。食券制（現金）でサッと注文。小田原で愛されるマキシマグループの新ブランドとして、2026年3月25日に寿町にオープンしました。
+            </p>
+            <ul class="mt-6 space-y-3">
+              <li class="flex items-start gap-3 rounded-xl bg-highlight/60 px-4 py-3 text-sm">
+                <span class="mt-0.5 text-success">✓</span>
+                <span><strong class="text-primary">食券制</strong> — 券売機は現金のみ</span>
+              </li>
+              <li class="flex items-start gap-3 rounded-xl bg-highlight/60 px-4 py-3 text-sm">
+                <span class="mt-0.5 text-success">✓</span>
+                <span><strong class="text-primary">味噌の樽匠</strong> の隣 — 駐車場13台共用</span>
+              </li>
+              <li class="flex items-start gap-3 rounded-xl bg-highlight/60 px-4 py-3 text-sm">
+                <span class="mt-0.5 text-success">✓</span>
+                <span><strong class="text-primary">小田原タンメン系列</strong> — 地元の信頼ブランド</span>
+              </li>
+            </ul>
+            <span class="mt-6 inline-flex items-center gap-2 rounded-full border border-success/30 bg-success/10 px-4 py-2 text-xs font-bold text-success">
+              並盛も大盛も、同じ価格。
+            </span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== メニュー (#menu) ========== -->
+    <section id="menu" class="scroll-mt-20 bg-primary py-16 text-white md:py-24">
+      <div class="mx-auto max-w-6xl px-4 md:px-8">
+        <div class="reveal mb-10 flex flex-col items-center text-center">
+          <p class="font-price text-lg tracking-widest text-accent">MENU</p>
+          <h2 class="font-heading mt-2 text-2xl font-black md:text-3xl">油丸 · 辛丸 · 次郎丸</h2>
+          <p class="mt-2 text-sm text-white/70">好みで選べる三兄弟。すべて並盛・大盛 同額。</p>
+          <span class="mt-4 inline-flex items-center gap-2 rounded-full bg-success px-5 py-2 text-sm font-bold text-white shadow-lg">
+            並盛 · 大盛 同じ価格！
+          </span>
+        </div>
+
+        <div class="reveal grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <article class="menu-card rounded-2xl border border-white/10 bg-white/5 p-5 backdrop-blur-sm">
+            <div class="flex items-baseline justify-between gap-2">
+              <h3 class="font-heading text-lg font-bold">油丸A</h3>
+              <span class="font-price text-2xl text-accent">¥880</span>
+            </div>
+            <p class="mt-2 text-sm text-white/65">定番。刻みチャーシュー · メンマ · ネギ</p>
+            <p class="mt-3 font-price text-xs text-white/40">SP ¥1,450</p>
+          </article>
+          <article class="menu-card rounded-2xl border border-white/10 bg-white/5 p-5 backdrop-blur-sm">
+            <div class="flex items-baseline justify-between gap-2">
+              <h3 class="font-heading text-lg font-bold">辛丸A</h3>
+              <span class="font-price text-2xl text-accent">¥980</span>
+            </div>
+            <p class="mt-2 text-sm text-white/65">辛口が好きな方に。スパイスの刺激で食欲加速</p>
+            <p class="mt-3 font-price text-xs text-white/40">SP ¥1,600</p>
+          </article>
+          <article class="menu-card rounded-2xl border border-accent/50 bg-accent/10 p-5 backdrop-blur-sm sm:col-span-2 lg:col-span-1">
+            <div class="flex items-baseline justify-between gap-2">
+              <h3 class="font-heading text-lg font-bold">次郎丸</h3>
+              <span class="font-price text-2xl text-accent">¥1,100</span>
+            </div>
+            <p class="mt-2 text-sm text-white/65">ガッツリ派。モヤシ100% · 背脂 · ニンニク増し。大盛300g</p>
+            <p class="mt-3 font-price text-xs text-white/40">SP ¥1,600</p>
+          </article>
+        </div>
+
+        <div class="reveal mt-10 rounded-2xl border border-white/10 bg-white/5 p-6">
+          <h3 class="font-heading text-sm font-bold text-highlight">トッピング</h3>
+          <div class="mt-4 flex flex-wrap gap-3">
+            <span class="rounded-full bg-white/10 px-4 py-2 text-sm">マヨネーズ <span class="font-price text-accent">¥50</span></span>
+            <span class="rounded-full bg-white/10 px-4 py-2 text-sm">玉子 <span class="font-price text-accent">¥150</span></span>
+            <span class="rounded-full bg-white/10 px-4 py-2 text-sm">肉増し <span class="font-price text-accent">¥200</span></span>
+            <span class="rounded-full bg-white/10 px-4 py-2 text-sm">半ライス <span class="font-price text-accent">¥180</span></span>
+          </div>
+          <p class="mt-4 text-xs text-white/50">※ 売り切れ次第終了の場合があります</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== インスタ (#instagram) ========== -->
+    <section id="instagram" class="scroll-mt-20 py-16 md:py-24">
+      <div class="mx-auto max-w-6xl px-4 md:px-8">
+        <div class="reveal mb-10 flex flex-col items-center text-center sm:flex-row sm:items-end sm:justify-between sm:text-left">
+          <div>
+            <p class="font-price text-lg tracking-widest text-accent">INSTAGRAM</p>
+            <h2 class="font-heading mt-2 text-2xl font-black text-primary md:text-3xl">最新情報はこちら</h2>
+            <p class="mt-2 text-sm text-muted">営業状況 · 新メニュー · 店内の様子</p>
+          </div>
+          <a
+            href="https://www.instagram.com/aburamaru20260325/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="mt-4 inline-flex min-h-[44px] items-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-bold text-white transition hover:bg-accent sm:mt-0"
+          >
+            @aburamaru20260325 をフォロー
+          </a>
+        </div>
+
+        <!-- Behold等 iframe 差し替え用:
+        <div id="behold-feed" data-behold-id="YOUR_BEHOLD_ID"></div>
+        <script src="https://w.behold.so/widget.js" type="module"></script>
+        -->
+
+        <div class="reveal grid grid-cols-3 gap-2 sm:gap-3">
+          <a href="https://www.instagram.com/aburamaru20260325/" target="_blank" rel="noopener noreferrer" class="insta-item overflow-hidden rounded-xl">
+            <img src="https://images.unsplash.com/photo-1617093727343-374698b0fccc?auto=format&fit=crop&w=400&q=80" alt="油そば" class="aspect-square w-full object-cover" loading="lazy" width="400" height="400" />
+          </a>
+          <a href="https://www.instagram.com/aburamaru20260325/" target="_blank" rel="noopener noreferrer" class="insta-item overflow-hidden rounded-xl">
+            <img src="https://images.unsplash.com/photo-1569718212165-3a8278dfeaa5?auto=format&fit=crop&w=400&q=80" alt="麺料理" class="aspect-square w-full object-cover" loading="lazy" width="400" height="400" />
+          </a>
+          <a href="https://www.instagram.com/aburamaru20260325/" target="_blank" rel="noopener noreferrer" class="insta-item overflow-hidden rounded-xl">
+            <img src="https://images.unsplash.com/photo-1557872943-16a5ac2643ef?auto=format&fit=crop&w=400&q=80" alt="ラーメン" class="aspect-square w-full object-cover" loading="lazy" width="400" height="400" />
+          </a>
+          <a href="https://www.instagram.com/aburamaru20260325/" target="_blank" rel="noopener noreferrer" class="insta-item overflow-hidden rounded-xl">
+            <img src="https://images.unsplash.com/photo-1598866594230-a7c127754f8b?auto=format&fit=crop&w=400&q=80" alt="麺" class="aspect-square w-full object-cover" loading="lazy" width="400" height="400" />
+          </a>
+          <a href="https://www.instagram.com/aburamaru20260325/" target="_blank" rel="noopener noreferrer" class="insta-item overflow-hidden rounded-xl">
+            <img src="https://images.unsplash.com/photo-1585032226651-759b368d7246?auto=format&fit=crop&w=400&q=80" alt="油そば風" class="aspect-square w-full object-cover" loading="lazy" width="400" height="400" />
+          </a>
+          <a href="https://www.instagram.com/aburamaru20260325/" target="_blank" rel="noopener noreferrer" class="insta-item overflow-hidden rounded-xl">
+            <img src="https://images.unsplash.com/photo-1555126634-323283e09099?auto=format&fit=crop&w=400&q=80" alt="麺アップ" class="aspect-square w-full object-cover" loading="lazy" width="400" height="400" />
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== アクセス (#access) ========== -->
+    <section id="access" class="scroll-mt-20 bg-highlight/30 py-16 md:py-24">
+      <div class="mx-auto max-w-6xl px-4 md:px-8">
+        <div class="reveal mb-10 text-center">
+          <p class="font-price text-lg tracking-widest text-accent">ACCESS</p>
+          <h2 class="font-heading mt-2 text-2xl font-black text-primary md:text-3xl">味噌の樽匠の隣。駐車場13台。</h2>
+        </div>
+
+        <div class="reveal access-grid overflow-hidden rounded-3xl bg-white shadow-xl">
+          <div class="flex flex-col justify-center p-8 md:p-10 lg:p-12">
+            <dl class="space-y-5 text-sm">
+              <div>
+                <dt class="font-heading text-xs font-bold tracking-wider text-muted">ADDRESS</dt>
+                <dd class="mt-1 text-base font-medium text-primary">神奈川県小田原市寿町5-13-26</dd>
+              </div>
+              <div>
+                <dt class="font-heading text-xs font-bold tracking-wider text-muted">HOURS</dt>
+                <dd class="mt-1 text-base font-medium text-primary">11:00 — 20:00 <span class="text-sm text-muted">（L.O. 19:45）</span></dd>
+              </div>
+              <div>
+                <dt class="font-heading text-xs font-bold tracking-wider text-muted">CLOSED</dt>
+                <dd class="mt-1 text-base font-medium text-primary">水曜日</dd>
+              </div>
+              <div>
+                <dt class="font-heading text-xs font-bold tracking-wider text-muted">ACCESS</dt>
+                <dd class="mt-1 text-base leading-relaxed text-primary">
+                  緑町駅 徒歩約19分<br />
+                  小田原駅東口 徒歩約28分
+                </dd>
+              </div>
+              <div>
+                <dt class="font-heading text-xs font-bold tracking-wider text-muted">PARKING</dt>
+                <dd class="mt-1 text-base font-medium text-primary">味噌の樽匠と共用 13台</dd>
+              </div>
+              <div>
+                <dt class="font-heading text-xs font-bold tracking-wider text-muted">PAYMENT</dt>
+                <dd class="mt-1 text-base font-medium text-primary">食券制 · 現金のみ</dd>
+              </div>
+            </dl>
+            <p class="mt-6 text-xs text-muted">
+              お問い合わせは
+              <a href="https://www.instagram.com/aburamaru20260325/" target="_blank" rel="noopener noreferrer" class="font-medium text-accent underline underline-offset-2">Instagram</a>
+              よりご確認ください。
+            </p>
+            <a
+              href="https://www.google.com/maps/search/?api=1&query=35.262951,139.173998"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="mt-6 inline-flex min-h-[44px] w-fit items-center justify-center rounded-full bg-accent px-6 py-3 text-sm font-bold text-white transition hover:brightness-110"
+            >
+              Google Mapsで開く
+            </a>
+          </div>
+          <div class="min-h-[280px] lg:min-h-full">
+            <iframe
+              title="油丸 地図"
+              src="https://maps.google.com/maps?q=35.262951,139.173998&hl=ja&z=16&output=embed"
+              class="h-full min-h-[280px] w-full border-0 lg:min-h-[480px]"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              allowfullscreen
+            ></iframe>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="bg-primary py-10 text-white">
+    <div class="mx-auto max-w-6xl px-4 text-center md:px-8">
+      <p class="font-heading text-2xl font-black">油丸</p>
+      <p class="mt-1 text-xs text-white/60">油そば専門店 · 有限会社マキシマ</p>
+      <a
+        href="https://www.instagram.com/aburamaru20260325/"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="mt-4 inline-flex items-center gap-2 text-sm text-white/80 transition hover:text-white"
+      >
+        Instagram @aburamaru20260325
+      </a>
+      <p class="mt-6 text-[10px] text-white/40">© 油そば専門店 油丸 / 有限会社マキシマ · 売り切れ次第終了の場合あり</p>
+    </div>
+  </footer>
+
+  <!-- ========== モバイル固定ナビ（5タブ） ========== -->
+  <nav class="fixed bottom-0 left-0 right-0 z-50 border-t border-highlight bg-base/95 backdrop-blur-md md:hidden" aria-label="モバイルセクションナビ">
+    <div class="grid grid-cols-5">
+      <a href="#kodawari" data-nav="kodawari" class="section-nav-btn flex min-h-[56px] flex-col items-center justify-center gap-0.5 px-1 py-2 text-[10px] font-bold text-primary">
+        <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        こだわり
+      </a>
+      <a href="#shop" data-nav="shop" class="section-nav-btn flex min-h-[56px] flex-col items-center justify-center gap-0.5 px-1 py-2 text-[10px] font-bold text-primary">
+        <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"/></svg>
+        店内
+      </a>
+      <a href="#menu" data-nav="menu" class="section-nav-btn flex min-h-[56px] flex-col items-center justify-center gap-0.5 px-1 py-2 text-[10px] font-bold text-primary">
+        <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 8h1a4 4 0 010 8h-1M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8z"/></svg>
+        メニュー
+      </a>
+      <a href="#instagram" data-nav="instagram" class="section-nav-btn flex min-h-[56px] flex-col items-center justify-center gap-0.5 px-1 py-2 text-[10px] font-bold text-primary">
+        <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/></svg>
+        インスタ
+      </a>
+      <a href="#access" data-nav="access" class="section-nav-btn flex min-h-[56px] flex-col items-center justify-center gap-0.5 px-1 py-2 text-[10px] font-bold text-primary">
+        <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        アクセス
+      </a>
+    </div>
+  </nav>
+
+  <script>
+    (function () {
+      /* フェードイン */
+      var revealEls = document.querySelectorAll(".reveal");
+      if ("IntersectionObserver" in window) {
+        var revealObs = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("is-visible");
+              revealObs.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.12, rootMargin: "0px 0px -40px 0px" });
+        revealEls.forEach(function (el) { revealObs.observe(el); });
+      } else {
+        revealEls.forEach(function (el) { el.classList.add("is-visible"); });
+      }
+
+      /* セクションナビのアクティブ状態 */
+      var navLinks = document.querySelectorAll("[data-nav]");
+      var sections = ["kodawari", "shop", "menu", "instagram", "access"].map(function (id) {
+        return document.getElementById(id);
+      }).filter(Boolean);
+
+      function setActiveNav(id) {
+        navLinks.forEach(function (link) {
+          link.classList.toggle("is-active", link.getAttribute("data-nav") === id);
+        });
+      }
+
+      if ("IntersectionObserver" in window && sections.length) {
+        var navObs = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              setActiveNav(entry.target.id);
+            }
+          });
+        }, { threshold: 0.35, rootMargin: "-20% 0px -55% 0px" });
+        sections.forEach(function (sec) { navObs.observe(sec); });
+      }
+    })();
+  </script>
+</body>
+</html>

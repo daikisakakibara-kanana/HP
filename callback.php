@@ -14,7 +14,7 @@ declare(strict_types=1);
 // =============================================================================
 const INSTAGRAM_APP_ID       = '1470160134857234';
 const INSTAGRAM_APP_SECRET   = '6696b8c1d3e8c4964094aebbac4a81fd';
-const INSTAGRAM_REDIRECT_URI = 'https://insta.kanana-tech.jp/insta-token/callback.php';
+const INSTAGRAM_REDIRECT_URI = 'https://insta-api.kanana-tech.jp/insta-token/callback.php';
 const INSTAGRAM_OAUTH_SCOPE  = 'instagram_business_basic';
 const GRAPH_API_VERSION      = 'v20.0';
 
@@ -208,6 +208,24 @@ function buildTokenJsonPayload(string $longToken, string $username, string $igAc
 
     $json = json_encode($payload, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES);
     return $json !== false ? $json : '{}';
+}
+
+/** サーバー内バックアップ（Web 非公開 storage/） */
+function saveTokenPayloadToDisk(string $tokenJson): bool
+{
+    $dir = __DIR__ . '/storage';
+    if (!is_dir($dir) && !mkdir($dir, 0750, true) && !is_dir($dir)) {
+        return false;
+    }
+    $htaccess = $dir . '/.htaccess';
+    if (!is_file($htaccess)) {
+        file_put_contents($htaccess, "Require all denied\n");
+    }
+    $tmp = $dir . '/instagram-token-latest.json.tmp';
+    if (file_put_contents($tmp, $tokenJson, LOCK_EX) === false) {
+        return false;
+    }
+    return rename($tmp, $dir . '/instagram-token-latest.json');
 }
 
 function renderPage(string $title, string $bodyHtml, bool $isError = false): never

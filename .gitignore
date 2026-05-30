@@ -1,3 +1,5 @@
 instagram-token.json
 instagram-feed-cache.json
+insta-token/storage/instagram-token-latest.json
+insta-token/storage/*.tmp
 *.tmp

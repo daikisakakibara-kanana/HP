@@ -14,7 +14,7 @@ declare(strict_types=1);
 // =============================================================================
 const INSTAGRAM_APP_ID       = '1470160134857234';
 const INSTAGRAM_APP_SECRET   = '6696b8c1d3e8c4964094aebbac4a81fd';
-const INSTAGRAM_REDIRECT_URI = 'https://insta.kanana-tech.jp/insta-token/callback.php';
+const INSTAGRAM_REDIRECT_URI = 'https://insta-api.kanana-tech.jp/insta-token/callback.php';
 const INSTAGRAM_OAUTH_SCOPE  = 'instagram_business_basic';
 const GRAPH_API_VERSION      = 'v20.0';
 
@@ -210,6 +210,24 @@ function buildTokenJsonPayload(string $longToken, string $username, string $igAc
     return $json !== false ? $json : '{}';
 }
 
+/** サーバー内バックアップ（Web 非公開 storage/） */
+function saveTokenPayloadToDisk(string $tokenJson): bool
+{
+    $dir = __DIR__ . '/storage';
+    if (!is_dir($dir) && !mkdir($dir, 0750, true) && !is_dir($dir)) {
+        return false;
+    }
+    $htaccess = $dir . '/.htaccess';
+    if (!is_file($htaccess)) {
+        file_put_contents($htaccess, "Require all denied\n");
+    }
+    $tmp = $dir . '/instagram-token-latest.json.tmp';
+    if (file_put_contents($tmp, $tokenJson, LOCK_EX) === false) {
+        return false;
+    }
+    return rename($tmp, $dir . '/instagram-token-latest.json');
+}
+
 function renderPage(string $title, string $bodyHtml, bool $isError = false): never
 {
     ?>
@@ -335,15 +353,22 @@ if ($code !== '') {
     $username = (string) $profile['username'];
     $igId     = (string) $profile['instagram_business_account_id'];
     $tokenJson = buildTokenJsonPayload($longToken, $username, $igId, $expiresAt);
+    $savedDisk = saveTokenPayloadToDisk($tokenJson);
+    $saveNote = $savedDisk
+        ? '<p class="hint">✅ サーバー内バックアップ: <code>storage/instagram-token-latest.json</code>（Web 非公開）</p>'
+        : '<p class="hint">⚠️ サーバー内バックアップの保存に失敗しました。下記 JSON を必ずコピーしてください。</p>';
 
     $body = '
       <span class="ok-badge">TOKEN OK</span>
       <h1>長期アクセストークン取得完了</h1>
-      <p>以下をコピーし、各店舗 LP サーバーの <code>instagram-token.json</code> として保存してください（量産運用）。</p>
+      ' . $saveNote . '
+      <p>以下をコピーし、油丸 LP サーバー（PHP 可）の <code>instagram-token.json</code> として保存してください。</p>
       <ol>
         <li>下の「店舗用 JSON」をコピー</li>
-        <li>店舗 LP と同じ階層に <code>instagram-token.json</code> を作成して貼り付け</li>
-        <li><code>instagram-feed.php</code> を同階層に配置して完了</li>
+        <li>LP と同じ階層に <code>instagram-token.json</code> を作成して貼り付け</li>
+        <li><code>instagram-feed.php</code> と <code>verify-instagram.php</code> を同階層にアップロード</li>
+        <li><code>verify-instagram.php</code> をブラウザで開き、投稿3件取得を確認</li>
+        <li>LP の INSTAGRAM セクションをリロード</li>
       </ol>
 
       <span class="label">Instagram ユーザー名</span>

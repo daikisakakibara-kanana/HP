@@ -13,7 +13,7 @@
 - [ ] A. Instagram アプリ連携を解除
 - [ ] B. Meta Developer の設定を確認
 - [ ] C. サーバー上のトークン・キャッシュを削除
-- [ ] D. 最新 `callback.php` をデプロイ（v2.3.0）
+- [ ] D. 最新 `callback.php` をデプロイ（v2.4.0）
 - [ ] E. `health.php` で curl: OK
 - [ ] F. 再認可 → 長期トークン取得成功
 - [ ] G. LP に `instagram-token.json` 配置
@@ -113,8 +113,8 @@ chmod 644 /var/www/html/insta-token/callback.php /var/www/html/insta-token/healt
 
 https://insta-api.kanana-tech.jp/insta-token/callback.php  
 
-ページ下部に **`callback v2.3.0`** と表示されていれば最新版です。  
-**v2.3.0 が無い場合は古いファイルのまま**なので、D をやり直してください。
+ページ下部に **`callback v2.4.0`** と表示されていれば最新版です。  
+**v2.4.0 が無い場合は古いファイルのまま**なので、D をやり直してください。
 
 ---
 
@@ -167,7 +167,7 @@ https://www.instagram.com/oauth/authorize?client_id=1470160134857234&redirect_ur
 | 症状 | 原因 | 対処 |
 |------|------|------|
 | method type: **get** | 古い callback（GET のみ）または Meta 側ブロック | D: v2.3.0 をデプロイ。GET/POST 両方失敗なら B-5 |
-| method type: **post** | **Meta 側の権限・検証不足**（コードではない） | B-4 Instagram app secret / B-1 テスター / B-5 Access Verification |
+| method type: **post** | **Meta 側の権限・検証不足**（コードではない） | `INSTAGRAM-META-BLOCK.md` を上から順に実施 |
 | Error validating application | Facebook 側フォールバック（旧コード） | D: v2.3.0（Instagram GET→POST 両方試行） |
 | すでにリンクされています | 過去の連携が残存 | **共有を続ける**で OK。完全リセットなら A + B-1 |
 | redirect_uri mismatch | Meta の URI 不一致 | B-2 |

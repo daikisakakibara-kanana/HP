@@ -41,7 +41,7 @@ const INSTAGRAM_APP_SECRET   = '6696b8c1d3e8c4964094aebbac4a81fd';
 const INSTAGRAM_REDIRECT_URI = 'https://insta-api.kanana-tech.jp/insta-token/callback.php';
 const INSTAGRAM_OAUTH_SCOPE  = 'instagram_business_basic';
 const GRAPH_API_VERSION      = 'v20.0';
-const CALLBACK_VERSION       = '2.3.0';
+const CALLBACK_VERSION       = '2.4.0';
 
 function cfg(string $envKey, string $constant): string
 {
@@ -335,10 +335,116 @@ function fetchInstagramProfile(string $longToken): array
     ];
 }
 
-function buildTokenJsonPayload(string $longToken, string $username, string $igAccountId, int $expiresAt): string
+function renderTokenSuccessBody(
+    string $badge,
+    string $title,
+    string $saveNote,
+    string $username,
+    string $igId,
+    string $token,
+    int $expiresIn,
+    int $expiresAt,
+    string $tokenJson,
+    string $authUrl,
+    string $extraNote = ''
+): string {
+    $days = (int) floor($expiresIn / 86400);
+    $hours = (int) floor($expiresIn / 3600);
+    $expiryLabel = $days >= 1
+        ? '約 ' . $days . ' 日（' . gmdate('Y-m-d H:i:s', $expiresAt) . ' UTC まで）'
+        : '約 ' . $hours . ' 時間（' . gmdate('Y-m-d H:i:s', $expiresAt) . ' UTC まで）';
+
+    return '
+      <span class="ok-badge">' . h($badge) . '</span>
+      <h1>' . h($title) . '</h1>
+      ' . $saveNote . $extraNote . '
+      <p>以下をコピーし、油丸 LP サーバー（PHP 可）の <code>instagram-token.json</code> として保存してください。</p>
+      <ol>
+        <li>下の「店舗用 JSON」をコピー</li>
+        <li>LP と同じ階層に <code>instagram-token.json</code> を作成して貼り付け</li>
+        <li><code>instagram-feed.php</code> と <code>verify-instagram.php</code> を同階層にアップロード</li>
+        <li><code>verify-instagram.php</code> をブラウザで開き、投稿3件取得を確認</li>
+        <li>LP の INSTAGRAM セクションをリロード</li>
+      </ol>
+
+      <span class="label">Instagram ユーザー名</span>
+      <textarea id="field-username" readonly>@' . h($username) . '</textarea>
+      <div class="row"><button type="button" class="btn sec" onclick="copyField(\'field-username\')">ユーザー名をコピー</button></div>
+
+      <span class="label">Instagram Business Account ID</span>
+      <textarea id="field-igid" readonly>' . h($igId) . '</textarea>
+      <div class="row"><button type="button" class="btn sec" onclick="copyField(\'field-igid\')">ID をコピー</button></div>
+
+      <span class="label">アクセストークン</span>
+      <textarea id="field-token" readonly>' . h($token) . '</textarea>
+      <div class="row"><button type="button" class="btn" onclick="copyField(\'field-token\')">トークンをコピー</button></div>
+      <p class="hint">有効期限: ' . h($expiryLabel) . '</p>
+
+      <span class="label">店舗用 instagram-token.json（このまま貼り付け）</span>
+      <textarea id="field-json" class="tall" readonly>' . h($tokenJson) . '</textarea>
+      <div class="row">
+        <button type="button" class="btn" onclick="copyField(\'field-json\')">JSON をコピー</button>
+        <a class="btn sec" href="' . h($authUrl) . '">別アカウントで再取得</a>
+      </div>
+    ';
+}
+
+function renderTemporaryTokenFallback(
+    string $shortToken,
+    string $authUrl,
+    string $longError
+): void {
+    $profile = fetchInstagramProfile($shortToken);
+    if (!$profile['ok']) {
+        renderPage(
+            '長期トークンエラー',
+            '<div class="err"><h1>60日長期トークンへの交換に失敗しました</h1>
+             <p>' . h($longError) . '</p></div>'
+             . renderLongLivedTokenError($longError, true)
+             . '<p class="hint">短期トークンでのプロフィール取得も失敗しました。Instagram テスター設定とアカウント種別（ビジネス/クリエイター）を確認してください。</p>
+             <a class="btn" href="' . h($authUrl) . '">再試行</a>',
+            true
+        );
+    }
+
+    $username  = (string) $profile['username'];
+    $igId      = (string) $profile['instagram_business_account_id'];
+    $expiresIn = 3600;
+    $expiresAt = time() + $expiresIn;
+    $tokenJson = buildTokenJsonPayload($shortToken, $username, $igId, $expiresAt);
+    saveTokenPayloadToDisk($tokenJson);
+
+    $extraNote = '
+      <div class="err" style="margin:16px 0">
+        <h2 style="font-size:18px;margin-bottom:8px">Meta 側の承認待ち — 暫定トークン（約1時間）</h2>
+        <p>長期トークン交換は Meta が拒否していますが、<strong>短期トークンと API 接続は正常</strong>です。</p>
+        <p>下の JSON で LP の動作確認は可能です（約1時間で失効）。本番運用には Meta 側の設定完了後、再度 OAuth してください。</p>
+        <p>手順: <code>INSTAGRAM-META-BLOCK.md</code></p>
+      </div>'
+      . renderLongLivedTokenError($longError, true);
+
+    renderPage(
+        '暫定トークン（Meta 承認待ち）',
+        renderTokenSuccessBody(
+            'TEMP TOKEN',
+            '暫定アクセストークン（約1時間・テスト用）',
+            '<p class="hint">⚠️ 60日トークン取得には Meta 側の設定完了が必要です。</p>',
+            $username,
+            $igId,
+            $shortToken,
+            $expiresIn,
+            $expiresAt,
+            $tokenJson,
+            $authUrl,
+            $extraNote
+        )
+    );
+}
+
+function buildTokenJsonPayload(string $accessToken, string $username, string $igAccountId, int $expiresAt): string
 {
     $payload = [
-        'access_token'                    => $longToken,
+        'access_token'                    => $accessToken,
         'instagram_business_account_id'   => $igAccountId,
         'username'                        => $username,
         'expires_at'                      => $expiresAt,
@@ -485,11 +591,15 @@ if ($code !== '') {
     $longData = is_array($long['data'] ?? null) ? $long['data'] : [];
     if (!$long['ok'] || ($longData['access_token'] ?? '') === '') {
         $methodBlocked = !empty($long['methodBlocked']);
+        $longError = errorMessage($long['error'] ?? null);
+        if ($methodBlocked) {
+            renderTemporaryTokenFallback($shortToken, $authUrl, $longError);
+        }
         renderPage(
             '長期トークンエラー',
             '<div class="err"><h1>60日長期トークンへの交換に失敗しました</h1>
-             <p>' . h(errorMessage($long['error'] ?? null)) . '</p></div>'
-             . renderLongLivedTokenError(errorMessage($long['error'] ?? null), $methodBlocked)
+             <p>' . h($longError) . '</p></div>'
+             . renderLongLivedTokenError($longError, $methodBlocked)
              . '<a class="btn" href="' . h($authUrl) . '">再試行</a>',
             true
         );

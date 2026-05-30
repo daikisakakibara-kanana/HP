@@ -13,7 +13,7 @@
 - [ ] A. Instagram アプリ連携を解除
 - [ ] B. Meta Developer の設定を確認
 - [ ] C. サーバー上のトークン・キャッシュを削除
-- [ ] D. 最新 `callback.php` をデプロイ（v2.2.0）
+- [ ] D. 最新 `callback.php` をデプロイ（v2.3.0）
 - [ ] E. `health.php` で curl: OK
 - [ ] F. 再認可 → 長期トークン取得成功
 - [ ] G. LP に `instagram-token.json` 配置
@@ -56,11 +56,24 @@ https://developers.facebook.com/apps/1470160134857234/
 
 `instagram_business_basic` のみ（余計な権限は付けない）
 
-### B-4. App Secret の再確認
+### B-4. App Secret の再確認（重要）
 
-**アプリの設定** → **ベーシック** で App Secret を表示し、  
-`callback.php` の `INSTAGRAM_APP_SECRET` と **完全一致** しているか確認。  
+**Instagram → API setup with Instagram login → Business login settings → Instagram app secret**  
+の値をコピーし、`callback.php` の `INSTAGRAM_APP_SECRET` と **完全一致** しているか確認。
+
+⚠️ **ベーシック設定の App Secret とは別の値** の場合があります。短期トークンは取れても長期トークンだけ失敗する典型パターンです。
+
 変更したら Secret を再生成し、callback.php も更新。
+
+### B-5. Access Verification（本番 Live モードの場合）
+
+アプリが **Live（公開）** のとき、長期トークン交換で `Unsupported request - method type: get/post` が出る場合、  
+**Access Verification（アクセス確認）** が未完了であることが多いです。
+
+Meta Developer → アプリ → **アプリの設定** → **ベーシック** 付近の「Access verification」を完了してください。  
+`instagram_business_basic` の App Review 承認だけでは足りないケースがあります。
+
+参考: https://developers.facebook.com/docs/development/release/access-verification/
 
 ---
 
@@ -100,8 +113,8 @@ chmod 644 /var/www/html/insta-token/callback.php /var/www/html/insta-token/healt
 
 https://insta-api.kanana-tech.jp/insta-token/callback.php  
 
-ページ下部に **`callback v2.2.0`** と表示されていれば最新版です。  
-**v2.2.0 が無い場合は古いファイルのまま**なので、D をやり直してください。
+ページ下部に **`callback v2.3.0`** と表示されていれば最新版です。  
+**v2.3.0 が無い場合は古いファイルのまま**なので、D をやり直してください。
 
 ---
 
@@ -153,9 +166,10 @@ https://www.instagram.com/oauth/authorize?client_id=1470160134857234&redirect_ur
 
 | 症状 | 原因 | 対処 |
 |------|------|------|
-| method type: **get** | 古い callback（GET で交換） | D: v2.2.0 をデプロイ |
-| Error validating application | Facebook 側フォールバック（旧コード） | 同上。v2.2.0 は Instagram POST のみ |
-| すでにリンクされています | 過去の連携が残存 | A + B-1 |
+| method type: **get** | 古い callback（GET のみ）または Meta 側ブロック | D: v2.3.0 をデプロイ。GET/POST 両方失敗なら B-5 |
+| method type: **post** | **Meta 側の権限・検証不足**（コードではない） | B-4 Instagram app secret / B-1 テスター / B-5 Access Verification |
+| Error validating application | Facebook 側フォールバック（旧コード） | D: v2.3.0（Instagram GET→POST 両方試行） |
+| すでにリンクされています | 過去の連携が残存 | **共有を続ける**で OK。完全リセットなら A + B-1 |
 | redirect_uri mismatch | Meta の URI 不一致 | B-2 |
 | 500 エラー | php-curl 未導入 | E |
 

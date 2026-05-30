@@ -41,7 +41,7 @@ const INSTAGRAM_APP_SECRET   = '6696b8c1d3e8c4964094aebbac4a81fd';
 const INSTAGRAM_REDIRECT_URI = 'https://insta-api.kanana-tech.jp/insta-token/callback.php';
 const INSTAGRAM_OAUTH_SCOPE  = 'instagram_business_basic';
 const GRAPH_API_VERSION      = 'v20.0';
-const CALLBACK_VERSION       = '2.2.0';
+const CALLBACK_VERSION       = '2.3.0';
 
 function cfg(string $envKey, string $constant): string
 {
@@ -198,31 +198,106 @@ function normalizeShortTokenResponse(array $result): array
     return ['ok' => false, 'error' => '短期トークンの形式が想定外です。', 'data' => $data];
 }
 
+/** 長期トークン交換の試行結果を整形 */
+function formatLongLivedExchangeError(array $attempts): array
+{
+    $messages = [];
+    $traceId  = '';
+
+    foreach ($attempts as $attempt) {
+        $method = strtoupper((string) ($attempt['method'] ?? '?'));
+        $msg    = (string) ($attempt['error'] ?? '不明なエラー');
+        $messages[] = $method . ': ' . $msg;
+
+        if ($traceId === '' && !empty($attempt['data']['error']['fbtrace_id'])) {
+            $traceId = (string) $attempt['data']['error']['fbtrace_id'];
+        }
+    }
+
+    $summary = implode(' / ', $messages);
+    if ($traceId !== '') {
+        $summary .= ' (trace: ' . $traceId . ')';
+    }
+
+    return [
+        'ok'      => false,
+        'error'   => $summary,
+        'traceId' => $traceId,
+        'data'    => $attempts[count($attempts) - 1]['data'] ?? null,
+    ];
+}
+
+/** GET / POST 両方で method type エラーが出るか */
+function isMethodTypeBlockedError(array $attempts): bool
+{
+    foreach ($attempts as $attempt) {
+        $msg = strtolower((string) ($attempt['error'] ?? ''));
+        if (str_contains($msg, 'unsupported request') && str_contains($msg, 'method type')) {
+            return true;
+        }
+    }
+
+    return false;
+}
+
+function renderLongLivedTokenError(string $errorMessage, bool $methodBlocked): string
+{
+    $hint = '<p class="hint">callback v' . h(CALLBACK_VERSION) . '</p>';
+
+    if ($methodBlocked) {
+        $hint .= '
+          <div class="err" style="margin-top:14px">
+            <h2 style="font-size:18px;margin-bottom:8px">Meta 側の設定が原因です（コードではありません）</h2>
+            <p>短期トークンは取得できているため、OAuth 自体は成功しています。長期トークン交換だけ Meta が拒否している状態です。</p>
+            <ol>
+              <li><strong>Instagram App Secret</strong> を確認: Meta → Instagram → Business login settings の「Instagram app secret」（ベーシック設定の App Secret とは別の場合があります）</li>
+              <li><strong>開発モード</strong>の場合: ログインする Instagram を「Instagram テスター」に追加し、Instagram アプリで招待を承認</li>
+              <li><strong>本番（Live）モード</strong>の場合: Access Verification（アクセス確認）と App Review（instagram_business_basic）が完了しているか確認</li>
+              <li>Business login settings の Deauthorize / Data deletion URL が空欄でないか確認</li>
+              <li>「すでにリンクされています」→ <strong>共有を続ける</strong>で問題ありません（再認可の確認画面です）</li>
+            </ol>
+            <p>詳細: <code>INSTAGRAM-RESET.md</code> の B セクション</p>
+          </div>';
+    } else {
+        $hint .= '
+          <p class="hint">Secret 不一致の可能性があります。Business login settings の Instagram app secret と callback.php の値が一致しているか確認してください。</p>';
+    }
+
+    return $hint;
+}
+
 /**
- * 短期 → 60日長期（Instagram Login 専用・POST のみ）
- * graph.facebook.com への fb_exchange は Instagram 短期トークンと非互換のため呼ばない
+ * 短期 → 60日長期（Instagram Login 専用）
+ * 公式ドキュメントは GET。環境によって POST が必要な場合もあるため両方試行する。
  */
 function exchangeForLongLivedToken(string $appSecret, string $shortToken): array
 {
-    $result = curlRequest('POST', 'https://graph.instagram.com/access_token', [
-        'body' => http_build_query([
-            'grant_type'    => 'ig_exchange_token',
-            'client_secret' => $appSecret,
-            'access_token'  => $shortToken,
-        ]),
+    $params = [
+        'grant_type'    => 'ig_exchange_token',
+        'client_secret' => $appSecret,
+        'access_token'  => $shortToken,
+    ];
+    $attempts = [];
+
+    $get = curlRequest('GET', 'https://graph.instagram.com/access_token?' . http_build_query($params));
+    $attempts[] = ['method' => 'GET', 'error' => $get['error'] ?? null, 'data' => $get['data'] ?? null];
+    if ($get['ok'] && !empty($get['data']['access_token'])) {
+        return $get;
+    }
+
+    $post = curlRequest('POST', 'https://graph.instagram.com/access_token', [
+        'body'    => http_build_query($params),
         'headers' => ['Content-Type: application/x-www-form-urlencoded'],
     ]);
-
-    if ($result['ok'] && !empty($result['data']['access_token'])) {
-        return $result;
+    $attempts[] = ['method' => 'POST', 'error' => $post['error'] ?? null, 'data' => $post['data'] ?? null];
+    if ($post['ok'] && !empty($post['data']['access_token'])) {
+        return $post;
     }
 
-    $msg = (string) ($result['error'] ?? '長期トークン交換に失敗しました。');
-    if (isset($result['data']['error']['fbtrace_id'])) {
-        $msg .= ' (trace: ' . $result['data']['error']['fbtrace_id'] . ')';
-    }
+    $result = formatLongLivedExchangeError($attempts);
+    $result['methodBlocked'] = isMethodTypeBlockedError($attempts);
 
-    return ['ok' => false, 'error' => $msg, 'data' => $result['data'] ?? null];
+    return $result;
 }
 
 /** プロフィール取得（graph.facebook.com） */
@@ -409,10 +484,12 @@ if ($code !== '') {
     $long = exchangeForLongLivedToken($appSecret, $shortToken);
     $longData = is_array($long['data'] ?? null) ? $long['data'] : [];
     if (!$long['ok'] || ($longData['access_token'] ?? '') === '') {
+        $methodBlocked = !empty($long['methodBlocked']);
         renderPage(
             '長期トークンエラー',
-            '<div class="err"><h1>60日長期トークンへの交換に失敗しました</h1><p>' . h(errorMessage($long['error'] ?? null)) . '</p></div>
-             <a class="btn" href="' . h($authUrl) . '">再試行</a>',
+            '<div class="err"><h1>60日長期トークンへの交換に失敗しました</h1><p>' . h(errorMessage($long['error'] ?? null)) . '</p></div>'
+             . renderLongLivedTokenError(errorMessage($long['error'] ?? null), $methodBlocked)
+             . '<a class="btn" href="' . h($authUrl) . '">再試行</a>',
             true
         );
     }

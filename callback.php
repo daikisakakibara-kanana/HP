@@ -199,42 +199,64 @@ function normalizeShortTokenResponse(array $result): array
 
 /**
  * 短期 → 60日長期
- * 1) graph.instagram.com + ig_exchange_token（Instagram Login 公式）
- * 2) graph.facebook.com + fb_exchange_token + client_id（フォールバック）
+ * Meta API 仕様変更: access_token 交換は POST 必須（GET は Unsupported request）
  */
 function exchangeForLongLivedToken(string $appId, string $appSecret, string $shortToken): array
 {
-    $igResult = curlRequest('GET', 'https://graph.instagram.com/access_token?' . http_build_query([
+    $body = http_build_query([
+        'grant_type'    => 'ig_exchange_token',
+        'client_secret' => $appSecret,
+        'access_token'  => $shortToken,
+        'client_id'     => $appId,
+    ]);
+
+    $igPost = curlRequest('POST', 'https://graph.instagram.com/access_token', [
+        'body'    => $body,
+        'headers' => ['Content-Type: application/x-www-form-urlencoded'],
+    ]);
+
+    if ($igPost['ok'] && !empty($igPost['data']['access_token'])) {
+        $igPost['exchange_via'] = 'graph.instagram.com (POST)';
+        return $igPost;
+    }
+
+    $igError = (string) ($igPost['error'] ?? 'graph.instagram.com POST での交換に失敗');
+
+    // レガシー GET（環境によってのみ有効）
+    $igGet = curlRequest('GET', 'https://graph.instagram.com/access_token?' . http_build_query([
         'grant_type'    => 'ig_exchange_token',
         'client_secret' => $appSecret,
         'access_token'  => $shortToken,
     ]));
 
-    if ($igResult['ok'] && !empty($igResult['data']['access_token'])) {
-        $igResult['exchange_via'] = 'graph.instagram.com';
-        return $igResult;
+    if ($igGet['ok'] && !empty($igGet['data']['access_token'])) {
+        $igGet['exchange_via'] = 'graph.instagram.com (GET)';
+        return $igGet;
     }
 
-    $igError = (string) ($igResult['error'] ?? 'graph.instagram.com での交換に失敗');
+    $getError = (string) ($igGet['error'] ?? '');
 
-    $fbResult = curlRequest('GET', graphUrl('oauth/access_token', [
-        'grant_type'        => 'fb_exchange_token',
-        'client_id'         => $appId,
-        'client_secret'     => $appSecret,
-        'fb_exchange_token' => $shortToken,
-    ]));
+    $fbPost = curlRequest('POST', graphUrl('oauth/access_token'), [
+        'body' => http_build_query([
+            'grant_type'        => 'fb_exchange_token',
+            'client_id'         => $appId,
+            'client_secret'     => $appSecret,
+            'fb_exchange_token' => $shortToken,
+        ]),
+        'headers' => ['Content-Type: application/x-www-form-urlencoded'],
+    ]);
 
-    if ($fbResult['ok'] && !empty($fbResult['data']['access_token'])) {
-        $fbResult['exchange_via'] = 'graph.facebook.com';
-        return $fbResult;
+    if ($fbPost['ok'] && !empty($fbPost['data']['access_token'])) {
+        $fbPost['exchange_via'] = 'graph.facebook.com (POST)';
+        return $fbPost;
     }
 
-    $fbError = (string) ($fbResult['error'] ?? 'graph.facebook.com での交換に失敗');
+    $fbError = (string) ($fbPost['error'] ?? 'graph.facebook.com での交換に失敗');
 
     return [
         'ok'    => false,
-        'error' => $igError . ' / ' . $fbError,
-        'data'  => $fbResult['data'] ?? $igResult['data'] ?? null,
+        'error' => $igError . ($getError !== '' ? ' / GET: ' . $getError : '') . ' / ' . $fbError,
+        'data'  => $fbPost['data'] ?? $igPost['data'] ?? null,
     ];
 }
 

@@ -42,7 +42,7 @@ function graphUrl(string $path, array $query = []): string
     return $base . '?' . http_build_query($query);
 }
 
-function curlGet(string $url): array
+function curlRequest(string $method, string $url, array $options = []): array
 {
     if (!function_exists('curl_init')) {
         return ['ok' => false, 'error' => 'cURL 拡張が有効化されていません。'];
@@ -53,7 +53,7 @@ function curlGet(string $url): array
         return ['ok' => false, 'error' => 'cURL の初期化に失敗しました。'];
     }
 
-    curl_setopt_array($ch, [
+    $curlOpts = [
         CURLOPT_URL            => $url,
         CURLOPT_RETURNTRANSFER => true,
         CURLOPT_TIMEOUT        => 28,
@@ -61,7 +61,20 @@ function curlGet(string $url): array
         CURLOPT_SSL_VERIFYPEER => true,
         CURLOPT_SSL_VERIFYHOST => 2,
         CURLOPT_USERAGENT      => 'KananaInstagramFeed/2.0',
-    ]);
+    ];
+
+    if (strtoupper($method) === 'POST') {
+        $curlOpts[CURLOPT_POST] = true;
+        if (isset($options['body'])) {
+            $curlOpts[CURLOPT_POSTFIELDS] = $options['body'];
+        }
+    }
+
+    if (!empty($options['headers'])) {
+        $curlOpts[CURLOPT_HTTPHEADER] = $options['headers'];
+    }
+
+    curl_setopt_array($ch, $curlOpts);
 
     $body = curl_exec($ch);
     $errno = curl_errno($ch);

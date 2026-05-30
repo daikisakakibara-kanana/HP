@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>油そば専門店 油丸 ABURAMARU｜小田原</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;800;900&family=Archivo:ital,wght@0,800;0,900;1,800;1,900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --y:#F9C300;       /* primary yellow */
+  --y-deep:#E8B400;
+  --ink:#161310;     /* near black */
+  --ink2:#000;
+  --paper:#fffdf6;
+  --shadow:rgba(0,0,0,.32);
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{-webkit-text-size-adjust:100%;}
+body{
+  font-family:'Noto Sans JP',sans-serif;
+  background:var(--y);
+  color:var(--ink);
+  line-height:1.5;
+  overflow-x:hidden;
+}
+img{display:block;max-width:100%;}
+.wrap{max-width:1040px;margin:0 auto;padding:0 18px;}
+.en{font-family:'Archivo',sans-serif;}
+
+/* ---- shared decoration helpers ---- */
+.tilt{transform:rotate(-2.2deg);}
+.tilt-r{transform:rotate(1.6deg);}
+.hardshadow{box-shadow:7px 8px 0 var(--shadow);}
+.blackbox{background:var(--ink);color:#fff;}
+.ybox{background:var(--y);color:var(--ink);}
+
+/* section heading tab (black box, left aligned) */
+.sec-head{
+  display:inline-block;background:var(--ink);color:#fff;
+  padding:14px 26px 16px;transform:rotate(-2.2deg);
+  box-shadow:7px 8px 0 var(--shadow);position:relative;
+}
+.sec-head .big{font-family:'Archivo',sans-serif;font-weight:900;font-style:italic;
+  font-size:clamp(34px,6vw,58px);line-height:.9;letter-spacing:-.01em;color:var(--y);display:block;}
+.sec-head .sub{font-weight:900;font-size:clamp(15px,2.4vw,20px);letter-spacing:.04em;margin-top:6px;display:block;}
+.sec-head.compact .big{font-size:clamp(26px,4.6vw,46px);}
+.sec-head.compact .sub{font-size:clamp(11px,1.8vw,16px);}
+
+/* ============ HEADER ============ */
+header{position:relative;}
+.topbar{position:relative;z-index:5;display:flex;align-items:flex-start;justify-content:space-between;gap:16px;padding:16px 18px 0;max-width:1040px;margin:0 auto;}
+.logo{width:clamp(88px,11vw,112px);flex:none;background:transparent;border:none;box-shadow:6px 7px 0 var(--shadow);border-radius:50%;overflow:hidden;line-height:0;}
+.logo img{width:100%;height:auto;display:block;}
+.nav{display:flex;gap:0;flex-wrap:wrap;}
+.nav a{
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  background:#fff;border:2px solid var(--ink);border-left-width:1px;border-right-width:1px;
+  padding:9px 14px;min-width:78px;text-decoration:none;color:var(--ink);
+  box-shadow:3px 4px 0 var(--shadow);
+}
+.nav a .jp{font-weight:900;font-size:15px;white-space:nowrap;}
+.nav a .en{font-size:9px;font-weight:800;letter-spacing:.08em;color:#888;margin-top:2px;}
+.nav a:hover{background:var(--y);}
+
+/* ============ HERO ============ */
+.hero{position:relative;margin-top:-58px;}
+.hero-photo{position:relative;width:100%;height:clamp(460px,58vw,620px);overflow:hidden;background:#000;}
+.hero-photo img{width:100%;height:100%;object-fit:cover;object-position:center 38%;}
+.hero-photo::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.25),transparent 55%);}
+
+.hero-inner{position:absolute;inset:0;max-width:1040px;margin:0 auto;padding:0 18px;}
+.hero-yellow{
+  position:absolute;left:8px;top:90px;background:var(--y);
+  transform:rotate(-2.4deg);box-shadow:8px 9px 0 var(--shadow);
+  padding:14px 30px 18px;
+}
+.hero-yellow h1{font-weight:900;font-size:clamp(34px,7.2vw,72px);line-height:1.02;letter-spacing:-.02em;color:var(--ink);text-shadow:2px 2px 0 rgba(255,255,255,.25);}
+
+.hero-black{
+  position:absolute;left:8px;bottom:26px;background:var(--ink);color:#fff;
+  transform:rotate(-1.6deg);box-shadow:8px 9px 0 var(--shadow);
+  padding:18px 26px 20px;max-width:560px;
+}
+.hero-black .lead{font-weight:900;font-size:clamp(20px,3.4vw,32px);line-height:1.25;}
+.hero-black .lead .hl{color:var(--y);}
+.hero-black p{font-weight:500;font-size:clamp(12px,1.7vw,15.5px);line-height:1.7;margin-top:12px;color:#e9e6df;}
+
+.badge300{
+  position:absolute;right:6px;bottom:60px;background:var(--ink);color:#fff;
+  transform:rotate(-3deg);box-shadow:7px 8px 0 rgba(0,0,0,.4);
+  padding:14px 22px 16px;text-align:center;border:2px solid #000;
+}
+.badge300 .badge-main{font-weight:900;font-size:clamp(16px,2.4vw,22px);letter-spacing:.04em;line-height:1.2;text-align:center;}
+.badge300 .badge-main .num{font-family:'Archivo',sans-serif;font-style:italic;font-weight:900;font-size:clamp(44px,8.5vw,76px);line-height:.82;color:#fff;}
+.badge300 .badge-main .num small{font-size:.45em;}
+.badge300 .badge-main .free{font-size:clamp(30px,6vw,56px);line-height:1;color:var(--y);letter-spacing:-.01em;display:block;margin-top:2px;}
+
+@media(max-width:760px){
+  .hero-photo{height:540px;}
+  .hero-yellow{top:64px;padding:10px 18px 12px;}
+  .hero-black{max-width:74%;bottom:18px;padding:12px 16px 14px;}
+  .badge300{right:4px;bottom:auto;top:120px;padding:8px 12px 10px;}
+}
+
+/* ============ FEATURES (3大こだわり) ============ */
+section{position:relative;}
+.features{padding:50px 0 30px;}
+.feat-grid{display:grid;grid-template-columns:minmax(180px,232px) 1fr;gap:26px;align-items:start;}
+.feat-title{position:relative;}
+.feat-title .box{display:inline-block;background:var(--ink);color:#fff;transform:rotate(-2.4deg);box-shadow:7px 8px 0 var(--shadow);padding:18px 24px 22px;}
+.feat-title .box .s{font-weight:900;font-size:clamp(18px,2.4vw,24px);}
+.feat-title .box .big{font-weight:900;font-size:clamp(54px,8vw,86px);line-height:.82;color:var(--y);display:block;margin:2px 0;}
+.feat-title .box .en{font-family:'Archivo',sans-serif;font-style:italic;font-weight:900;font-size:14px;color:#bbb;letter-spacing:.06em;}
+.feat-title .splat{position:absolute;left:-30px;top:-26px;width:130px;opacity:.92;z-index:-1;pointer-events:none;}
+.feat-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+.fcard{background:var(--paper);border:3px solid var(--ink);box-shadow:6px 7px 0 var(--shadow);padding:12px;}
+.fcard:nth-child(2){transform:rotate(-1.2deg);}
+.fcard:nth-child(3){transform:rotate(.8deg);}
+.fcard .ttl{display:flex;gap:10px;align-items:flex-start;min-height:60px;}
+.fcard .no{font-family:'Archivo',sans-serif;font-style:italic;font-weight:900;font-size:28px;background:var(--y);color:var(--ink);padding:1px 9px;line-height:1.15;flex:none;border:2px solid var(--ink);}
+.fcard .ttl h3{font-weight:900;font-size:16px;line-height:1.28;}
+.fcard .ph{height:118px;margin:10px 0;overflow:hidden;border:2px solid var(--ink);}
+.fcard .ph img{width:100%;height:100%;object-fit:cover;}
+.fcard p{font-weight:500;font-size:12.5px;line-height:1.6;}
+
+/* ============ MENU ============ */
+.band{padding:8px 0 42px;}
+.band-grid{display:grid;grid-template-columns:minmax(170px,212px) 1fr;gap:24px;align-items:center;}
+.menu-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+.mcard{background:var(--paper);border:3px solid var(--ink);box-shadow:6px 7px 0 var(--shadow);overflow:hidden;}
+.mcard:nth-child(2){transform:rotate(-1.4deg);}
+.mcard:nth-child(3){transform:rotate(1deg);}
+.mcard .ph{height:142px;overflow:hidden;border-bottom:3px solid var(--ink);}
+.mcard .ph img{width:100%;height:100%;object-fit:cover;}
+.mcard .body{padding:12px 14px 16px;}
+.mcard .body .row{display:flex;justify-content:space-between;align-items:baseline;gap:8px;}
+.mcard .body h3{font-weight:900;font-size:clamp(21px,2.8vw,28px);letter-spacing:.04em;}
+.mcard .body .price{font-family:'Archivo',sans-serif;font-style:italic;font-weight:900;font-size:20px;color:var(--ink);background:var(--y);padding:1px 8px;white-space:nowrap;}
+.mcard .body p{font-weight:600;font-size:12.5px;line-height:1.55;margin-top:7px;color:#444;}
+
+/* ============ INSTAGRAM ============ */
+.insta-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+.icard{border:4px solid var(--ink);box-shadow:6px 6px 0 #FBBF24;overflow:hidden;aspect-ratio:1.9/1;background:#000;position:relative;transition:transform .12s ease,box-shadow .12s ease;}
+.icard:nth-child(1){transform:rotate(-1.1deg);}
+.icard:nth-child(2){transform:rotate(-1.3deg);}
+.icard:nth-child(3){transform:rotate(.9deg);}
+.icard-link{display:block;width:100%;height:100%;color:inherit;text-decoration:none;border:none;background:transparent;padding:0;cursor:pointer;}
+.icard:hover,.icard:focus-within{transform:rotate(0deg) translate(4px,4px);box-shadow:2px 2px 0 #FBBF24;}
+.icard:nth-child(1):hover,.icard:nth-child(1):focus-within{transform:translate(4px,4px);}
+.icard:nth-child(2):hover,.icard:nth-child(2):focus-within{transform:translate(4px,4px);}
+.icard:nth-child(3):hover,.icard:nth-child(3):focus-within{transform:translate(4px,4px);}
+.icard img{width:100%;height:100%;object-fit:cover;display:block;}
+.icard-cap{position:absolute;left:0;right:0;bottom:0;background:rgba(0,0,0,.78);color:#fff;font-weight:700;font-size:12px;line-height:1.45;padding:8px 10px;transform:translateY(100%);transition:transform .25s ease;}
+.icard:hover .icard-cap,.icard-link:focus-visible .icard-cap{transform:translateY(0);}
+.icard.skeleton{background:#d9d9d9;border:4px solid var(--ink);box-shadow:6px 6px 0 #FBBF24;animation:instaPulse 1.2s ease-in-out infinite;pointer-events:none;}
+.icard.skeleton::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,.45),transparent);animation:instaShimmer 1.4s infinite;}
+@keyframes instaPulse{0%,100%{opacity:1}50%{opacity:.72}}
+@keyframes instaShimmer{0%{transform:translateX(-100%)}100%{transform:translateX(100%)}}
+.insta-more{display:flex;justify-content:flex-end;margin-top:20px;}
+.insta-more a{display:inline-flex;align-items:center;gap:12px;background:#fff;color:var(--ink);font-weight:900;font-size:clamp(15px,2vw,19px);padding:12px 22px;transform:rotate(-1.6deg);box-shadow:6px 7px 0 var(--shadow);text-decoration:none;border:3px solid var(--ink);}
+.insta-more a:hover{background:var(--y);}
+.insta-more svg{width:28px;height:28px;flex:none;}
+
+/* ============ INFORMATION + ACCESS ============ */
+.info{padding:10px 0 18px;}
+.info-grid{display:grid;grid-template-columns:minmax(160px,200px) 1fr;gap:24px;align-items:start;}
+.info-cols{display:grid;grid-template-columns:1.05fr .95fr;gap:22px;align-items:start;}
+.spec{background:var(--paper);border:3px solid var(--ink);box-shadow:6px 7px 0 var(--shadow);}
+.spec table{width:100%;border-collapse:collapse;}
+.spec th,.spec td{border-bottom:2px solid var(--ink);padding:11px 12px;text-align:left;vertical-align:top;font-size:13px;}
+.spec tr:last-child th,.spec tr:last-child td{border-bottom:none;}
+.spec th{background:var(--ink);color:#fff;font-weight:900;width:74px;white-space:nowrap;}
+.spec td{font-weight:600;}
+.access-head{margin-bottom:14px;}
+.access-head h3{display:inline-block;background:var(--ink);color:var(--y);font-family:'Archivo',sans-serif;font-style:italic;font-weight:900;font-size:clamp(22px,3vw,30px);padding:6px 16px;transform:rotate(-1.6deg);box-shadow:5px 6px 0 var(--shadow);}
+.map{border:3px solid var(--ink);box-shadow:6px 7px 0 var(--shadow);overflow:hidden;background:#e8e8e8;}
+.map iframe{display:block;width:100%;height:clamp(220px,42vw,320px);border:0;}
+
+/* ============ CTA ============ */
+.cta{padding:30px 0 26px;}
+.cta-grid{display:grid;grid-template-columns:1fr;gap:20px;max-width:520px;margin:0 auto;}
+.cta a{display:flex;align-items:center;gap:14px;padding:18px 24px;text-decoration:none;border:3px solid var(--ink);box-shadow:7px 8px 0 var(--shadow);font-weight:900;}
+.cta a:hover{transform:translate(2px,2px);box-shadow:4px 5px 0 var(--shadow);}
+.cta .tel{background:var(--ink);color:#fff;}
+.cta .ic{font-family:'Archivo',sans-serif;font-style:italic;font-size:13px;letter-spacing:.06em;opacity:.7;display:block;}
+.cta .bignum{font-family:'Archivo',sans-serif;font-weight:900;font-size:clamp(22px,3.4vw,32px);line-height:1;}
+
+/* ============ FOOTER ============ */
+footer{background:var(--ink);color:#fff;padding:34px 0 26px;margin-top:14px;}
+.foot-grid{display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;}
+.foot-logo{width:88px;border-radius:50%;overflow:hidden;background:transparent;border:none;box-shadow:4px 5px 0 rgba(0,0,0,.35);}
+.foot-logo img{width:100%;height:auto;display:block;}
+.foot-grid .en{font-family:'Archivo',sans-serif;font-style:italic;font-weight:900;font-size:clamp(28px,5vw,52px);color:var(--y);line-height:.9;}
+.foot-grid .jp{font-weight:900;font-size:14px;letter-spacing:.16em;margin-top:6px;}
+.copy{text-align:center;font-size:11px;color:#888;margin-top:26px;letter-spacing:.04em;}
+
+@media(max-width:820px){
+  .feat-grid,.band-grid,.info-grid{grid-template-columns:1fr;gap:20px;}
+  .feat-title .box,.sec-head{transform:rotate(-2deg);}
+  .info-cols{grid-template-columns:1fr;}
+}
+@media(max-width:600px){
+  .feat-cards,.menu-cards,.insta-cards{grid-template-columns:1fr;}
+  .cta-grid{grid-template-columns:1fr;}
+  .nav a{min-width:0;padding:7px 9px;}
+  .nav a .jp{font-size:12.5px;}
+  .nav a .en{display:none;}
+  .fcard:nth-child(n),.mcard:nth-child(n),.icard:nth-child(n){transform:none;}
+}
+</style>
+</head>
+<body>
+<!-- ============ HEADER + HERO ============ -->
+<header>
+  <div class="topbar">
+    <a class="logo" href="#"><img src="assets/logo-emblem.png" alt="油そば専門店 油丸"></a>
+    <nav class="nav">
+      <a href="#menu"><span class="jp">メニュー</span><span class="en">MENU</span></a>
+      <a href="#about"><span class="jp">店内</span><span class="en">ABOUT SHOP</span></a>
+      <a href="#features"><span class="jp">こだわり</span><span class="en">FEATURES</span></a>
+      <a href="#insta"><span class="jp">インスタ</span><span class="en">INSTAGRAM</span></a>
+      <a href="#access"><span class="jp">アクセス</span><span class="en">ACCESS</span></a>
+    </nav>
+  </div>
+
+  <div class="hero" id="top">
+    <div class="hero-photo"><img src="https://images.unsplash.com/photo-1633352615955-f0c99e8b7e5a?fm=jpg&q=85&w=1800&auto=format&fit=crop" alt="油丸の油そば" referrerpolicy="no-referrer"></div>
+    <div class="hero-inner" data-comment-anchor="e23f0e77fd-div">
+      <div class="hero-yellow tilt">
+        <h1>並盛も、<br>大盛300gも、<br>同一価格。</h1>
+      </div>
+      <div class="hero-black">
+        <div class="lead">小田原で一番ジャンキーな、<br><span class="hl">極上の塊に喰らいつけ。</span></div>
+        <p>100%国産小麦を使用した特製極太麺×芳醇な秘伝タレ。<br>最後の一滴まで中毒者続出の油そば専門店、寿町に堂々降臨。</p>
+      </div>
+      <div class="badge300">
+        <div class="badge-main">大盛<span class="num">300<small>g</small></span>まで<br><span class="free">無料！！</span></div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ============ FEATURES ============ -->
+<section class="features" id="features">
+  <div class="wrap">
+    <div class="feat-grid">
+      <div class="feat-title">
+        <img class="splat" src="assets/deco/ink_splat.png" alt="">
+        <div class="box">
+          <span class="s">油丸、</span>
+          <span class="big">3大</span>
+          <span class="s">こだわり</span><br>
+          <span class="en">OUR COMMITMENT</span>
+        </div>
+      </div>
+      <div class="feat-cards">
+        <div class="fcard">
+          <div class="ttl"><span class="no">01</span><h3>もちもち極太の<br>国産小麦麺</h3></div>
+          <div class="ph"><img src="assets/koda01_noodle.png" alt="国産小麦の極太麺"></div>
+          <p>毎日打ちたて。100%国産小麦の自家製極太麺は、噛むほどに小麦の甘みが広がる油そばの主役です。</p>
+        </div>
+        <div class="fcard">
+          <div class="ttl"><span class="no">02</span><h3>中毒性のある<br>秘伝の特製タレ</h3></div>
+          <div class="ph"><img src="assets/koda02_cond.png" alt="特製タレと薬味"></div>
+          <p>醤油ダレに香味油と魚介の旨味を重ねた秘伝の配合。一度食べたら忘れられない、ガツンと濃厚な味わい。</p>
+        </div>
+        <div class="fcard">
+          <div class="ttl"><span class="no">03</span><h3>〆まで旨い<br>追い飯＆スープ</h3></div>
+          <div class="ph"><img src="assets/koda03_soup.png" alt="〆のスープと追い飯"></div>
+          <p>食べ終わりにはアツアツのスープと追い飯を。残ったタレと絡めて、最後の一滴まで余すことなく堪能。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MENU ============ -->
+<section class="band" id="menu">
+  <div class="wrap">
+    <div class="band-grid">
+      <div class="sec-head compact"><span class="big">MENU</span><span class="sub">お品書き</span></div>
+      <div class="menu-cards">
+        <div class="mcard">
+          <div class="ph"><img src="assets/menu_aburamaru.png" alt="油丸"></div>
+          <div class="body">
+            <div class="row"><h3>油丸</h3><span class="price">¥850</span></div>
+            <p>当店一番人気の基本の油そば。極太麺と秘伝タレ、卵黄を豪快に混ぜて召し上がれ。</p>
+          </div>
+        </div>
+        <div class="mcard">
+          <div class="ph"><img src="assets/menu_karamaru.png" alt="辛丸"></div>
+          <div class="body">
+            <div class="row"><h3>辛丸</h3><span class="price">¥950</span></div>
+            <p>特製辛味噌と唐辛子を効かせた旨辛の一杯。汗だくになりながら箸が止まらない中毒系。</p>
+          </div>
+        </div>
+        <div class="mcard">
+          <div class="ph"><img src="assets/menu_jiromaru.png" alt="二郎丸"></div>
+          <div class="body">
+            <div class="row"><h3>二郎丸</h3><span class="price">¥1050</span></div>
+            <p>ニンニク・背脂・もやしを山盛りに。ガッツリ系を求める猛者へ捧げる規格外の塊。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ INSTAGRAM ============ -->
+<section class="band" id="insta">
+  <div class="wrap">
+    <div class="band-grid">
+      <div class="sec-head compact"><span class="big">INSTA</span><span class="sub">インスタグラム</span></div>
+      <div>
+        <div class="insta-cards" id="insta-feed" aria-live="polite" aria-busy="true"></div>
+        <div class="insta-more">
+          <a id="insta-follow-link" href="https://www.instagram.com/aburamaru_odawara/" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.6" cy="6.4" r="1.3" fill="currentColor" stroke="none"/></svg>
+            <span id="insta-follow-label">@aburamaru_odawara をフォロー</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ INFORMATION + ACCESS ============ -->
+<section class="info" id="access">
+  <div class="wrap">
+    <div class="info-grid">
+      <div class="sec-head"><span class="big">INFO</span><span class="sub">店舗情報</span></div>
+      <div class="info-cols">
+        <div class="spec">
+          <table>
+            <tr><th>店名</th><td>油そば専門店 油丸（あぶらまる）</td></tr>
+            <tr><th>住所</th><td>〒250-0011<br>神奈川県小田原市寿町5-13-22</td></tr>
+            <tr><th>電話</th><td>0465-20-3465</td></tr>
+            <tr><th>営業</th><td>11:00 - 15:00 / 18:00 - 22:00<br>（麺がなくなり次第終了）</td></tr>
+            <tr><th>定休</th><td>水曜日</td></tr>
+            <tr><th>席数</th><td>カウンター10席 / テーブル12席</td></tr>
+          </table>
+        </div>
+        <div>
+          <div class="access-head"><h3>ACCESS</h3></div>
+          <div class="map">
+            <iframe
+              src="https://www.google.com/maps?q=%E7%A5%9E%E5%A5%88%E5%B7%9D%E7%9C%8C%E5%B0%8F%E7%94%B0%E5%8E%9F%E5%B8%82%E5%AF%BF%E7%94%BA5-13-22&amp;hl=ja&amp;z=16&amp;output=embed"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              title="油丸 アクセスマップ（Google Maps）"
+            ></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CTA ============ -->
+<section class="cta" id="contact">
+  <div class="wrap">
+    <div class="cta-grid">
+      <a class="tel" href="tel:0465203465">
+        <span>📞</span>
+        <span><span class="ic">TEL</span><span class="bignum">0465-20-3465</span></span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-logo"><img src="assets/logo-emblem.png" alt="油丸"></div>
+      <div>
+        <div class="en">ABURAMARU</div>
+        <div class="jp">油そば専門店 油丸 ｜ 小田原・寿町</div>
+      </div>
+    </div>
+    <div class="copy">© ABURAMARU. All Rights Reserved.</div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  'use strict';
+
+  var FEED_URL = './instagram-feed.php';
+  var FALLBACKS = [
+    { media_url: 'img/insta-fallback-1.jpg', permalink: 'https://www.instagram.com/aburamaru_odawara/', caption: '' },
+    { media_url: 'img/insta-fallback-2.jpg', permalink: 'https://www.instagram.com/aburamaru_odawara/', caption: '' },
+    { media_url: 'img/insta-fallback-3.jpg', permalink: 'https://www.instagram.com/aburamaru_odawara/', caption: '' }
+  ];
+  var CARD_TILTS = ['-1.1deg', '-1.3deg', '0.9deg'];
+
+  var feedEl = document.getElementById('insta-feed');
+  var followEl = document.getElementById('insta-follow-link');
+  var followLabelEl = document.getElementById('insta-follow-label');
+  if (!feedEl) return;
+
+  function truncateCaption(text) {
+    if (!text) return '';
+    var normalized = String(text).replace(/\s+/g, ' ').trim();
+    if (normalized.length <= 30) return normalized;
+    return normalized.slice(0, 30) + '...';
+  }
+
+  function renderSkeleton() {
+    feedEl.setAttribute('aria-busy', 'true');
+    feedEl.innerHTML = '';
+    for (var i = 0; i < 3; i += 1) {
+      var sk = document.createElement('div');
+      sk.className = 'icard skeleton';
+      sk.setAttribute('aria-hidden', 'true');
+      feedEl.appendChild(sk);
+    }
+  }
+
+  function renderCards(posts, username) {
+    feedEl.innerHTML = '';
+    posts.slice(0, 3).forEach(function (post, index) {
+      var card = document.createElement('article');
+      card.className = 'icard';
+      card.style.transform = 'rotate(' + (CARD_TILTS[index] || '0deg') + ')';
+
+      var link = document.createElement('a');
+      link.className = 'icard-link';
+      link.href = post.permalink || 'https://www.instagram.com/aburamaru_odawara/';
+      link.target = '_blank';
+      link.rel = 'noopener noreferrer';
+      link.setAttribute('aria-label', 'Instagram投稿を見る');
+
+      var img = document.createElement('img');
+      img.src = post.media_url;
+      img.alt = truncateCaption(post.caption) || 'Instagram投稿';
+      img.loading = index === 0 ? 'eager' : 'lazy';
+      img.decoding = 'async';
+      img.onerror = function () {
+        var fb = FALLBACKS[index];
+        if (fb && img.src.indexOf(fb.media_url) === -1) {
+          img.src = fb.media_url;
+        }
+      };
+
+      var cap = document.createElement('p');
+      cap.className = 'icard-cap';
+      cap.textContent = truncateCaption(post.caption);
+
+      link.appendChild(img);
+      if (post.caption) link.appendChild(cap);
+      card.appendChild(link);
+      feedEl.appendChild(card);
+    });
+
+    feedEl.setAttribute('aria-busy', 'false');
+
+    if (followEl && username) {
+      followEl.href = 'https://www.instagram.com/' + encodeURIComponent(username) + '/';
+      if (followLabelEl) {
+        followLabelEl.textContent = '@' + username + ' をフォロー';
+      }
+    }
+  }
+
+  function renderFallback() {
+    renderCards(FALLBACKS, 'aburamaru_odawara');
+  }
+
+  renderSkeleton();
+
+  fetch(FEED_URL, {
+    method: 'GET',
+    headers: { Accept: 'application/json' },
+    cache: 'no-store'
+  })
+    .then(function (res) {
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      return res.json();
+    })
+    .then(function (data) {
+      if (!data || !data.success || !Array.isArray(data.posts) || data.posts.length === 0) {
+        throw new Error(data && data.error ? data.error : '投稿データがありません');
+      }
+      renderCards(data.posts, data.username || 'aburamaru_odawara');
+    })
+    .catch(function () {
+      renderFallback();
+    });
+})();
+</script>
+
+</body>
+</html>

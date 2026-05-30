@@ -41,6 +41,7 @@ const INSTAGRAM_APP_SECRET   = '6696b8c1d3e8c4964094aebbac4a81fd';
 const INSTAGRAM_REDIRECT_URI = 'https://insta-api.kanana-tech.jp/insta-token/callback.php';
 const INSTAGRAM_OAUTH_SCOPE  = 'instagram_business_basic';
 const GRAPH_API_VERSION      = 'v20.0';
+const CALLBACK_VERSION       = '2.2.0';
 
 function cfg(string $envKey, string $constant): string
 {
@@ -198,66 +199,30 @@ function normalizeShortTokenResponse(array $result): array
 }
 
 /**
- * 短期 → 60日長期
- * Meta API 仕様変更: access_token 交換は POST 必須（GET は Unsupported request）
+ * 短期 → 60日長期（Instagram Login 専用・POST のみ）
+ * graph.facebook.com への fb_exchange は Instagram 短期トークンと非互換のため呼ばない
  */
-function exchangeForLongLivedToken(string $appId, string $appSecret, string $shortToken): array
+function exchangeForLongLivedToken(string $appSecret, string $shortToken): array
 {
-    $body = http_build_query([
-        'grant_type'    => 'ig_exchange_token',
-        'client_secret' => $appSecret,
-        'access_token'  => $shortToken,
-        'client_id'     => $appId,
-    ]);
-
-    $igPost = curlRequest('POST', 'https://graph.instagram.com/access_token', [
-        'body'    => $body,
-        'headers' => ['Content-Type: application/x-www-form-urlencoded'],
-    ]);
-
-    if ($igPost['ok'] && !empty($igPost['data']['access_token'])) {
-        $igPost['exchange_via'] = 'graph.instagram.com (POST)';
-        return $igPost;
-    }
-
-    $igError = (string) ($igPost['error'] ?? 'graph.instagram.com POST での交換に失敗');
-
-    // レガシー GET（環境によってのみ有効）
-    $igGet = curlRequest('GET', 'https://graph.instagram.com/access_token?' . http_build_query([
-        'grant_type'    => 'ig_exchange_token',
-        'client_secret' => $appSecret,
-        'access_token'  => $shortToken,
-    ]));
-
-    if ($igGet['ok'] && !empty($igGet['data']['access_token'])) {
-        $igGet['exchange_via'] = 'graph.instagram.com (GET)';
-        return $igGet;
-    }
-
-    $getError = (string) ($igGet['error'] ?? '');
-
-    $fbPost = curlRequest('POST', graphUrl('oauth/access_token'), [
+    $result = curlRequest('POST', 'https://graph.instagram.com/access_token', [
         'body' => http_build_query([
-            'grant_type'        => 'fb_exchange_token',
-            'client_id'         => $appId,
-            'client_secret'     => $appSecret,
-            'fb_exchange_token' => $shortToken,
+            'grant_type'    => 'ig_exchange_token',
+            'client_secret' => $appSecret,
+            'access_token'  => $shortToken,
         ]),
         'headers' => ['Content-Type: application/x-www-form-urlencoded'],
     ]);
 
-    if ($fbPost['ok'] && !empty($fbPost['data']['access_token'])) {
-        $fbPost['exchange_via'] = 'graph.facebook.com (POST)';
-        return $fbPost;
+    if ($result['ok'] && !empty($result['data']['access_token'])) {
+        return $result;
     }
 
-    $fbError = (string) ($fbPost['error'] ?? 'graph.facebook.com での交換に失敗');
+    $msg = (string) ($result['error'] ?? '長期トークン交換に失敗しました。');
+    if (isset($result['data']['error']['fbtrace_id'])) {
+        $msg .= ' (trace: ' . $result['data']['error']['fbtrace_id'] . ')';
+    }
 
-    return [
-        'ok'    => false,
-        'error' => $igError . ($getError !== '' ? ' / GET: ' . $getError : '') . ' / ' . $fbError,
-        'data'  => $fbPost['data'] ?? $igPost['data'] ?? null,
-    ];
+    return ['ok' => false, 'error' => $msg, 'data' => $result['data'] ?? null];
 }
 
 /** プロフィール取得（graph.facebook.com） */
@@ -441,7 +406,7 @@ if ($code !== '') {
 
     $shortToken = (string) $shortData['access_token'];
 
-    $long = exchangeForLongLivedToken($appId, $appSecret, $shortToken);
+    $long = exchangeForLongLivedToken($appSecret, $shortToken);
     $longData = is_array($long['data'] ?? null) ? $long['data'] : [];
     if (!$long['ok'] || ($longData['access_token'] ?? '') === '') {
         renderPage(
@@ -522,7 +487,8 @@ renderPage(
        <a class="btn sec" href="' . h($authUrl) . '">自分でログインしてテスト</a>
      </div>
      <p class="hint">Redirect URI（Meta に登録）: <code>' . h($redirectUri) . '</code></p>
-     <p class="hint">App ID: <code>' . h($appId) . '</code></p>'
+     <p class="hint">App ID: <code>' . h($appId) . '</code> ／ callback v' . h(CALLBACK_VERSION) . '</p>
+     <p class="hint">一からやり直す: <code>INSTAGRAM-RESET.md</code> の手順に従って連携を解除してから再テストしてください。</p>'
 );
 } catch (Throwable $e) {
     renderPage(

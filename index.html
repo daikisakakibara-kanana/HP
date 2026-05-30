@@ -1,365 +1,381 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="油そば専門店 油丸｜小田原寿町。並盛・大盛300g同一価格。">
-  <title>油そば専門店 油丸 | 小田原・寿町</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@700;900&family=Syne:wght@700;800&family=Yuji+Syuku&display=swap" rel="stylesheet">
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            brand: '#FFD700',
-            dark: '#000000',
-          },
-          fontFamily: {
-            syne: ['Syne', 'sans-serif'],
-            brush: ['"Yuji Syuku"', 'serif'],
-            sans: ['"Noto Sans JP"', '"Hiragino Kaku Gothic ProN"', 'Meiryo', 'sans-serif'],
-          },
-          boxShadow: {
-            brutal: '8px 8px 0 0 #000',
-            'brutal-sm': '4px 4px 0 0 #000',
-          },
-        },
-      },
-    };
-  </script>
-  <style>
-    html { scroll-behavior: smooth; }
-    body { padding-bottom: 5.75rem; }
-    h1, h2, h3 { line-break: strict; word-break: keep-all; overflow-wrap: anywhere; }
-    .neo { border: 4px solid #000; box-shadow: 8px 8px 0 #000; }
-    .neo-press { transition: transform 0.15s ease, box-shadow 0.15s ease; }
-    .neo-press:hover { transform: translate(2px, 2px); box-shadow: 4px 4px 0 #000; }
-    .neo-press:active { transform: translate(6px, 6px); box-shadow: none; }
-    .vertical-label {
-      writing-mode: vertical-rl;
-      text-orientation: mixed;
-      letter-spacing: 0.12em;
-    }
-    .jagged-box {
-      clip-path: polygon(0 8%, 4% 0, 96% 2%, 100% 12%, 98% 92%, 92% 100%, 6% 98%, 0 88%);
-    }
-    .burst {
-      border-radius: 50%;
-      transform: rotate(-8deg);
-    }
-    .text-stroke-yellow {
-      color: #fff;
-      -webkit-text-stroke: 2px #000;
-      paint-order: stroke fill;
-      text-shadow: 4px 4px 0 #FFD700, -2px -2px 0 #FFD700, 2px -2px 0 #FFD700, -2px 2px 0 #FFD700;
-    }
-    .hero-outline {
-      color: #000;
-      background: linear-gradient(transparent 55%, #FFD700 55%);
-      display: inline;
-      box-decoration-break: clone;
-      -webkit-box-decoration-break: clone;
-      padding: 0 0.15em;
-    }
-    .reveal-up {
-      opacity: 0;
-      transform: translateY(28px);
-      transition: opacity 0.6s ease, transform 0.6s ease;
-    }
-    .reveal-up.show { opacity: 1; transform: translateY(0); }
-    .ig-card .ig-cap { opacity: 0; transition: opacity 0.3s ease; }
-    .ig-card:hover .ig-cap { opacity: 1; }
-    .nav-btn span.en { font-size: 9px; letter-spacing: 0.08em; opacity: 0.75; }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>油そば専門店 油丸 ABURAMARU｜小田原</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;800;900&family=Archivo:ital,wght@0,800;0,900;1,800;1,900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --y:#F9C300;       /* primary yellow */
+  --y-deep:#E8B400;
+  --ink:#161310;     /* near black */
+  --ink2:#000;
+  --paper:#fffdf6;
+  --shadow:rgba(0,0,0,.32);
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{-webkit-text-size-adjust:100%;}
+body{
+  font-family:'Noto Sans JP',sans-serif;
+  background:var(--y);
+  color:var(--ink);
+  line-height:1.5;
+  overflow-x:hidden;
+}
+img{display:block;max-width:100%;}
+.wrap{max-width:1040px;margin:0 auto;padding:0 18px;}
+.en{font-family:'Archivo',sans-serif;}
+
+/* ---- shared decoration helpers ---- */
+.tilt{transform:rotate(-2.2deg);}
+.tilt-r{transform:rotate(1.6deg);}
+.hardshadow{box-shadow:7px 8px 0 var(--shadow);}
+.blackbox{background:var(--ink);color:#fff;}
+.ybox{background:var(--y);color:var(--ink);}
+
+/* section heading tab (black box, left aligned) */
+.sec-head{
+  display:inline-block;background:var(--ink);color:#fff;
+  padding:14px 26px 16px;transform:rotate(-2.2deg);
+  box-shadow:7px 8px 0 var(--shadow);position:relative;
+}
+.sec-head .big{font-family:'Archivo',sans-serif;font-weight:900;font-style:italic;
+  font-size:clamp(34px,6vw,58px);line-height:.9;letter-spacing:-.01em;color:var(--y);display:block;}
+.sec-head .sub{font-weight:900;font-size:clamp(15px,2.4vw,20px);letter-spacing:.04em;margin-top:6px;display:block;}
+
+/* ============ HEADER ============ */
+header{position:relative;}
+.topbar{position:relative;z-index:5;display:flex;align-items:flex-start;justify-content:space-between;gap:16px;padding:16px 18px 0;max-width:1040px;margin:0 auto;}
+.logo{width:clamp(150px,20vw,206px);flex:none;background:var(--ink);border:3px solid var(--ink);box-shadow:6px 7px 0 var(--shadow);}
+.logo img{width:100%;}
+.nav{display:flex;gap:0;flex-wrap:wrap;}
+.nav a{
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  background:#fff;border:2px solid var(--ink);border-left-width:1px;border-right-width:1px;
+  padding:9px 14px;min-width:78px;text-decoration:none;color:var(--ink);
+  box-shadow:3px 4px 0 var(--shadow);
+}
+.nav a .jp{font-weight:900;font-size:15px;white-space:nowrap;}
+.nav a .en{font-size:9px;font-weight:800;letter-spacing:.08em;color:#888;margin-top:2px;}
+.nav a:hover{background:var(--y);}
+
+/* ============ HERO ============ */
+.hero{position:relative;margin-top:-58px;}
+.hero-photo{position:relative;width:100%;height:clamp(460px,58vw,620px);overflow:hidden;background:#000;}
+.hero-photo img{width:100%;height:100%;object-fit:cover;object-position:center 38%;}
+.hero-photo::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.25),transparent 55%);}
+
+.hero-inner{position:absolute;inset:0;max-width:1040px;margin:0 auto;padding:0 18px;}
+.hero-yellow{
+  position:absolute;left:8px;top:90px;background:var(--y);
+  transform:rotate(-2.4deg);box-shadow:8px 9px 0 var(--shadow);
+  padding:14px 30px 18px;
+}
+.hero-yellow h1{font-weight:900;font-size:clamp(34px,7.2vw,72px);line-height:1.02;letter-spacing:-.02em;color:var(--ink);text-shadow:2px 2px 0 rgba(255,255,255,.25);}
+.hero-yellow h1 .g{font-family:'Archivo',sans-serif;font-style:italic;}
+
+.hero-black{
+  position:absolute;left:8px;bottom:26px;background:var(--ink);color:#fff;
+  transform:rotate(-1.6deg);box-shadow:8px 9px 0 var(--shadow);
+  padding:18px 26px 20px;max-width:560px;
+}
+.hero-black .lead{font-weight:900;font-size:clamp(20px,3.4vw,32px);line-height:1.25;}
+.hero-black .lead .hl{color:var(--y);}
+.hero-black p{font-weight:500;font-size:clamp(12px,1.7vw,15.5px);line-height:1.7;margin-top:12px;color:#e9e6df;}
+
+.badge300{
+  position:absolute;right:6px;bottom:60px;background:var(--ink);color:#fff;
+  transform:rotate(-3deg);box-shadow:7px 8px 0 rgba(0,0,0,.4);
+  padding:14px 22px 16px;text-align:center;border:2px solid #000;
+}
+.badge300 .l1{font-weight:900;font-size:clamp(20px,3vw,30px);letter-spacing:.06em;}
+.badge300 .num{font-family:'Archivo',sans-serif;font-style:italic;font-weight:900;font-size:clamp(58px,11vw,108px);line-height:.8;color:#fff;}
+.badge300 .num small{font-size:.42em;}
+.badge300 .free{font-weight:900;font-size:clamp(40px,8vw,80px);line-height:.85;color:var(--y);letter-spacing:-.01em;}
+.badge300 .free .made{font-size:.34em;color:#fff;vertical-align:bottom;}
+
+@media(max-width:760px){
+  .hero-photo{height:540px;}
+  .hero-yellow{top:64px;padding:10px 18px 12px;}
+  .hero-black{max-width:74%;bottom:18px;padding:12px 16px 14px;}
+  .badge300{right:4px;bottom:auto;top:120px;padding:8px 12px 10px;}
+}
+
+/* ============ FEATURES (3大こだわり) ============ */
+section{position:relative;}
+.features{padding:50px 0 30px;}
+.feat-grid{display:grid;grid-template-columns:minmax(180px,232px) 1fr;gap:26px;align-items:start;}
+.feat-title{position:relative;}
+.feat-title .box{display:inline-block;background:var(--ink);color:#fff;transform:rotate(-2.4deg);box-shadow:7px 8px 0 var(--shadow);padding:18px 24px 22px;}
+.feat-title .box .s{font-weight:900;font-size:clamp(18px,2.4vw,24px);}
+.feat-title .box .big{font-weight:900;font-size:clamp(54px,8vw,86px);line-height:.82;color:var(--y);display:block;margin:2px 0;}
+.feat-title .box .en{font-family:'Archivo',sans-serif;font-style:italic;font-weight:900;font-size:14px;color:#bbb;letter-spacing:.06em;}
+.feat-title .splat{position:absolute;left:-30px;top:-26px;width:130px;opacity:.92;z-index:-1;pointer-events:none;}
+.feat-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+.fcard{background:var(--paper);border:3px solid var(--ink);box-shadow:6px 7px 0 var(--shadow);padding:12px;}
+.fcard:nth-child(2){transform:rotate(-1.2deg);}
+.fcard:nth-child(3){transform:rotate(.8deg);}
+.fcard .ttl{display:flex;gap:10px;align-items:flex-start;min-height:60px;}
+.fcard .no{font-family:'Archivo',sans-serif;font-style:italic;font-weight:900;font-size:28px;background:var(--y);color:var(--ink);padding:1px 9px;line-height:1.15;flex:none;border:2px solid var(--ink);}
+.fcard .ttl h3{font-weight:900;font-size:16px;line-height:1.28;}
+.fcard .ph{height:118px;margin:10px 0;overflow:hidden;border:2px solid var(--ink);}
+.fcard .ph img{width:100%;height:100%;object-fit:cover;}
+.fcard p{font-weight:500;font-size:12.5px;line-height:1.6;}
+
+/* ============ MENU ============ */
+.band{padding:8px 0 42px;}
+.band-grid{display:grid;grid-template-columns:minmax(170px,212px) 1fr;gap:24px;align-items:center;}
+.menu-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+.mcard{background:var(--paper);border:3px solid var(--ink);box-shadow:6px 7px 0 var(--shadow);overflow:hidden;}
+.mcard:nth-child(2){transform:rotate(-1.4deg);}
+.mcard:nth-child(3){transform:rotate(1deg);}
+.mcard .ph{height:142px;overflow:hidden;border-bottom:3px solid var(--ink);}
+.mcard .ph img{width:100%;height:100%;object-fit:cover;}
+.mcard .body{padding:12px 14px 16px;}
+.mcard .body .row{display:flex;justify-content:space-between;align-items:baseline;gap:8px;}
+.mcard .body h3{font-weight:900;font-size:clamp(21px,2.8vw,28px);letter-spacing:.04em;}
+.mcard .body .price{font-family:'Archivo',sans-serif;font-style:italic;font-weight:900;font-size:20px;color:var(--ink);background:var(--y);padding:1px 8px;white-space:nowrap;}
+.mcard .body p{font-weight:600;font-size:12.5px;line-height:1.55;margin-top:7px;color:#444;}
+
+/* ============ INSTAGRAM ============ */
+.insta-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+.icard{border:3px solid var(--ink);box-shadow:6px 7px 0 var(--shadow);overflow:hidden;aspect-ratio:1.9/1;background:#000;}
+.icard:nth-child(2){transform:rotate(-1.3deg);}
+.icard:nth-child(3){transform:rotate(.9deg);}
+.icard img{width:100%;height:100%;object-fit:cover;}
+.insta-more{display:flex;justify-content:flex-end;margin-top:20px;}
+.insta-more a{display:inline-flex;align-items:center;gap:12px;background:#fff;color:var(--ink);font-weight:900;font-size:clamp(15px,2vw,19px);padding:12px 22px;transform:rotate(-1.6deg);box-shadow:6px 7px 0 var(--shadow);text-decoration:none;border:3px solid var(--ink);}
+.insta-more a:hover{background:var(--y);}
+.insta-more svg{width:28px;height:28px;flex:none;}
+
+/* ============ INFORMATION + ACCESS ============ */
+.info{padding:10px 0 18px;}
+.info-grid{display:grid;grid-template-columns:minmax(160px,200px) 1fr;gap:24px;align-items:start;}
+.info-cols{display:grid;grid-template-columns:1.05fr .95fr;gap:22px;align-items:start;}
+.spec{background:var(--paper);border:3px solid var(--ink);box-shadow:6px 7px 0 var(--shadow);}
+.spec table{width:100%;border-collapse:collapse;}
+.spec th,.spec td{border-bottom:2px solid var(--ink);padding:11px 12px;text-align:left;vertical-align:top;font-size:13px;}
+.spec tr:last-child th,.spec tr:last-child td{border-bottom:none;}
+.spec th{background:var(--ink);color:#fff;font-weight:900;width:74px;white-space:nowrap;}
+.spec td{font-weight:600;}
+.access-head{margin-bottom:14px;}
+.access-head h3{display:inline-block;background:var(--ink);color:var(--y);font-family:'Archivo',sans-serif;font-style:italic;font-weight:900;font-size:clamp(22px,3vw,30px);padding:6px 16px;transform:rotate(-1.6deg);box-shadow:5px 6px 0 var(--shadow);}
+.map{border:3px solid var(--ink);box-shadow:6px 7px 0 var(--shadow);overflow:hidden;}
+.map img{width:100%;height:100%;object-fit:cover;min-height:200px;}
+
+/* ============ CTA ============ */
+.cta{padding:30px 0 26px;}
+.cta-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+.cta a{display:flex;align-items:center;gap:14px;padding:18px 24px;text-decoration:none;border:3px solid var(--ink);box-shadow:7px 8px 0 var(--shadow);font-weight:900;}
+.cta a:hover{transform:translate(2px,2px);box-shadow:4px 5px 0 var(--shadow);}
+.cta .tel{background:var(--ink);color:#fff;}
+.cta .reserve{background:#fff;color:var(--ink);}
+.cta .ic{font-family:'Archivo',sans-serif;font-style:italic;font-size:13px;letter-spacing:.06em;opacity:.7;display:block;}
+.cta .bignum{font-family:'Archivo',sans-serif;font-weight:900;font-size:clamp(22px,3.4vw,32px);line-height:1;}
+.cta .reserve .lab{font-size:clamp(18px,2.6vw,24px);}
+
+/* ============ FOOTER ============ */
+footer{background:var(--ink);color:#fff;padding:34px 0 26px;margin-top:14px;}
+.foot-grid{display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;}
+.foot-logo{width:150px;background:#000;border:2px solid #333;}
+.foot-grid .en{font-family:'Archivo',sans-serif;font-style:italic;font-weight:900;font-size:clamp(28px,5vw,52px);color:var(--y);line-height:.9;}
+.foot-grid .jp{font-weight:900;font-size:14px;letter-spacing:.16em;margin-top:6px;}
+.copy{text-align:center;font-size:11px;color:#888;margin-top:26px;letter-spacing:.04em;}
+
+@media(max-width:820px){
+  .feat-grid,.band-grid,.info-grid{grid-template-columns:1fr;gap:20px;}
+  .feat-title .box,.sec-head{transform:rotate(-2deg);}
+  .info-cols{grid-template-columns:1fr;}
+}
+@media(max-width:600px){
+  .feat-cards,.menu-cards,.insta-cards{grid-template-columns:1fr;}
+  .cta-grid{grid-template-columns:1fr;}
+  .nav a{min-width:0;padding:7px 9px;}
+  .nav a .jp{font-size:12.5px;}
+  .nav a .en{display:none;}
+  .fcard:nth-child(n),.mcard:nth-child(n),.icard:nth-child(n){transform:none;}
+}
+</style>
 </head>
-<body class="bg-white font-sans text-dark antialiased">
-
-  <!-- Header: black bar -->
-  <header class="sticky top-0 z-50 border-b-4 border-black bg-black">
-    <div class="mx-auto flex max-w-[1400px] items-center justify-between gap-3 px-3 py-3 md:px-6">
-      <a href="#top" class="shrink-0 text-white">
-        <p class="font-brush text-lg leading-tight md:text-2xl">油そば専門店 油丸</p>
-        <p class="font-syne text-xs font-extrabold tracking-[0.35em] md:text-sm">ABURAMARU</p>
-      </a>
-      <nav class="hidden flex-wrap items-center justify-end gap-1.5 lg:flex">
-        <a href="#menu" class="neo neo-press rounded-sm bg-white px-2 py-2 text-center text-[10px] font-black leading-tight md:px-3 md:text-xs">メニュー<br><span class="en font-syne">MENU</span></a>
-        <a href="#interior" class="neo neo-press rounded-sm bg-white px-2 py-2 text-center text-[10px] font-black leading-tight md:px-3 md:text-xs">店内<br><span class="en font-syne">SHOP</span></a>
-        <a href="#kodawari" class="neo neo-press rounded-sm bg-white px-2 py-2 text-center text-[10px] font-black leading-tight md:px-3 md:text-xs">こだわり<br><span class="en font-syne">FEATURES</span></a>
-        <a href="#reserve" class="neo neo-press rounded-sm bg-white px-2 py-2 text-center text-[10px] font-black leading-tight md:px-3 md:text-xs">予約<br><span class="en font-syne">RESERVE</span></a>
-        <a href="#instagram" class="neo neo-press rounded-sm bg-white px-2 py-2 text-center text-[10px] font-black leading-tight md:px-3 md:text-xs">インスタ<br><span class="en font-syne">INSTA</span></a>
-        <a href="#access" class="neo neo-press rounded-sm bg-white px-2 py-2 text-center text-[10px] font-black leading-tight md:px-3 md:text-xs">アクセス<br><span class="en font-syne">ACCESS</span></a>
-      </nav>
-      <button id="menuBtn" type="button" class="neo neo-press rounded-sm bg-brand px-3 py-2 text-xs font-black lg:hidden" aria-expanded="false">MENU</button>
-    </div>
-    <div id="mobileNav" class="hidden border-t-4 border-brand bg-black px-4 py-3 lg:hidden">
-      <nav class="grid grid-cols-2 gap-2 text-xs font-black text-white">
-        <a href="#menu" class="rounded border-2 border-white px-3 py-2">メニュー</a>
-        <a href="#interior" class="rounded border-2 border-white px-3 py-2">店内</a>
-        <a href="#kodawari" class="rounded border-2 border-white px-3 py-2">こだわり</a>
-        <a href="#reserve" class="rounded border-2 border-white px-3 py-2">予約</a>
-        <a href="#instagram" class="rounded border-2 border-white px-3 py-2">インスタ</a>
-        <a href="#access" class="rounded border-2 border-white px-3 py-2">アクセス</a>
-      </nav>
-    </div>
-  </header>
-
-  <main id="top">
-    <!-- Hero: full-bleed photo -->
-    <section class="relative min-h-[88vh] overflow-hidden border-b-4 border-black md:min-h-[92vh]">
-      <img
-        id="hero-img"
-        src="https://images.pexels.com/photos/8846008/pexels-photo-8846008.jpeg?auto=compress&cs=tinysrgb&w=1600"
-        alt="特製油そば"
-        class="absolute inset-0 h-full w-full object-cover object-center"
-        loading="eager"
-        fetchpriority="high"
-        referrerpolicy="no-referrer"
-      >
-      <div class="absolute inset-0 bg-gradient-to-r from-black/75 via-black/45 to-black/25"></div>
-      <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/30"></div>
-
-      <div class="relative mx-auto flex min-h-[88vh] max-w-[1400px] flex-col justify-between px-4 py-8 md:min-h-[92vh] md:px-8 md:py-12">
-        <div class="max-w-3xl">
-          <div class="jagged-box neo inline-block max-w-md -rotate-2 bg-brand px-5 py-4 shadow-brutal md:px-7 md:py-5">
-            <p class="text-lg font-black leading-snug md:text-2xl">並盛も、大盛300gも、<br>同一価格。</p>
-          </div>
-          <h1 class="mt-6 text-[clamp(1.35rem,4.2vw,2.75rem)] font-black leading-[1.25] text-white">
-            <span class="hero-outline">小田原で一番ジャンキーな、</span><br>
-            <span class="hero-outline">極上の塊に喰らいつけ。</span>
-          </h1>
-        </div>
-
-        <div class="burst neo absolute right-4 top-28 flex h-28 w-28 flex-col items-center justify-center bg-white text-center font-black leading-tight md:right-12 md:top-24 md:h-36 md:w-36">
-          <span class="font-syne text-2xl md:text-3xl">300g</span>
-          <span class="text-[11px] md:text-xs">大盛まで</span>
-          <span class="text-sm text-red-600 md:text-base">無料!!</span>
-        </div>
-
-        <p class="max-w-xl text-sm font-bold leading-8 text-white/95 md:text-base">
-          100%国産小麦を使用した特製極太麺 × 芳醇な秘伝タレ。最後の一滴まで中毒者続出の油そば専門店、寿町に堂々降臨。
-        </p>
-      </div>
-    </section>
-
-    <!-- 3大こだわり -->
-    <section id="kodawari" class="scroll-mt-20 border-b-4 border-black bg-white py-10 md:py-14">
-      <div class="mx-auto flex max-w-[1400px] flex-col gap-6 px-4 md:flex-row md:px-6">
-        <div class="neo flex shrink-0 items-center justify-center bg-brand px-4 py-8 md:w-20 md:px-3 md:py-12">
-          <h2 class="vertical-label text-xl font-black md:text-2xl">油丸の3大こだわり</h2>
-        </div>
-        <div class="grid flex-1 gap-5 md:grid-cols-3">
-          <article class="reveal-up neo flex flex-col bg-white p-4 md:-rotate-1">
-            <p class="font-syne text-5xl font-extrabold leading-none">01</p>
-            <div class="neo my-3 aspect-[4/3] overflow-hidden bg-brand">
-              <img src="https://images.unsplash.com/photo-1771308457245-36bda18c21d9?auto=format&fit=crop&w=600&q=80" alt="極太麺" class="h-full w-full object-cover" referrerpolicy="no-referrer" loading="lazy">
-            </div>
-            <h3 class="text-lg font-black">国産小麦100%の<br>特製極太麺</h3>
-            <p class="mt-2 text-xs font-bold leading-6">ワシワシ・モチモチの噛みごたえと小麦の香り。タレを逃さない縮れ麺。</p>
-          </article>
-          <article class="reveal-up neo flex flex-col bg-white p-4 md:mt-6 md:rotate-1">
-            <p class="font-syne text-5xl font-extrabold leading-none">02</p>
-            <div class="neo my-3 aspect-[4/3] overflow-hidden bg-brand">
-              <img src="https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?auto=format&fit=crop&w=600&q=80" alt="味変キット" class="h-full w-full object-cover" referrerpolicy="no-referrer" loading="lazy">
-            </div>
-            <h3 class="text-lg font-black">五感を刺激する<br>無限味変キット</h3>
-            <p class="mt-2 text-xs font-bold leading-6">お酢、ラー油、刻み玉葱、カレー粉、魚粉、ニンニクで自分だけの一杯へ。</p>
-          </article>
-          <article class="reveal-up neo flex flex-col bg-white p-4 md:-rotate-0.5">
-            <p class="font-syne text-5xl font-extrabold leading-none">03</p>
-            <div class="neo my-3 aspect-[4/3] overflow-hidden bg-brand">
-              <img src="https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&w=600&q=80" alt="割りスープ" class="h-full w-full object-cover" referrerpolicy="no-referrer" loading="lazy">
-            </div>
-            <h3 class="text-lg font-black">鰹節香る〆スープで<br>極上フィニッシュ</h3>
-            <p class="mt-2 text-xs font-bold leading-6">麺とタレを残してセルフで注ぐ割りスープ。これぞ油丸の完全体。</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- 主力メニュー -->
-    <section id="menu" class="scroll-mt-20 border-b-4 border-black bg-brand py-10 md:py-14">
-      <div class="mx-auto flex max-w-[1400px] flex-col gap-6 px-4 md:flex-row md:px-6">
-        <div class="neo flex shrink-0 items-center justify-center border-black bg-white px-4 py-8 md:w-20 md:px-3 md:py-12">
-          <h2 class="vertical-label text-xl font-black md:text-2xl">
-            <span class="font-syne tracking-widest">MENU</span><br>主力メニュー
-          </h2>
-        </div>
-        <div class="grid flex-1 gap-5 md:grid-cols-3">
-          <article class="reveal-up neo bg-white p-5 text-center md:-rotate-1">
-            <div class="neo mx-auto mb-4 h-36 w-36 overflow-hidden rounded-full border-4 border-black bg-brand md:h-40 md:w-40">
-              <img src="https://images.pexels.com/photos/842571/pexels-photo-842571.jpeg?auto=compress&cs=tinysrgb&w=500" alt="油丸" class="h-full w-full object-cover" referrerpolicy="no-referrer" loading="lazy">
-            </div>
-            <h3 class="text-2xl font-black">油丸</h3>
-            <p class="mt-2 text-left text-xs font-bold leading-6">王道にして頂点。まずはここから。芳醇な醤油タレと極太麺のバランス。</p>
-          </article>
-          <article class="reveal-up neo bg-white p-5 text-center md:mt-8 md:rotate-1">
-            <div class="neo mx-auto mb-4 h-36 w-36 overflow-hidden rounded-full border-4 border-black bg-red-600 md:h-40 md:w-40">
-              <img src="https://images.pexels.com/photos/2233348/pexels-photo-2233348.jpeg?auto=compress&cs=tinysrgb&w=500" alt="辛丸" class="h-full w-full object-cover" referrerpolicy="no-referrer" loading="lazy">
-            </div>
-            <h3 class="text-2xl font-black">辛丸</h3>
-            <p class="mt-2 text-left text-xs font-bold leading-6">刺激を求めるあなたへ。ラー油と特製スパイスの極限の辛旨。</p>
-          </article>
-          <article class="reveal-up neo bg-white p-5 text-center md:-rotate-0.5">
-            <div class="neo mx-auto mb-4 h-36 w-36 overflow-hidden rounded-full border-4 border-black bg-brand md:h-40 md:w-40">
-              <img src="https://images.pexels.com/photos/1199960/pexels-photo-1199960.jpeg?auto=compress&cs=tinysrgb&w=500" alt="次郎丸" class="h-full w-full object-cover" referrerpolicy="no-referrer" loading="lazy">
-            </div>
-            <h3 class="text-2xl font-black">次郎丸</h3>
-            <p class="mt-2 text-left text-xs font-bold leading-6">背脂・もやし増し増し。ガッツリ系の限界へ挑む圧倒的ボリューム。</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- 店内（スクロール用アンカー） -->
-    <section id="interior" class="scroll-mt-20 border-b-4 border-black bg-white py-10">
-      <div class="mx-auto max-w-[1400px] px-4 md:px-6">
-        <div class="neo overflow-hidden">
-          <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=1400&q=80" alt="カウンター店内" class="aspect-[21/9] w-full object-cover" referrerpolicy="no-referrer" loading="lazy">
-          <div class="border-t-4 border-black bg-black px-6 py-4 text-white">
-            <p class="font-syne text-sm font-extrabold uppercase tracking-widest text-brand">Interior</p>
-            <p class="mt-1 text-lg font-black">カウンター11席 — 麺と向き合う没入空間</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Instagram -->
-    <section id="instagram" class="scroll-mt-20 border-b-4 border-black bg-white py-10 md:py-14">
-      <div class="mx-auto max-w-[1400px] px-4 md:px-6">
-        <div class="mb-6 flex flex-wrap items-end justify-between gap-4">
-          <div>
-            <p class="font-syne text-2xl font-extrabold uppercase md:text-3xl">Instagram</p>
-            <p class="text-lg font-black">#油丸の一杯</p>
-          </div>
-        </div>
-        <div class="grid grid-cols-1 gap-4 sm:grid-cols-3">
-          <a href="https://www.instagram.com/aburamaru20260325/" target="_blank" rel="noopener" class="ig-card neo relative block aspect-square overflow-hidden">
-            <img src="https://images.unsplash.com/photo-1617093727343-374698b1b08d?auto=format&fit=crop&w=800&q=80" alt="油そば" class="h-full w-full object-cover" referrerpolicy="no-referrer" loading="lazy">
-            <div class="ig-cap absolute inset-0 flex items-end bg-black/70 p-4"><p class="text-sm font-black text-white">王道の一杯</p></div>
-          </a>
-          <a href="https://www.instagram.com/aburamaru20260325/" target="_blank" rel="noopener" class="ig-card neo relative block aspect-square overflow-hidden sm:translate-y-3">
-            <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=800&q=80" alt="店内" class="h-full w-full object-cover" referrerpolicy="no-referrer" loading="lazy">
-            <div class="ig-cap absolute inset-0 flex items-end bg-black/70 p-4"><p class="text-sm font-black text-white">カウンター席</p></div>
-          </a>
-          <a href="https://www.instagram.com/aburamaru20260325/" target="_blank" rel="noopener" class="ig-card neo relative block aspect-square overflow-hidden">
-            <img src="https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=800&q=80" alt="味変" class="h-full w-full object-cover" referrerpolicy="no-referrer" loading="lazy">
-            <div class="ig-cap absolute inset-0 flex items-end bg-black/70 p-4"><p class="text-sm font-black text-white">味変キット</p></div>
-          </a>
-        </div>
-        <a href="https://www.instagram.com/aburamaru20260325/" target="_blank" rel="noopener" class="neo neo-press mt-6 ml-auto flex w-full max-w-md items-center justify-center gap-2 bg-brand px-6 py-4 font-black md:ml-auto md:w-auto">
-          <svg class="h-6 w-6" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-          最新情報はこちら →
-        </a>
-      </div>
-    </section>
-
-    <!-- WEB予約 -->
-    <section id="reserve" class="scroll-mt-20 border-b-4 border-black bg-brand py-8 text-center">
-      <p class="font-syne text-sm font-extrabold uppercase tracking-widest">Reserve</p>
-      <p class="mt-2 px-4 text-sm font-bold">予約サイトは準備中。来店はマップ・Instagram・お電話から。</p>
-    </section>
-
-    <!-- Information + Access -->
-    <section id="access" class="scroll-mt-20 bg-white py-10 md:py-14">
-      <div class="mx-auto grid max-w-[1400px] gap-8 px-4 md:grid-cols-2 md:px-6">
-        <div class="flex flex-col gap-4">
-          <div class="neo inline-flex w-fit items-center bg-brand px-6 py-3">
-            <h2 class="font-syne text-xl font-extrabold uppercase md:text-2xl">Information</h2>
-            <span class="ml-3 text-sm font-black">店舗概要</span>
-          </div>
-          <div class="neo overflow-hidden bg-white">
-            <table class="w-full text-left text-sm font-bold">
-              <tbody>
-                <tr class="border-b-4 border-black bg-brand">
-                  <th class="w-1/3 border-r-4 border-black p-4">項目</th>
-                  <th class="p-4">内容</th>
-                </tr>
-                <tr class="border-b-4 border-black">
-                  <td class="border-r-4 border-black p-4">店名</td>
-                  <td class="p-4 font-black">油そば専門店 油丸</td>
-                </tr>
-                <tr class="border-b-4 border-black">
-                  <td class="border-r-4 border-black p-4">住所</td>
-                  <td class="p-4 text-xs leading-6 md:text-sm">〒250-0013<br>神奈川県小田原市寿町5-13-22</td>
-                </tr>
-                <tr class="border-b-4 border-black">
-                  <td class="border-r-4 border-black p-4">営業時間</td>
-                  <td class="p-4">11:00〜15:00 / 17:00〜21:00<br><span class="text-xs">（L.O. 20:45）</span></td>
-                </tr>
-                <tr class="border-b-4 border-black">
-                  <td class="border-r-4 border-black p-4">定休日</td>
-                  <td class="p-4 font-black">水曜日</td>
-                </tr>
-                <tr>
-                  <td class="border-r-4 border-black p-4">座席</td>
-                  <td class="p-4"><span class="font-syne text-3xl font-extrabold">11</span> 席（カウンター）</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-        <div class="flex flex-col gap-4">
-          <div class="neo inline-flex w-fit items-center bg-brand px-6 py-3">
-            <h2 class="font-syne text-xl font-extrabold uppercase md:text-2xl">Access</h2>
-            <span class="ml-3 text-sm font-black">アクセス</span>
-          </div>
-          <p class="text-sm font-bold leading-7">味噌の樽匠の隣（旧：ラーメンとモツ煮 しまの 跡地）</p>
-          <div class="neo flex-1 overflow-hidden bg-white p-2">
-            <iframe
-              title="油丸 Googleマップ"
-              class="h-[320px] w-full border-0 md:h-[380px]"
-              loading="lazy"
-              referrerpolicy="no-referrer-when-downgrade"
-              src="https://www.google.com/maps?q=%E6%B2%B9%E3%81%9D%E3%81%B0%E5%B0%82%E9%96%80%E5%BA%97+%E6%B2%B9%E4%B8%B8+%E7%A5%9E%E5%A5%88%E5%B7%9D%E7%9C%8C%E5%B0%8F%E7%94%B0%E5%8E%9F%E5%B8%82%E5%AF%BF%E7%94%BA5-13-22&output=embed"
-            ></iframe>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer class="border-t-4 border-black bg-black py-6 text-center text-xs font-bold text-white/60">
-    <p class="font-syne text-lg text-brand">ABURAMARU</p>
-    <p class="mt-2">&copy; <span id="year"></span> 油そば専門店 油丸</p>
-  </footer>
-
-  <!-- Sticky dual CTA -->
-  <div class="fixed inset-x-0 bottom-0 z-50 grid grid-cols-2 border-t-4 border-black">
-    <a href="https://www.google.com/maps/dir/?api=1&destination=%E6%B2%B9%E3%81%9D%E3%81%B0%E5%B0%82%E9%96%80%E5%BA%97+%E6%B2%B9%E4%B8%B8+%E7%A5%9E%E5%A5%88%E5%B7%9D%E7%9C%8C%E5%B0%8F%E7%94%B0%E5%8E%9F%E5%B8%82%E5%AF%BF%E7%94%BA5-13-22" target="_blank" rel="noopener" class="neo-press flex items-center justify-center gap-2 border-r-4 border-black bg-brand px-2 py-4 text-center text-[10px] font-black leading-tight sm:text-xs md:text-sm">
-      <svg class="h-5 w-5 shrink-0" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-      今すぐGoogleマップでルート案内 →
-    </a>
-    <a href="tel:04650000000" class="neo-press flex items-center justify-center gap-2 bg-white px-2 py-4 text-center text-[10px] font-black leading-tight sm:text-xs md:text-sm">
-      <svg class="h-5 w-5 shrink-0" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.12.37 2.33.57 3.58.57a1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.45.57 3.57a1 1 0 01-.25 1.02l-2.2 2.2z"/></svg>
-      お電話で問い合わせる<br class="sm:hidden"><span class="font-syne">0465-XX-XXXX</span> →
-    </a>
+<body>
+<!-- ============ HEADER + HERO ============ -->
+<header>
+  <div class="topbar">
+    <a class="logo" href="#"><img src="assets/logo.png" alt="油そば専門店 油丸 ABURAMARU"></a>
+    <nav class="nav">
+      <a href="#menu"><span class="jp">メニュー</span><span class="en">MENU</span></a>
+      <a href="#about"><span class="jp">店内</span><span class="en">ABOUT SHOP</span></a>
+      <a href="#features"><span class="jp">こだわり</span><span class="en">FEATURES</span></a>
+      <a href="#reserve"><span class="jp">WEB予約</span><span class="en">RESERVE</span></a>
+      <a href="#insta"><span class="jp">インスタ</span><span class="en">INSTAGRAM</span></a>
+      <a href="#access"><span class="jp">アクセス</span><span class="en">ACCESS</span></a>
+    </nav>
   </div>
 
-  <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
-    const menuBtn = document.getElementById('menuBtn');
-    const mobileNav = document.getElementById('mobileNav');
-    menuBtn.addEventListener('click', () => {
-      const open = !mobileNav.classList.contains('hidden');
-      mobileNav.classList.toggle('hidden', open);
-      menuBtn.setAttribute('aria-expanded', String(!open));
-    });
-    mobileNav.querySelectorAll('a').forEach((a) => a.addEventListener('click', () => {
-      mobileNav.classList.add('hidden');
-      menuBtn.setAttribute('aria-expanded', 'false');
-    }));
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach((e) => {
-        if (e.isIntersecting) {
-          e.target.classList.add('show');
-          io.unobserve(e.target);
-        }
-      });
-    }, { threshold: 0.1 });
-    document.querySelectorAll('.reveal-up').forEach((el) => io.observe(el));
-  </script>
+  <div class="hero" id="top">
+    <div class="hero-photo"><img src="https://images.unsplash.com/photo-1633352615955-f0c99e8b7e5a?fm=jpg&q=85&w=1800&auto=format&fit=crop" alt="油丸の油そば" referrerpolicy="no-referrer"></div>
+    <div class="hero-inner" data-comment-anchor="e23f0e77fd-div">
+      <div class="hero-yellow tilt">
+        <h1>並盛も、<br><span class="g">大盛300g</span>も、<br>同一価格。</h1>
+      </div>
+      <div class="hero-black">
+        <div class="lead">小田原で一番ジャンキーな、<br><span class="hl">極上の塊に喰らいつけ。</span></div>
+        <p>100%国産小麦を使用した特製極太麺×芳醇な秘伝タレ。<br>最後の一滴まで中毒者続出の油そば専門店、寿町に堂々降臨。</p>
+      </div>
+      <div class="badge300">
+        <div class="l1">大盛</div>
+        <div class="num">300<small>g</small></div>
+        <div class="free">無料<span class="made">まで</span>!!</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ============ FEATURES ============ -->
+<section class="features" id="features">
+  <div class="wrap">
+    <div class="feat-grid">
+      <div class="feat-title">
+        <img class="splat" src="assets/deco/ink_splat.png" alt="">
+        <div class="box">
+          <span class="s">油丸、</span>
+          <span class="big">3大</span>
+          <span class="s">こだわり</span><br>
+          <span class="en">OUR COMMITMENT</span>
+        </div>
+      </div>
+      <div class="feat-cards">
+        <div class="fcard">
+          <div class="ttl"><span class="no">01</span><h3>もちもち極太の<br>国産小麦麺</h3></div>
+          <div class="ph"><img src="assets/koda01_noodle.png" alt="国産小麦の極太麺"></div>
+          <p>毎日打ちたて。100%国産小麦の自家製極太麺は、噛むほどに小麦の甘みが広がる油そばの主役です。</p>
+        </div>
+        <div class="fcard">
+          <div class="ttl"><span class="no">02</span><h3>中毒性のある<br>秘伝の特製タレ</h3></div>
+          <div class="ph"><img src="assets/koda02_cond.png" alt="特製タレと薬味"></div>
+          <p>醤油ダレに香味油と魚介の旨味を重ねた秘伝の配合。一度食べたら忘れられない、ガツンと濃厚な味わい。</p>
+        </div>
+        <div class="fcard">
+          <div class="ttl"><span class="no">03</span><h3>〆まで旨い<br>追い飯＆スープ</h3></div>
+          <div class="ph"><img src="assets/koda03_soup.png" alt="〆のスープと追い飯"></div>
+          <p>食べ終わりにはアツアツのスープと追い飯を。残ったタレと絡めて、最後の一滴まで余すことなく堪能。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MENU ============ -->
+<section class="band" id="menu">
+  <div class="wrap">
+    <div class="band-grid">
+      <div class="sec-head"><span class="big">MENU</span><span class="sub">お品書き</span></div>
+      <div class="menu-cards">
+        <div class="mcard">
+          <div class="ph"><img src="assets/menu_aburamaru.png" alt="油丸"></div>
+          <div class="body">
+            <div class="row"><h3>油丸</h3><span class="price">¥850</span></div>
+            <p>当店一番人気の基本の油そば。極太麺と秘伝タレ、卵黄を豪快に混ぜて召し上がれ。</p>
+          </div>
+        </div>
+        <div class="mcard">
+          <div class="ph"><img src="assets/menu_karamaru.png" alt="辛丸"></div>
+          <div class="body">
+            <div class="row"><h3>辛丸</h3><span class="price">¥950</span></div>
+            <p>特製辛味噌と唐辛子を効かせた旨辛の一杯。汗だくになりながら箸が止まらない中毒系。</p>
+          </div>
+        </div>
+        <div class="mcard">
+          <div class="ph"><img src="assets/menu_jiromaru.png" alt="二郎丸"></div>
+          <div class="body">
+            <div class="row"><h3>二郎丸</h3><span class="price">¥1050</span></div>
+            <p>ニンニク・背脂・もやしを山盛りに。ガッツリ系を求める猛者へ捧げる規格外の塊。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ INSTAGRAM ============ -->
+<section class="band" id="insta">
+  <div class="wrap">
+    <div class="band-grid">
+      <div class="sec-head"><span class="big">INSTA</span><span class="sub">インスタグラム</span></div>
+      <div>
+        <div class="insta-cards">
+          <div class="icard"><img src="assets/insta1.png" alt="投稿写真"></div>
+          <div class="icard"><img src="assets/insta2.png" alt="投稿写真"></div>
+          <div class="icard"><img src="assets/insta3_store.png" alt="店舗外観"></div>
+        </div>
+        <div class="insta-more">
+          <a href="#" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.6" cy="6.4" r="1.3" fill="currentColor" stroke="none"/></svg>
+            @aburamaru_odawara をフォロー
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ INFORMATION + ACCESS ============ -->
+<section class="info" id="access">
+  <div class="wrap">
+    <div class="info-grid">
+      <div class="sec-head"><span class="big">INFO</span><span class="sub">店舗情報</span></div>
+      <div class="info-cols">
+        <div class="spec">
+          <table>
+            <tr><th>店名</th><td>油そば専門店 油丸（あぶらまる）</td></tr>
+            <tr><th>住所</th><td>〒250-0011<br>神奈川県小田原市栄町2丁目-寿町</td></tr>
+            <tr><th>電話</th><td>0465-XX-XXXX</td></tr>
+            <tr><th>営業</th><td>11:00 - 15:00 / 18:00 - 22:00<br>（麺がなくなり次第終了）</td></tr>
+            <tr><th>定休</th><td>水曜日</td></tr>
+            <tr><th>席数</th><td>カウンター10席 / テーブル12席</td></tr>
+          </table>
+        </div>
+        <div>
+          <div class="access-head"><h3>ACCESS</h3></div>
+          <div class="map"><img src="assets/map.png" alt="油丸 アクセスマップ"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CTA ============ -->
+<section class="cta" id="reserve">
+  <div class="wrap">
+    <div class="cta-grid">
+      <a class="tel" href="tel:0465000000">
+        <span>📞</span>
+        <span><span class="ic">TEL / ご予約</span><span class="bignum">0465-XX-XXXX</span></span>
+      </a>
+      <a class="reserve" href="#">
+        <span>🍜</span>
+        <span><span class="ic">WEB RESERVE</span><span class="lab">WEB予約はこちら</span></span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <img class="foot-logo" src="assets/logo.png" alt="油丸">
+      <div>
+        <div class="en">ABURAMARU</div>
+        <div class="jp">油そば専門店 油丸 ｜ 小田原・寿町</div>
+      </div>
+    </div>
+    <div class="copy">© ABURAMARU. All Rights Reserved.</div>
+  </div>
+</footer>
+
 </body>
 </html>

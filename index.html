@@ -142,10 +142,20 @@ section{position:relative;}
 
 /* ============ INSTAGRAM ============ */
 .insta-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
-.icard{border:3px solid var(--ink);box-shadow:6px 7px 0 var(--shadow);overflow:hidden;aspect-ratio:1.9/1;background:#000;}
+.icard{border:3px solid var(--ink);box-shadow:6px 7px 0 var(--shadow);overflow:hidden;aspect-ratio:1.9/1;background:#000;position:relative;}
+.icard:nth-child(1){transform:rotate(-1.1deg);}
 .icard:nth-child(2){transform:rotate(-1.3deg);}
 .icard:nth-child(3){transform:rotate(.9deg);}
-.icard img{width:100%;height:100%;object-fit:cover;}
+.icard-link{display:block;width:100%;height:100%;color:inherit;text-decoration:none;border:none;background:transparent;padding:0;cursor:pointer;transition:transform .12s ease,box-shadow .12s ease;}
+.icard-link:hover{transform:translate(3px,3px);}
+.icard:hover{box-shadow:3px 4px 0 var(--shadow);}
+.icard img{width:100%;height:100%;object-fit:cover;display:block;}
+.icard-cap{position:absolute;left:0;right:0;bottom:0;background:rgba(0,0,0,.78);color:#fff;font-weight:700;font-size:12px;line-height:1.45;padding:8px 10px;transform:translateY(100%);transition:transform .25s ease;}
+.icard:hover .icard-cap,.icard-link:focus-visible .icard-cap{transform:translateY(0);}
+.icard.skeleton{background:#d9d9d9;border:3px solid var(--ink);box-shadow:6px 7px 0 var(--shadow);animation:instaPulse 1.2s ease-in-out infinite;pointer-events:none;}
+.icard.skeleton::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,.45),transparent);animation:instaShimmer 1.4s infinite;}
+@keyframes instaPulse{0%,100%{opacity:1}50%{opacity:.72}}
+@keyframes instaShimmer{0%{transform:translateX(-100%)}100%{transform:translateX(100%)}}
 .insta-more{display:flex;justify-content:flex-end;margin-top:20px;}
 .insta-more a{display:inline-flex;align-items:center;gap:12px;background:#fff;color:var(--ink);font-weight:900;font-size:clamp(15px,2vw,19px);padding:12px 22px;transform:rotate(-1.6deg);box-shadow:6px 7px 0 var(--shadow);text-decoration:none;border:3px solid var(--ink);}
 .insta-more a:hover{background:var(--y);}
@@ -301,15 +311,11 @@ footer{background:var(--ink);color:#fff;padding:34px 0 26px;margin-top:14px;}
     <div class="band-grid">
       <div class="sec-head compact"><span class="big">INSTA</span><span class="sub">インスタグラム</span></div>
       <div>
-        <div class="insta-cards">
-          <div class="icard"><img src="assets/insta1.png" alt="投稿写真"></div>
-          <div class="icard"><img src="assets/insta2.png" alt="投稿写真"></div>
-          <div class="icard"><img src="assets/insta3_store.png" alt="店舗外観"></div>
-        </div>
+        <div class="insta-cards" id="insta-feed" aria-live="polite" aria-busy="true"></div>
         <div class="insta-more">
-          <a href="#" target="_blank" rel="noopener">
+          <a id="insta-follow-link" href="https://www.instagram.com/aburamaru_odawara/" target="_blank" rel="noopener noreferrer">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.6" cy="6.4" r="1.3" fill="currentColor" stroke="none"/></svg>
-            @aburamaru_odawara をフォロー
+            <span id="insta-follow-label">@aburamaru_odawara をフォロー</span>
           </a>
         </div>
       </div>
@@ -367,6 +373,114 @@ footer{background:var(--ink);color:#fff;padding:34px 0 26px;margin-top:14px;}
     <div class="copy">© ABURAMARU. All Rights Reserved.</div>
   </div>
 </footer>
+
+<script>
+(function () {
+  'use strict';
+
+  var FEED_URL = './instagram-feed.php';
+  var FALLBACKS = [
+    { media_url: 'img/insta-fallback-1.jpg', permalink: 'https://www.instagram.com/aburamaru_odawara/', caption: '' },
+    { media_url: 'img/insta-fallback-2.jpg', permalink: 'https://www.instagram.com/aburamaru_odawara/', caption: '' },
+    { media_url: 'img/insta-fallback-3.jpg', permalink: 'https://www.instagram.com/aburamaru_odawara/', caption: '' }
+  ];
+  var CARD_TILTS = ['-1.1deg', '-1.3deg', '0.9deg'];
+
+  var feedEl = document.getElementById('insta-feed');
+  var followEl = document.getElementById('insta-follow-link');
+  var followLabelEl = document.getElementById('insta-follow-label');
+  if (!feedEl) return;
+
+  function truncateCaption(text) {
+    if (!text) return '';
+    var normalized = String(text).replace(/\s+/g, ' ').trim();
+    if (normalized.length <= 30) return normalized;
+    return normalized.slice(0, 30) + '...';
+  }
+
+  function renderSkeleton() {
+    feedEl.setAttribute('aria-busy', 'true');
+    feedEl.innerHTML = '';
+    for (var i = 0; i < 3; i += 1) {
+      var sk = document.createElement('div');
+      sk.className = 'icard skeleton';
+      sk.setAttribute('aria-hidden', 'true');
+      feedEl.appendChild(sk);
+    }
+  }
+
+  function renderCards(posts, username) {
+    feedEl.innerHTML = '';
+    posts.slice(0, 3).forEach(function (post, index) {
+      var card = document.createElement('article');
+      card.className = 'icard';
+      card.style.transform = 'rotate(' + (CARD_TILTS[index] || '0deg') + ')';
+
+      var link = document.createElement('a');
+      link.className = 'icard-link';
+      link.href = post.permalink || 'https://www.instagram.com/aburamaru_odawara/';
+      link.target = '_blank';
+      link.rel = 'noopener noreferrer';
+      link.setAttribute('aria-label', 'Instagram投稿を見る');
+
+      var img = document.createElement('img');
+      img.src = post.media_url;
+      img.alt = truncateCaption(post.caption) || 'Instagram投稿';
+      img.loading = index === 0 ? 'eager' : 'lazy';
+      img.decoding = 'async';
+      img.onerror = function () {
+        var fb = FALLBACKS[index];
+        if (fb && img.src.indexOf(fb.media_url) === -1) {
+          img.src = fb.media_url;
+        }
+      };
+
+      var cap = document.createElement('p');
+      cap.className = 'icard-cap';
+      cap.textContent = truncateCaption(post.caption);
+
+      link.appendChild(img);
+      if (post.caption) link.appendChild(cap);
+      card.appendChild(link);
+      feedEl.appendChild(card);
+    });
+
+    feedEl.setAttribute('aria-busy', 'false');
+
+    if (followEl && username) {
+      followEl.href = 'https://www.instagram.com/' + encodeURIComponent(username) + '/';
+      if (followLabelEl) {
+        followLabelEl.textContent = '@' + username + ' をフォロー';
+      }
+    }
+  }
+
+  function renderFallback() {
+    renderCards(FALLBACKS, 'aburamaru_odawara');
+  }
+
+  renderSkeleton();
+
+  fetch(FEED_URL, {
+    method: 'GET',
+    headers: { Accept: 'application/json' },
+    cache: 'no-store'
+  })
+    .then(function (res) {
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      return res.json();
+    })
+    .then(function (data) {
+      if (!data || !data.success || !Array.isArray(data.posts) || data.posts.length === 0) {
+        throw new Error(data && data.error ? data.error : '投稿データがありません');
+      }
+      renderCards(data.posts, data.username || 'aburamaru_odawara');
+    })
+    .catch(function () {
+      renderFallback();
+    });
+})();
+</script>
 
 </body>
 </html>

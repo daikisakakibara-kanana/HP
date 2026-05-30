@@ -45,6 +45,8 @@ img{display:block;max-width:100%;}
 .sec-head .big{font-family:'Archivo',sans-serif;font-weight:900;font-style:italic;
   font-size:clamp(34px,6vw,58px);line-height:.9;letter-spacing:-.01em;color:var(--y);display:block;}
 .sec-head .sub{font-weight:900;font-size:clamp(15px,2.4vw,20px);letter-spacing:.04em;margin-top:6px;display:block;}
+.sec-head.compact .big{font-size:clamp(26px,4.6vw,46px);}
+.sec-head.compact .sub{font-size:clamp(11px,1.8vw,16px);}
 
 /* ============ HEADER ============ */
 header{position:relative;}
@@ -75,7 +77,6 @@ header{position:relative;}
   padding:14px 30px 18px;
 }
 .hero-yellow h1{font-weight:900;font-size:clamp(34px,7.2vw,72px);line-height:1.02;letter-spacing:-.02em;color:var(--ink);text-shadow:2px 2px 0 rgba(255,255,255,.25);}
-.hero-yellow h1 .g{font-family:'Archivo',sans-serif;font-style:italic;}
 
 .hero-black{
   position:absolute;left:8px;bottom:26px;background:var(--ink);color:#fff;
@@ -91,11 +92,10 @@ header{position:relative;}
   transform:rotate(-3deg);box-shadow:7px 8px 0 rgba(0,0,0,.4);
   padding:14px 22px 16px;text-align:center;border:2px solid #000;
 }
-.badge300 .l1{font-weight:900;font-size:clamp(20px,3vw,30px);letter-spacing:.06em;}
-.badge300 .num{font-family:'Archivo',sans-serif;font-style:italic;font-weight:900;font-size:clamp(58px,11vw,108px);line-height:.8;color:#fff;}
-.badge300 .num small{font-size:.42em;}
-.badge300 .free{font-weight:900;font-size:clamp(40px,8vw,80px);line-height:.85;color:var(--y);letter-spacing:-.01em;}
-.badge300 .free .made{font-size:.34em;color:#fff;vertical-align:bottom;}
+.badge300 .badge-main{font-weight:900;font-size:clamp(16px,2.4vw,22px);letter-spacing:.04em;line-height:1.2;text-align:center;}
+.badge300 .badge-main .num{font-family:'Archivo',sans-serif;font-style:italic;font-weight:900;font-size:clamp(44px,8.5vw,76px);line-height:.82;color:#fff;}
+.badge300 .badge-main .num small{font-size:.45em;}
+.badge300 .badge-main .free{font-size:clamp(30px,6vw,56px);line-height:1;color:var(--y);letter-spacing:-.01em;display:block;margin-top:2px;}
 
 @media(max-width:760px){
   .hero-photo{height:540px;}
@@ -168,14 +168,12 @@ section{position:relative;}
 
 /* ============ CTA ============ */
 .cta{padding:30px 0 26px;}
-.cta-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+.cta-grid{display:grid;grid-template-columns:1fr;gap:20px;max-width:520px;margin:0 auto;}
 .cta a{display:flex;align-items:center;gap:14px;padding:18px 24px;text-decoration:none;border:3px solid var(--ink);box-shadow:7px 8px 0 var(--shadow);font-weight:900;}
 .cta a:hover{transform:translate(2px,2px);box-shadow:4px 5px 0 var(--shadow);}
 .cta .tel{background:var(--ink);color:#fff;}
-.cta .reserve{background:#fff;color:var(--ink);}
 .cta .ic{font-family:'Archivo',sans-serif;font-style:italic;font-size:13px;letter-spacing:.06em;opacity:.7;display:block;}
 .cta .bignum{font-family:'Archivo',sans-serif;font-weight:900;font-size:clamp(22px,3.4vw,32px);line-height:1;}
-.cta .reserve .lab{font-size:clamp(18px,2.6vw,24px);}
 
 /* ============ FOOTER ============ */
 footer{background:var(--ink);color:#fff;padding:34px 0 26px;margin-top:14px;}
@@ -209,7 +207,6 @@ footer{background:var(--ink);color:#fff;padding:34px 0 26px;margin-top:14px;}
       <a href="#menu"><span class="jp">メニュー</span><span class="en">MENU</span></a>
       <a href="#about"><span class="jp">店内</span><span class="en">ABOUT SHOP</span></a>
       <a href="#features"><span class="jp">こだわり</span><span class="en">FEATURES</span></a>
-      <a href="#reserve"><span class="jp">WEB予約</span><span class="en">RESERVE</span></a>
       <a href="#insta"><span class="jp">インスタ</span><span class="en">INSTAGRAM</span></a>
       <a href="#access"><span class="jp">アクセス</span><span class="en">ACCESS</span></a>
     </nav>
@@ -219,16 +216,14 @@ footer{background:var(--ink);color:#fff;padding:34px 0 26px;margin-top:14px;}
     <div class="hero-photo"><img src="https://images.unsplash.com/photo-1633352615955-f0c99e8b7e5a?fm=jpg&q=85&w=1800&auto=format&fit=crop" alt="油丸の油そば" referrerpolicy="no-referrer"></div>
     <div class="hero-inner" data-comment-anchor="e23f0e77fd-div">
       <div class="hero-yellow tilt">
-        <h1>並盛も、<br><span class="g">大盛300g</span>も、<br>同一価格。</h1>
+        <h1>並盛も、<br>大盛300gも、<br>同一価格。</h1>
       </div>
       <div class="hero-black">
         <div class="lead">小田原で一番ジャンキーな、<br><span class="hl">極上の塊に喰らいつけ。</span></div>
         <p>100%国産小麦を使用した特製極太麺×芳醇な秘伝タレ。<br>最後の一滴まで中毒者続出の油そば専門店、寿町に堂々降臨。</p>
       </div>
       <div class="badge300">
-        <div class="l1">大盛</div>
-        <div class="num">300<small>g</small></div>
-        <div class="free">無料<span class="made">まで</span>!!</div>
+        <div class="badge-main">大盛<span class="num">300<small>g</small></span><span class="free">まで無料！！</span></div>
       </div>
     </div>
   </div>
@@ -272,7 +267,7 @@ footer{background:var(--ink);color:#fff;padding:34px 0 26px;margin-top:14px;}
 <section class="band" id="menu">
   <div class="wrap">
     <div class="band-grid">
-      <div class="sec-head"><span class="big">MENU</span><span class="sub">お品書き</span></div>
+      <div class="sec-head compact"><span class="big">MENU</span><span class="sub">お品書き</span></div>
       <div class="menu-cards">
         <div class="mcard">
           <div class="ph"><img src="assets/menu_aburamaru.png" alt="油丸"></div>
@@ -304,7 +299,7 @@ footer{background:var(--ink);color:#fff;padding:34px 0 26px;margin-top:14px;}
 <section class="band" id="insta">
   <div class="wrap">
     <div class="band-grid">
-      <div class="sec-head"><span class="big">INSTA</span><span class="sub">インスタグラム</span></div>
+      <div class="sec-head compact"><span class="big">INSTA</span><span class="sub">インスタグラム</span></div>
       <div>
         <div class="insta-cards">
           <div class="icard"><img src="assets/insta1.png" alt="投稿写真"></div>
@@ -348,16 +343,12 @@ footer{background:var(--ink);color:#fff;padding:34px 0 26px;margin-top:14px;}
 </section>
 
 <!-- ============ CTA ============ -->
-<section class="cta" id="reserve">
+<section class="cta" id="contact">
   <div class="wrap">
     <div class="cta-grid">
       <a class="tel" href="tel:0465000000">
         <span>📞</span>
-        <span><span class="ic">TEL / ご予約</span><span class="bignum">0465-XX-XXXX</span></span>
-      </a>
-      <a class="reserve" href="#">
-        <span>🍜</span>
-        <span><span class="ic">WEB RESERVE</span><span class="lab">WEB予約はこちら</span></span>
+        <span><span class="ic">TEL</span><span class="bignum">0465-XX-XXXX</span></span>
       </a>
     </div>
   </div>

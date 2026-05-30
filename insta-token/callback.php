@@ -314,7 +314,7 @@ $code = isset($_GET['code']) ? trim((string) $_GET['code']) : '';
 if ($code !== '') {
     $code = preg_replace('/#_$/', '', $code) ?? $code;
 
-    $short = exchangeCodeForShortToken($appId, $appSecret, $redirectUri, $code);
+    $short = normalizeShortTokenResponse(exchangeCodeForShortToken($appId, $appSecret, $redirectUri, $code));
     if (!$short['ok'] || empty($short['data']['access_token'])) {
         renderPage(
             '短期トークンエラー',
@@ -326,7 +326,7 @@ if ($code !== '') {
 
     $shortToken = (string) $short['data']['access_token'];
 
-    $long = exchangeForLongLivedToken($appSecret, $shortToken);
+    $long = exchangeForLongLivedToken($appId, $appSecret, $shortToken);
     if (!$long['ok'] || empty($long['data']['access_token'])) {
         renderPage(
             '長期トークンエラー',

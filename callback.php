@@ -314,7 +314,7 @@ $code = isset($_GET['code']) ? trim((string) $_GET['code']) : '';
 if ($code !== '') {
     $code = preg_replace('/#_$/', '', $code) ?? $code;
 
-    $short = exchangeCodeForShortToken($appId, $appSecret, $redirectUri, $code);
+    $short = normalizeShortTokenResponse(exchangeCodeForShortToken($appId, $appSecret, $redirectUri, $code));
     if (!$short['ok'] || empty($short['data']['access_token'])) {
         renderPage(
             '短期トークンエラー',
@@ -326,7 +326,7 @@ if ($code !== '') {
 
     $shortToken = (string) $short['data']['access_token'];
 
-    $long = exchangeForLongLivedToken($appSecret, $shortToken);
+    $long = exchangeForLongLivedToken($appId, $appSecret, $shortToken);
     if (!$long['ok'] || empty($long['data']['access_token'])) {
         renderPage(
             '長期トークンエラー',
@@ -353,15 +353,22 @@ if ($code !== '') {
     $username = (string) $profile['username'];
     $igId     = (string) $profile['instagram_business_account_id'];
     $tokenJson = buildTokenJsonPayload($longToken, $username, $igId, $expiresAt);
+    $savedDisk = saveTokenPayloadToDisk($tokenJson);
+    $saveNote = $savedDisk
+        ? '<p class="hint">✅ サーバー内バックアップ: <code>storage/instagram-token-latest.json</code>（Web 非公開）</p>'
+        : '<p class="hint">⚠️ サーバー内バックアップの保存に失敗しました。下記 JSON を必ずコピーしてください。</p>';
 
     $body = '
       <span class="ok-badge">TOKEN OK</span>
       <h1>長期アクセストークン取得完了</h1>
-      <p>以下をコピーし、各店舗 LP サーバーの <code>instagram-token.json</code> として保存してください（量産運用）。</p>
+      ' . $saveNote . '
+      <p>以下をコピーし、油丸 LP サーバー（PHP 可）の <code>instagram-token.json</code> として保存してください。</p>
       <ol>
         <li>下の「店舗用 JSON」をコピー</li>
-        <li>店舗 LP と同じ階層に <code>instagram-token.json</code> を作成して貼り付け</li>
-        <li><code>instagram-feed.php</code> を同階層に配置して完了</li>
+        <li>LP と同じ階層に <code>instagram-token.json</code> を作成して貼り付け</li>
+        <li><code>instagram-feed.php</code> と <code>verify-instagram.php</code> を同階層にアップロード</li>
+        <li><code>verify-instagram.php</code> をブラウザで開き、投稿3件取得を確認</li>
+        <li>LP の INSTAGRAM セクションをリロード</li>
       </ol>
 
       <span class="label">Instagram ユーザー名</span>

@@ -14,7 +14,7 @@ declare(strict_types=1);
 // =============================================================================
 const INSTAGRAM_APP_ID       = '1470160134857234';
 const INSTAGRAM_APP_SECRET   = '6696b8c1d3e8c4964094aebbac4a81fd';
-const INSTAGRAM_REDIRECT_URI = 'https://kanana-tech.jp/insta-token/callback.php';
+const INSTAGRAM_REDIRECT_URI = 'https://insta.kanana-tech.jp/insta-token/callback.php';
 const INSTAGRAM_OAUTH_SCOPE  = 'instagram_business_basic';
 const GRAPH_API_VERSION      = 'v20.0';
 

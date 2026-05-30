@@ -17,11 +17,13 @@ OAuth の `code` は **1回限り・約1時間** で失効します。403 解消
 
 ### A. サブドメインを PHP サーバーへ向ける（推奨）
 
-例: `insta.kanana-tech.jp` をエックスサーバー / さくら / ConoHa 等に DNS 設定
+例: `insta.kanana-tech.jp` を **さくらの VPS / レンタルサーバ** に DNS 設定
 
-1. `insta-token/callback.php` をサーバーの `public_html/insta-token/` に FTP アップロード
+1. `insta-token/callback.php` をサーバーの `www/insta-token/` に SFTP アップロード
 2. Meta の Redirect URI を `https://insta.kanana-tech.jp/insta-token/callback.php` に変更
 3. `callback.php` 内の `INSTAGRAM_REDIRECT_URI` も同じ URL に更新
+
+**さくら向け詳細手順:** [DEPLOY-SAKURA.md](./DEPLOY-SAKURA.md)
 
 ### B. 別ドメインで運用
 

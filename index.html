@@ -142,17 +142,19 @@ section{position:relative;}
 
 /* ============ INSTAGRAM ============ */
 .insta-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
-.icard{border:3px solid var(--ink);box-shadow:6px 7px 0 var(--shadow);overflow:hidden;aspect-ratio:1.9/1;background:#000;position:relative;}
+.icard{border:4px solid var(--ink);box-shadow:6px 6px 0 #FBBF24;overflow:hidden;aspect-ratio:1.9/1;background:#000;position:relative;transition:transform .12s ease,box-shadow .12s ease;}
 .icard:nth-child(1){transform:rotate(-1.1deg);}
 .icard:nth-child(2){transform:rotate(-1.3deg);}
 .icard:nth-child(3){transform:rotate(.9deg);}
-.icard-link{display:block;width:100%;height:100%;color:inherit;text-decoration:none;border:none;background:transparent;padding:0;cursor:pointer;transition:transform .12s ease,box-shadow .12s ease;}
-.icard-link:hover{transform:translate(3px,3px);}
-.icard:hover{box-shadow:3px 4px 0 var(--shadow);}
+.icard-link{display:block;width:100%;height:100%;color:inherit;text-decoration:none;border:none;background:transparent;padding:0;cursor:pointer;}
+.icard:hover,.icard:focus-within{transform:rotate(0deg) translate(4px,4px);box-shadow:2px 2px 0 #FBBF24;}
+.icard:nth-child(1):hover,.icard:nth-child(1):focus-within{transform:translate(4px,4px);}
+.icard:nth-child(2):hover,.icard:nth-child(2):focus-within{transform:translate(4px,4px);}
+.icard:nth-child(3):hover,.icard:nth-child(3):focus-within{transform:translate(4px,4px);}
 .icard img{width:100%;height:100%;object-fit:cover;display:block;}
 .icard-cap{position:absolute;left:0;right:0;bottom:0;background:rgba(0,0,0,.78);color:#fff;font-weight:700;font-size:12px;line-height:1.45;padding:8px 10px;transform:translateY(100%);transition:transform .25s ease;}
 .icard:hover .icard-cap,.icard-link:focus-visible .icard-cap{transform:translateY(0);}
-.icard.skeleton{background:#d9d9d9;border:3px solid var(--ink);box-shadow:6px 7px 0 var(--shadow);animation:instaPulse 1.2s ease-in-out infinite;pointer-events:none;}
+.icard.skeleton{background:#d9d9d9;border:4px solid var(--ink);box-shadow:6px 6px 0 #FBBF24;animation:instaPulse 1.2s ease-in-out infinite;pointer-events:none;}
 .icard.skeleton::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,.45),transparent);animation:instaShimmer 1.4s infinite;}
 @keyframes instaPulse{0%,100%{opacity:1}50%{opacity:.72}}
 @keyframes instaShimmer{0%{transform:translateX(-100%)}100%{transform:translateX(100%)}}

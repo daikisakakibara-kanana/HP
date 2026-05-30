@@ -2,24 +2,19 @@
 declare(strict_types=1);
 
 /**
- * Instagram フィード API 中継
- * - 最新3件を2時間ファイルキャッシュ
- * - キャッシュ更新時に長期トークンを自動延長
+ * 店舗個別 Instagram フィード中継（各 LP サーバーに配置）
+ * 同階層の instagram-token.json を読み込み、2時間キャッシュで最新3件を返却
  */
 
 header('Content-Type: application/json; charset=UTF-8');
 header('X-Content-Type-Options: nosniff');
 header('Cache-Control: no-store, no-cache, must-revalidate');
 
-// callback.php で回収した長期トークン（自動保存ファイルがあればそちらを優先）
-$access_token = '';
-
 const CACHE_TTL_SECONDS = 7200;
 const CACHE_FILE        = __DIR__ . '/instagram-feed-cache.json';
 const TOKEN_FILE        = __DIR__ . '/instagram-token.json';
-const APP_SECRET_ENV    = 'INSTAGRAM_APP_SECRET';
-const GRAPH_API_BASE    = 'https://graph.instagram.com';
-const MEDIA_FIELDS      = 'id,caption,media_type,media_url,thumbnail_url,permalink';
+const GRAPH_API_VERSION = 'v20.0';
+const MEDIA_FIELDS      = 'id,media_url,permalink,caption,thumbnail_url,media_type';
 const MEDIA_LIMIT       = 3;
 
 function respond(array $payload, int $status = 200): never
@@ -38,8 +33,21 @@ function respondError(string $message, int $status = 500): never
     ], $status);
 }
 
+function graphUrl(string $path, array $query = []): string
+{
+    $base = 'https://graph.facebook.com/' . GRAPH_API_VERSION . '/' . ltrim($path, '/');
+    if ($query === []) {
+        return $base;
+    }
+    return $base . '?' . http_build_query($query);
+}
+
 function curlGet(string $url): array
 {
+    if (!function_exists('curl_init')) {
+        return ['ok' => false, 'error' => 'cURL 拡張が有効化されていません。'];
+    }
+
     $ch = curl_init();
     if ($ch === false) {
         return ['ok' => false, 'error' => 'cURL の初期化に失敗しました。'];
@@ -48,11 +56,11 @@ function curlGet(string $url): array
     curl_setopt_array($ch, [
         CURLOPT_URL            => $url,
         CURLOPT_RETURNTRANSFER => true,
-        CURLOPT_TIMEOUT        => 25,
+        CURLOPT_TIMEOUT        => 28,
         CURLOPT_CONNECTTIMEOUT => 10,
         CURLOPT_SSL_VERIFYPEER => true,
         CURLOPT_SSL_VERIFYHOST => 2,
-        CURLOPT_USERAGENT      => 'AburamaruInstagramFeed/1.0',
+        CURLOPT_USERAGENT      => 'KananaInstagramFeed/2.0',
     ]);
 
     $body = curl_exec($ch);
@@ -73,7 +81,7 @@ function curlGet(string $url): array
     if ($httpCode >= 400 || isset($decoded['error'])) {
         $msg = $decoded['error_message']
             ?? ($decoded['error']['message'] ?? null)
-            ?? 'Instagram API エラー（HTTP ' . $httpCode . '）';
+            ?? 'Instagram Graph API エラー（HTTP ' . $httpCode . '）';
         return ['ok' => false, 'error' => (string) $msg, 'httpCode' => $httpCode, 'data' => $decoded];
     }
 
@@ -86,7 +94,7 @@ function readJsonFile(string $path): ?array
         return null;
     }
     $raw = file_get_contents($path);
-    if ($raw === false || $raw === '') {
+    if ($raw === false || trim($raw) === '') {
         return null;
     }
     $decoded = json_decode($raw, true);
@@ -106,68 +114,67 @@ function writeJsonFile(string $path, array $data): bool
     return rename($tmp, $path);
 }
 
-function resolveAccessToken(string $inlineToken): array
+function loadTokenFromFile(): array
 {
-    $tokenFile = readJsonFile(TOKEN_FILE);
-    if ($tokenFile !== null && !empty($tokenFile['access_token'])) {
+    $file = readJsonFile(TOKEN_FILE);
+    if ($file === null) {
         return [
-            'token'      => (string) $tokenFile['access_token'],
-            'username'   => (string) ($tokenFile['username'] ?? ''),
-            'expires_at' => (int) ($tokenFile['expires_at'] ?? 0),
-            'updated_at' => (string) ($tokenFile['updated_at'] ?? ''),
-            'source'     => 'file',
+            'ok'    => false,
+            'error' => 'instagram-token.json が見つかりません。callback.php で取得した JSON を同階層に配置してください。',
         ];
     }
 
-    if ($inlineToken !== '') {
-        return [
-            'token'      => $inlineToken,
-            'username'   => '',
-            'expires_at' => 0,
-            'updated_at' => '',
-            'source'     => 'inline',
-        ];
+    $token = trim((string) ($file['access_token'] ?? ''));
+    $igId  = trim((string) ($file['instagram_business_account_id'] ?? $file['user_id'] ?? ''));
+
+    if ($token === '') {
+        return ['ok' => false, 'error' => 'instagram-token.json に access_token がありません。'];
+    }
+    if ($igId === '') {
+        return ['ok' => false, 'error' => 'instagram-token.json に instagram_business_account_id がありません。'];
     }
 
-    return ['token' => '', 'username' => '', 'expires_at' => 0, 'updated_at' => '', 'source' => 'none'];
+    return [
+        'ok'                            => true,
+        'access_token'                  => $token,
+        'instagram_business_account_id' => $igId,
+        'username'                      => (string) ($file['username'] ?? ''),
+        'expires_at'                    => (int) ($file['expires_at'] ?? 0),
+        'updated_at'                    => (string) ($file['updated_at'] ?? ''),
+    ];
 }
 
-function persistToken(string $token, string $username, int $expiresAt): void
+function persistToken(array $tokenData): void
 {
-    $existing = readJsonFile(TOKEN_FILE) ?? [];
     writeJsonFile(TOKEN_FILE, [
-        'access_token' => $token,
-        'user_id'      => (string) ($existing['user_id'] ?? ''),
-        'username'     => $username !== '' ? $username : (string) ($existing['username'] ?? ''),
-        'expires_at'   => $expiresAt,
-        'updated_at'   => gmdate('c'),
+        'access_token'                  => $tokenData['access_token'],
+        'instagram_business_account_id' => $tokenData['instagram_business_account_id'],
+        'username'                      => $tokenData['username'],
+        'expires_at'                    => $tokenData['expires_at'],
+        'updated_at'                    => gmdate('c'),
     ]);
 }
 
 /**
- * 長期トークンを自動延長（60日リフレッシュ）
- * - トークンが24時間以上経過している必要あり（Meta 仕様）
- * - 期限7日以内、または updated_at から24h以上経過で試行
+ * 長期トークン自動延長（最大60日）
+ * graph.facebook.com / graph.instagram.com の refresh_access_token
  */
-function refreshLongLivedTokenIfNeeded(array $tokenMeta): array
+function refreshLongLivedTokenIfNeeded(array $meta): array
 {
-    $token = $tokenMeta['token'];
+    $token = $meta['access_token'];
     if ($token === '') {
-        return $tokenMeta;
+        return $meta;
     }
 
     $now = time();
-    $expiresAt = (int) $tokenMeta['expires_at'];
-    $updatedAtTs = 0;
-    if (!empty($tokenMeta['updated_at'])) {
-        $updatedAtTs = strtotime($tokenMeta['updated_at']) ?: 0;
-    }
+    $expiresAt = (int) $meta['expires_at'];
+    $updatedAtTs = !empty($meta['updated_at']) ? (strtotime($meta['updated_at']) ?: 0) : 0;
 
     $expiresSoon = ($expiresAt > 0 && $expiresAt <= ($now + 7 * 86400));
     $oldEnough   = ($updatedAtTs === 0 || ($now - $updatedAtTs) >= 86400);
 
     if (!$expiresSoon && !$oldEnough) {
-        return $tokenMeta;
+        return $meta;
     }
 
     $query = http_build_query([
@@ -175,26 +182,38 @@ function refreshLongLivedTokenIfNeeded(array $tokenMeta): array
         'access_token' => $token,
     ]);
 
-    $result = curlGet(GRAPH_API_BASE . '/refresh_access_token?' . $query);
-    if (!$result['ok'] || empty($result['data']['access_token'])) {
-        // 24時間未満などで失敗する場合は現行トークンを継続利用
-        return $tokenMeta;
+    $endpoints = [
+        graphUrl('refresh_access_token', [
+            'grant_type'   => 'ig_refresh_token',
+            'access_token' => $token,
+        ]),
+        'https://graph.instagram.com/refresh_access_token?' . $query,
+    ];
+
+    $result = null;
+    foreach ($endpoints as $url) {
+        $result = curlGet($url);
+        if ($result['ok'] && !empty($result['data']['access_token'])) {
+            break;
+        }
+    }
+
+    if ($result === null || !$result['ok'] || empty($result['data']['access_token'])) {
+        return $meta;
     }
 
     $newToken = (string) $result['data']['access_token'];
     $expiresIn = (int) ($result['data']['expires_in'] ?? 5184000);
     $newExpiresAt = $now + $expiresIn;
 
-    persistToken($newToken, (string) $tokenMeta['username'], $newExpiresAt);
+    $meta['access_token'] = $newToken;
+    $meta['expires_at']   = $newExpiresAt;
+    $meta['updated_at']   = gmdate('c');
+    $meta['refreshed']    = true;
 
-    return [
-        'token'      => $newToken,
-        'username'   => (string) $tokenMeta['username'],
-        'expires_at' => $newExpiresAt,
-        'updated_at' => gmdate('c'),
-        'source'     => (string) $tokenMeta['source'],
-        'refreshed'  => true,
-    ];
+    persistToken($meta);
+
+    return $meta;
 }
 
 function normalizeCaption(?string $caption): string
@@ -202,33 +221,34 @@ function normalizeCaption(?string $caption): string
     if ($caption === null || $caption === '') {
         return '';
     }
-    $caption = preg_replace('/\s+/u', ' ', trim($caption)) ?? $caption;
-    return $caption;
+    return preg_replace('/\s+/u', ' ', trim($caption)) ?? '';
 }
 
 function pickMediaUrl(array $item): string
 {
     $type = strtoupper((string) ($item['media_type'] ?? 'IMAGE'));
-    if ($type === 'VIDEO' || $type === 'REELS') {
-        return (string) ($item['thumbnail_url'] ?? $item['media_url'] ?? '');
+    if ($type === 'VIDEO' || $type === 'REELS' || $type === 'CAROUSEL_ALBUM') {
+        $thumb = (string) ($item['thumbnail_url'] ?? '');
+        if ($thumb !== '') {
+            return $thumb;
+        }
     }
     return (string) ($item['media_url'] ?? $item['thumbnail_url'] ?? '');
 }
 
-function fetchLatestPosts(string $accessToken): array
+function fetchLatestPosts(string $igAccountId, string $accessToken): array
 {
-    $query = http_build_query([
+    $result = curlGet(graphUrl($igAccountId . '/media', [
         'fields'       => MEDIA_FIELDS,
         'limit'        => MEDIA_LIMIT,
         'access_token' => $accessToken,
-    ]);
+    ]));
 
-    $media = curlGet(GRAPH_API_BASE . '/me/media?' . $query);
-    if (!$media['ok']) {
-        return ['ok' => false, 'error' => $media['error']];
+    if (!$result['ok']) {
+        return ['ok' => false, 'error' => $result['error']];
     }
 
-    $items = $media['data']['data'] ?? [];
+    $items = $result['data']['data'] ?? [];
     if (!is_array($items)) {
         return ['ok' => false, 'error' => '投稿データの形式が不正です。'];
     }
@@ -255,22 +275,6 @@ function fetchLatestPosts(string $accessToken): array
     return ['ok' => true, 'posts' => $posts];
 }
 
-function fetchUsername(string $accessToken, string $known = ''): string
-{
-    if ($known !== '') {
-        return $known;
-    }
-    $query = http_build_query([
-        'fields'       => 'username',
-        'access_token' => $accessToken,
-    ]);
-    $result = curlGet(GRAPH_API_BASE . '/me?' . $query);
-    if (!$result['ok']) {
-        return '';
-    }
-    return (string) ($result['data']['username'] ?? '');
-}
-
 function loadCache(): ?array
 {
     $cache = readJsonFile(CACHE_FILE);
@@ -293,13 +297,7 @@ function saveCache(array $posts, string $username): void
 }
 
 // =============================================================================
-// エントリーポイント
-// =============================================================================
 try {
-    if (!function_exists('curl_init')) {
-        respondError('サーバーに cURL 拡張が有効化されていません。', 500);
-    }
-
     $cached = loadCache();
     if ($cached !== null && !empty($cached['posts']) && is_array($cached['posts'])) {
         respond([
@@ -310,25 +308,25 @@ try {
         ]);
     }
 
-    $tokenMeta = resolveAccessToken($access_token);
-    if ($tokenMeta['token'] === '') {
-        respondError('Instagram アクセストークンが未設定です。callback.php でトークンを取得してください。', 503);
+    $tokenMeta = loadTokenFromFile();
+    if (!$tokenMeta['ok']) {
+        respondError($tokenMeta['error'], 503);
     }
 
     $tokenMeta = refreshLongLivedTokenIfNeeded($tokenMeta);
-    $token = $tokenMeta['token'];
 
-    $feed = fetchLatestPosts($token);
+    $feed = fetchLatestPosts(
+        $tokenMeta['instagram_business_account_id'],
+        $tokenMeta['access_token']
+    );
+
     if (!$feed['ok']) {
         respondError($feed['error'], 502);
     }
 
-    $username = fetchUsername($token, (string) $tokenMeta['username']);
-    if ($username !== '' && $username !== $tokenMeta['username']) {
-        persistToken($token, $username, (int) $tokenMeta['expires_at']);
-    }
-
+    $username = (string) $tokenMeta['username'];
     $posts = $feed['posts'];
+
     saveCache($posts, $username);
 
     respond([

@@ -1,6 +1,30 @@
 <?php
 declare(strict_types=1);
 
+/** 致命的エラー時も画面に表示（500 の空ページを防ぐ） */
+register_shutdown_function(static function (): void {
+    $err = error_get_last();
+    if ($err === null) {
+        return;
+    }
+    $fatal = [E_ERROR, E_PARSE, E_CORE_ERROR, E_COMPILE_ERROR];
+    if (!in_array($err['type'], $fatal, true)) {
+        return;
+    }
+    if (headers_sent()) {
+        return;
+    }
+    http_response_code(200);
+    header('Content-Type: text/html; charset=UTF-8');
+    echo '<!DOCTYPE html><html lang="ja"><head><meta charset="UTF-8"><title>PHP エラー</title></head><body style="font-family:sans-serif;padding:24px">';
+    echo '<h1>callback.php で PHP エラーが発生しました</h1>';
+    echo '<pre style="background:#fff;padding:12px;border:2px solid #000">';
+    echo htmlspecialchars($err['message'] . "\n" . $err['file'] . ':' . $err['line'], ENT_QUOTES, 'UTF-8');
+    echo '</pre>';
+    echo '<p>サーバーで <code>php-curl</code> が有効か確認してください: <code>php -m | grep curl</code></p>';
+    echo '</body></html>';
+});
+
 /**
  * 共通 OAuth コールバック（自社ドメインに1枚のみ配置）
  * 例: https://kanana-tech.jp/callback.php
@@ -27,9 +51,20 @@ function cfg(string $envKey, string $constant): string
     return $constant;
 }
 
-function h(string $value): string
+function h(?string $value): string
 {
-    return htmlspecialchars($value, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
+    return htmlspecialchars($value ?? '', ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
+}
+
+function errorMessage(mixed $value, string $fallback = '不明なエラー'): string
+{
+    if (is_string($value) && $value !== '') {
+        return $value;
+    }
+    if (is_scalar($value)) {
+        return (string) $value;
+    }
+    return $fallback;
 }
 
 function graphUrl(string $path, array $query = []): string
@@ -140,25 +175,67 @@ function exchangeCodeForShortToken(string $appId, string $appSecret, string $red
     ]);
 }
 
-/** 短期 → 60日長期（Instagram Graph API 公式エンドポイント） */
-function exchangeForLongLivedToken(string $appSecret, string $shortToken): array
+/** 短期トークン応答の正規化（API 仕様差異に対応） */
+function normalizeShortTokenResponse(array $result): array
 {
-    $igEndpoint = 'https://graph.instagram.com/access_token?' . http_build_query([
-        'grant_type'    => 'ig_exchange_token',
-        'client_secret' => $appSecret,
-        'access_token'  => $shortToken,
-    ]);
-
-    $result = curlRequest('GET', $igEndpoint);
-    if ($result['ok'] && !empty($result['data']['access_token'])) {
+    if (!$result['ok'] || !isset($result['data']) || !is_array($result['data'])) {
         return $result;
     }
 
-    return curlRequest('GET', graphUrl('oauth/access_token', [
+    $data = $result['data'];
+
+    if (!empty($data['access_token'])) {
+        return $result;
+    }
+
+    if (isset($data['data'][0]['access_token'])) {
+        $result['data']['access_token'] = $data['data'][0]['access_token'];
+        $result['data']['user_id']      = $data['data'][0]['user_id'] ?? '';
+        return $result;
+    }
+
+    return ['ok' => false, 'error' => '短期トークンの形式が想定外です。', 'data' => $data];
+}
+
+/**
+ * 短期 → 60日長期
+ * 1) graph.instagram.com + ig_exchange_token（Instagram Login 公式）
+ * 2) graph.facebook.com + fb_exchange_token + client_id（フォールバック）
+ */
+function exchangeForLongLivedToken(string $appId, string $appSecret, string $shortToken): array
+{
+    $igResult = curlRequest('GET', 'https://graph.instagram.com/access_token?' . http_build_query([
         'grant_type'    => 'ig_exchange_token',
         'client_secret' => $appSecret,
         'access_token'  => $shortToken,
     ]));
+
+    if ($igResult['ok'] && !empty($igResult['data']['access_token'])) {
+        $igResult['exchange_via'] = 'graph.instagram.com';
+        return $igResult;
+    }
+
+    $igError = (string) ($igResult['error'] ?? 'graph.instagram.com での交換に失敗');
+
+    $fbResult = curlRequest('GET', graphUrl('oauth/access_token', [
+        'grant_type'        => 'fb_exchange_token',
+        'client_id'         => $appId,
+        'client_secret'     => $appSecret,
+        'fb_exchange_token' => $shortToken,
+    ]));
+
+    if ($fbResult['ok'] && !empty($fbResult['data']['access_token'])) {
+        $fbResult['exchange_via'] = 'graph.facebook.com';
+        return $fbResult;
+    }
+
+    $fbError = (string) ($fbResult['error'] ?? 'graph.facebook.com での交換に失敗');
+
+    return [
+        'ok'    => false,
+        'error' => $igError . ' / ' . $fbError,
+        'data'  => $fbResult['data'] ?? $igResult['data'] ?? null,
+    ];
 }
 
 /** プロフィール取得（graph.facebook.com） */
@@ -228,7 +305,7 @@ function saveTokenPayloadToDisk(string $tokenJson): bool
     return rename($tmp, $dir . '/instagram-token-latest.json');
 }
 
-function renderPage(string $title, string $bodyHtml, bool $isError = false): never
+function renderPage(string $title, string $bodyHtml, bool $isError = false): void
 {
     ?>
 <!DOCTYPE html>
@@ -283,10 +360,20 @@ function renderPage(string $title, string $bodyHtml, bool $isError = false): nev
 // =============================================================================
 // メイン
 // =============================================================================
+try {
 $appId       = cfg('INSTAGRAM_APP_ID', INSTAGRAM_APP_ID);
 $appSecret   = cfg('INSTAGRAM_APP_SECRET', INSTAGRAM_APP_SECRET);
 $redirectUri = cfg('INSTAGRAM_REDIRECT_URI', INSTAGRAM_REDIRECT_URI);
 $scope       = cfg('INSTAGRAM_OAUTH_SCOPE', INSTAGRAM_OAUTH_SCOPE);
+
+if (!extension_loaded('curl')) {
+    renderPage(
+        '環境エラー',
+        '<div class="err"><h1>PHP の cURL 拡張が無効です</h1>
+         <p>サーバーで <code>sudo apt install php-curl</code> の後 <code>sudo systemctl restart apache2</code> を実行してください。</p></div>',
+        true
+    );
+}
 
 if ($appId === '' || $appSecret === '') {
     renderPage(
@@ -310,41 +397,48 @@ if (isset($_GET['error'])) {
     );
 }
 
-$code = isset($_GET['code']) ? trim((string) $_GET['code']) : '';
+$code = '';
+if (isset($_GET['code']) && is_string($_GET['code'])) {
+    $code = trim($_GET['code']);
+}
 if ($code !== '') {
-    $code = preg_replace('/#_$/', '', $code) ?? $code;
+    $stripped = preg_replace('/#_$/', '', $code);
+    $code = is_string($stripped) ? $stripped : $code;
 
     $short = normalizeShortTokenResponse(exchangeCodeForShortToken($appId, $appSecret, $redirectUri, $code));
-    if (!$short['ok'] || empty($short['data']['access_token'])) {
+    $shortData = is_array($short['data'] ?? null) ? $short['data'] : [];
+    if (!$short['ok'] || ($shortData['access_token'] ?? '') === '') {
         renderPage(
             '短期トークンエラー',
-            '<div class="err"><h1>短期トークンの取得に失敗しました</h1><p>' . h($short['error'] ?? '不明なエラー') . '</p></div>
+            '<div class="err"><h1>短期トークンの取得に失敗しました</h1><p>' . h(errorMessage($short['error'] ?? null)) . '</p>
+             <p class="hint">認可コードは1回限りです。下のボタンから再度ログインしてください。</p></div>
              <a class="btn" href="' . h($authUrl) . '">再試行</a>',
             true
         );
     }
 
-    $shortToken = (string) $short['data']['access_token'];
+    $shortToken = (string) $shortData['access_token'];
 
     $long = exchangeForLongLivedToken($appId, $appSecret, $shortToken);
-    if (!$long['ok'] || empty($long['data']['access_token'])) {
+    $longData = is_array($long['data'] ?? null) ? $long['data'] : [];
+    if (!$long['ok'] || ($longData['access_token'] ?? '') === '') {
         renderPage(
             '長期トークンエラー',
-            '<div class="err"><h1>60日長期トークンへの交換に失敗しました</h1><p>' . h($long['error'] ?? '不明なエラー') . '</p></div>
+            '<div class="err"><h1>60日長期トークンへの交換に失敗しました</h1><p>' . h(errorMessage($long['error'] ?? null)) . '</p></div>
              <a class="btn" href="' . h($authUrl) . '">再試行</a>',
             true
         );
     }
 
-    $longToken = (string) $long['data']['access_token'];
-    $expiresIn = (int) ($long['data']['expires_in'] ?? 5184000);
+    $longToken = (string) $longData['access_token'];
+    $expiresIn = (int) ($longData['expires_in'] ?? 5184000);
     $expiresAt = time() + $expiresIn;
 
     $profile = fetchInstagramProfile($longToken);
     if (!$profile['ok']) {
         renderPage(
             'プロフィール取得エラー',
-            '<div class="err"><h1>Instagram アカウント ID の取得に失敗しました</h1><p>' . h($profile['error'] ?? '不明なエラー') . '</p></div>
+            '<div class="err"><h1>Instagram アカウント ID の取得に失敗しました</h1><p>' . h(errorMessage($profile['error'] ?? null)) . '</p></div>
              <a class="btn" href="' . h($authUrl) . '">再試行</a>',
             true
         );
@@ -408,3 +502,16 @@ renderPage(
      <p class="hint">Redirect URI（Meta に登録）: <code>' . h($redirectUri) . '</code></p>
      <p class="hint">App ID: <code>' . h($appId) . '</code></p>'
 );
+} catch (Throwable $e) {
+    renderPage(
+        '例外エラー',
+        '<div class="err"><h1>処理中に例外が発生しました</h1><p>' . h($e->getMessage()) . '</p>
+         <pre style="font-size:12px;overflow:auto">' . h($e->getFile() . ':' . $e->getLine()) . '</pre></div>
+         <a class="btn" href="' . h(buildAuthorizeUrl(
+             cfg('INSTAGRAM_APP_ID', INSTAGRAM_APP_ID),
+             cfg('INSTAGRAM_REDIRECT_URI', INSTAGRAM_REDIRECT_URI),
+             cfg('INSTAGRAM_OAUTH_SCOPE', INSTAGRAM_OAUTH_SCOPE)
+         )) . '">再試行</a>',
+        true
+    );
+}
